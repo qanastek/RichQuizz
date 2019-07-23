@@ -1,0 +1,52 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+
+  <!-- Top of the card -->
+  <ion-row align-items-center style="background-color: #4ec2e7;">
+
+    <ion-col size="4" style="text-align: center;">
+      <img
+        class="RulesIcon"
+        src="/assets/img/amonestation.png"
+      >
+    </ion-col>
+    
+    <ion-col size="8" style="text-align: left;">
+      <p class="RulesTitle">Les règles du jeu</p>
+    </ion-col>
+
+  </ion-row>
+
+  <!-- Middle section -->
+  <ion-row style="padding-top: 1.5vh; padding-left: 5vw; padding-right: 5vw;">
+
+    <ion-col size="12" style="color: black; text-align: center;">
+
+      <p>Obtenez le plus de points que possibles en répondant correctement aux questions</p>
+
+      <p>Vous avez la possibilité d'utilisé un joker qui vous permettras de sauter la question que vous souhaité en contrepartie d'une vidéo</p>
+
+      <p>Vous trouverez dans la section "Scores" le nombre de points que vous avez gagner pour chacunes des catégories disponibles</p>
+
+      <p>Sur ceux, Bon jeu !</p>
+
+      <p><u>PS:</u> Tous les îcones utilisé dans ceux jeux sont gratuite et vous pouvez les retrouver sur le site <a href="https://flaticon.com" target="_blank">flaticon.com</a></p>
+
+    </ion-col>
+
+  </ion-row>
+
+  <!-- Bottom section button -->
+  <ion-button
+    expand="full"
+    class="RulesStartBtn"
+    color="RichQuizzGreen"
+    (click)="GoThemes()"
+    routerDirection="forward"
+  >
+    Commencer !
+  </ion-button>
+
+</ion-content>

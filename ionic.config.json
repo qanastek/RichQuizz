@@ -1,0 +1,7 @@
+{
+  "name": "RichQuizz",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

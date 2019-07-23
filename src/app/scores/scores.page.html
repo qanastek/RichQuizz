@@ -1,0 +1,76 @@
+<ion-header>
+</ion-header>
+
+<ion-content color="RichQuizzBackground">
+
+    <!-- Title bar on the top -->
+    <ion-row align-items-center style="text-align: center; background-color: #fd625e;">
+      <ion-col size="12">
+        <p
+          style="
+            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.85em;
+            margin-top: 2.5vh;
+            margin-bottom: 2.5vh;
+            margin-left: 0vw;
+            margin-right: 0vw;
+          "
+        >
+          Mes scores
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <!-- Scores for each themes -->
+    <ion-row align-items-center style="max-height: 11vh;" *ngFor="let theme of this.scores">
+
+      <ion-col size="3" style="text-align: center; background-color: lightcoral;">
+          <p
+            style="
+              font-size: 1.5em;
+              height: 100%;
+              color: #ffffff;
+              margin: 0% !important;
+              padding-top: 3vh;
+              padding-bottom: 3vh;
+              font-weight: 600;
+              text-transform: uppercase;
+            "
+          >
+            {{theme.name | slice:0:1}}
+          </p>
+      </ion-col>
+
+      <ion-col size="7">
+          <h1
+            style="
+              margin: 0% !important;
+              padding-left: 10%;
+              font-weight: 400;
+              text-transform: capitalize;
+              font-size: 1.5em;
+            "
+          >
+            {{theme.name}}
+          </h1>
+      </ion-col>
+
+      <ion-col size="2" style="text-align: center;">
+        <p 
+          style="
+            margin: 0% !important;
+            color: #fd625e;
+            font-size: 1.25em;
+            margin: 0% !important;
+            font-weight: 400;
+          "
+        >
+          {{theme.score}}
+        </p>
+      </ion-col>
+
+    </ion-row>
+
+</ion-content>

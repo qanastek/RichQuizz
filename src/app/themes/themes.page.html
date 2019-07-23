@@ -1,0 +1,197 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid fixed style="height: 100vh; padding: 0%; text-align: center;">
+
+    <ion-row align-items-center style="color: white;">
+
+      <!-- 1st row -->
+      <ion-col
+        size="4"
+        style="
+          background-color: #fd625e;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('voitures')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/car.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Voitures</p>
+
+      </ion-col>
+
+      <ion-col
+        size="4"
+        style="
+          background-color: #87ba3b;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('nourriture')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/grocery.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Nourriture</p>
+
+      </ion-col>
+
+      <ion-col
+        size="4"
+        style="
+          background-color: #f9d406;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('alcools')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/liquor.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Alcools</p>
+
+      </ion-col>
+
+      <!-- 2st row -->
+      <ion-col
+        size="4"
+        style="
+          background-color: #df7b23;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('mobiliers')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/living-room.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Mobiliers</p>
+
+      </ion-col>
+      
+      <ion-col
+        size="4"
+        style="
+          background-color: #13a88a;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('loisirs')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/sport.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Loisirs</p>
+
+      </ion-col>
+
+      <ion-col
+        size="4"
+        style="
+          background-color: #0071bd;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('bijoux')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/watch.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Bijoux</p>
+
+      </ion-col>
+
+      <!-- 3nd row -->
+      <ion-col
+        size="4"
+        style="
+          background-color: #fbc02f;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('vêtements')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/cloth.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Vêtements</p>
+
+      </ion-col>
+
+      <ion-col
+        size="4"
+        style="
+          background-color: #278fc6;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoPlay('high-tech')"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/computer.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">High-Tech</p>
+
+      </ion-col>
+
+      <ion-col
+        size="4"
+        style="
+          background-color: #6d4e89;
+          text-align: center;
+          max-height: 33vh;
+          padding-top: 12%;
+          padding-bottom: 15%;
+        "
+        (click)="GoAddItem()"
+      >
+          
+        <img style="width: 25vw;" src="/assets/img/house.png">
+
+        <br>
+
+        <p style="font-size: 1.25em;">Immobilier</p>
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,37 @@
+.PlayBtn
+{
+    height: 50vh;
+    margin: 0%;
+    
+    text-align: center;
+    font-size: 10vh;
+    font-weight: 700;
+    letter-spacing: 0.0625em;
+}
+
+.ScoreBtn
+{
+    height: 25vh;
+    margin: 0%;
+    
+    text-align: center;
+    font-size: 10vh;
+    font-weight: 700;
+    letter-spacing: 0.0625em;
+}
+
+.RulesBtn
+{
+    height: 25vh;
+    margin: 0%;
+    
+    text-align: center;
+    font-size: 10vh;
+    font-weight: 700;
+    letter-spacing: 0.0625em;
+}
+
+.BackgroundGradientPlayBtn
+{
+    --background: linear-gradient(240deg, #ef3c59 0%, #fe921b 100%) !important;
+}

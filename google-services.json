@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "783176123967",
+    "firebase_url": "https://richquizz.firebaseio.com",
+    "project_id": "richquizz",
+    "storage_bucket": "richquizz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783176123967:android:b49b916c3e054019",
+        "android_client_info": {
+          "package_name": "com.labrakyanis.richquizz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783176123967-n3kj09lm804n6p307ms9g42pfnc1crj4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.labrakyanis.richquizz",
+            "certificate_hash": "f7b358bb75d4c9cc6959c8e2f2a1d98939fe818b"
+          }
+        },
+        {
+          "client_id": "783176123967-h70h0to097rt77480u7qdm0g5dviu23a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcLgQqYMMSAwcbNH1SC2rb3jgDyRv-678"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783176123967-h70h0to097rt77480u7qdm0g5dviu23a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
