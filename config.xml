@@ -3,7 +3,7 @@
     <name>RichQuizz</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="qanastek@gmail.com" href="http://ionicframework.com/">Labrak Yanis</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://localhost:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -99,4 +99,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <allow-navigation href="http://localhost:8100" sessionid="6b0d4c50" />
+    <engine name="android" spec="7.1.4" />
 </widget>
