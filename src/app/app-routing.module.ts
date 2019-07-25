@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'scores', loadChildren: './scores/scores.module#ScoresPageModule' },
   { path: 'play/:quizz', loadChildren: './play/play.module#PlayPageModule' },
   { path: 'add', loadChildren: './admin/add/add.module#AddPageModule' },
-  { path: 'levels', loadChildren: './levels/levels.module#LevelsPageModule' },
+  { path: 'levels/:theme', loadChildren: './levels/levels.module#LevelsPageModule' },
 ];
 
 @NgModule({

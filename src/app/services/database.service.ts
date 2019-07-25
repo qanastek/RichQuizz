@@ -453,4 +453,131 @@ export class DatabaseService {
     });
   }
 
+  public getQuizzFromLevels(theme: string, difficulty: string): any {
+
+    let SqlQuery = `
+      SELECT
+        quizz.id 				    AS "quizz_id",
+        categories.name 		AS "category_name",
+        categories.id 			AS "category_id",
+        categories.image 		AS "category_image",
+        types.name 				  AS "type_name",
+        types.id 				    AS "type_id",
+        difficulties.name 	AS "difficulty_name",
+        difficulties.id 		AS "difficulty_id",
+        difficulties.points AS "difficulty_points",
+        quizz.image 			  AS "image_url",
+        quizz.question 			AS "question",
+        quizz.answer 			  AS "answer",
+        quizz.option_1 			AS "option_1",
+        quizz.option_2 			AS "option_2",
+        quizz.option_3 			AS "option_3",
+        quizz.option_4 			AS "option_4",
+        status.name 			  AS "status_name",
+        status.id 				  AS "status_id"
+      FROM
+        quizz
+        JOIN categories
+          ON quizz.theme = categories.id
+        JOIN types
+          ON quizz.type = types.id
+        JOIN difficulties
+          ON quizz.difficulty = difficulties.id
+        JOIN status
+          ON quizz.status = status.id
+      WHERE
+        category_name = '${theme}'
+        AND
+        difficulty_name = '${difficulty}'
+        AND
+        status_id BETWEEN 0 AND 1
+      ;
+    `;
+
+    return this.db.executeSql(SqlQuery, [])
+    .then(data => {
+
+      if (data.rows.length > 0) {
+
+        let item = {
+          quizz_id: data.rows.item(0).quizz_id,
+          category_name: data.rows.item(0).category_name,
+          category_id: data.rows.item(0).category_id,
+          category_image: data.rows.item(0).category_image,
+          type_name: data.rows.item(0).type_name,
+          type_id: data.rows.item(0).type_id,
+          difficulty_name: data.rows.item(0).difficulty_name,
+          difficulty_id: data.rows.item(0).difficulty_id,
+          difficulty_points: data.rows.item(0).difficulty_points,
+          image_url: data.rows.item(0).image_url,
+          question: data.rows.item(0).question.replace(/\\"/g, ''),
+          answer: data.rows.item(0).answer,
+          option_1: data.rows.item(0).option_1,
+          option_2: data.rows.item(0).option_2,
+          option_3: data.rows.item(0).option_3,
+          option_4: data.rows.item(0).option_4,
+          status_name: data.rows.item(0).status_name,
+          status_id: data.rows.item(0).status_id
+        };
+
+        return item;
+
+      }
+      else {
+        return null;
+      }
+
+    });
+  }
+
+  public getThemeInfos(theme: string): any {
+
+    var sqlQuery = `
+      SELECT
+        id, name, image
+      FROM
+        categories
+      WHERE
+        name = "${theme}"
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+
+      return JSON.stringify({
+        id: data.rows.item(0).id,
+        name: data.rows.item(0).name,
+        image: data.rows.item(0).image
+      });
+      
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  public getWonCounter(theme: string): any {
+
+    var sqlQuery = `      
+      SELECT
+        COUNT(*) AS counter
+      FROM
+        quizz
+        JOIN categories
+          ON quizz.theme = categories.id
+      WHERE
+        status = 2
+        AND
+        categories.name = "${theme}"
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+      return data.rows.item(0).counter;
+    })
+    .catch(e => console.error(e));
+
+  }
+
 }

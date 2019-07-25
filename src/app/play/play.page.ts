@@ -93,24 +93,21 @@ export class PlayPage implements OnInit {
 
   }
 
-  checkResult(
-    quizzId: number,
-    answer: string,
-    commit: string,
-    themeId: number,
-    themeName: string,
-    scoreDifficulty: number
-  ) {
+  checkResult(commit: string) {
 
-    if (answer === commit) {
+    if (this.quizz.answer === commit) {
+
+      // Update the counter of wons
+      // this.levels.refreshCounter();
+
       // Popup window for winning
       this.win();
 
-      this.db.changeStatusQuizz(quizzId, 2);
-      this.UpdateScore(themeId, scoreDifficulty);
+      this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
+      this.UpdateScore(this.quizz.category_id, this.quizz.difficulty_points);
 
       // Récupère le prochain quizz de ce thème
-      this.db.getQuizzTheme(themeName)
+      this.db.getQuizzTheme(this.quizz.category_name)
       .then(data => {
         this.nextQuizz = data;
 
@@ -119,7 +116,7 @@ export class PlayPage implements OnInit {
           this.quizz = this.nextQuizz;
         }
         else {        
-          this.router.navigate(['themes']);
+          this.router.navigate(['levels', this.quizz.category_name]);
         }
 
       });      
@@ -133,7 +130,7 @@ export class PlayPage implements OnInit {
         // 0 never done
         // 1 fail
         // 2 done
-      this.db.changeStatusQuizz(quizzId, 1);
+      this.db.changeStatusQuizz(this.quizz.quizz_id, 1);
 
       switch (this.hearths) {
 
@@ -148,7 +145,7 @@ export class PlayPage implements OnInit {
           break;
         
         case '♥':
-          this.dead(answer);
+          this.dead(this.quizz.answer);
           // this.scoresSession = 0;
           this.router.navigate(['themes']);
           break;

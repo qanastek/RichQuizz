@@ -3,47 +3,6 @@
 
 <ion-content style="height: 100vh;">
 
-  <!-- Banner logo and theme -->
-  <ion-row align-items-center style="background-color: #fd625e; height: 10vh;">
-
-    <ion-col 
-      size="5"
-      style="
-        max-height: 10vh;
-        overflow: hidden;
-        object-fit: cover;
-        padding-left: 15vw;
-      "
-    >
-      <img
-        style="
-          height: 100%;
-          width: 100%;
-          align-content: flex-start;
-        "
-        [src]="this.quizz.category_image"
-        alt="icon for the category"
-      >
-    </ion-col>
-
-    <ion-col
-      size="7"
-      style="
-        max-height: 10vh;
-        text-align: center;
-        color: white;
-        text-transform: capitalize;
-        font-size: 1.25em;
-        font-weight: 500;
-      "
-    >
-      {{this.quizz.category_name}}
-    </ion-col>
-
-  </ion-row>
-
-  <hr>
-
   <ion-row style="padding-left: 4vw; padding-right: 4vw;">
 
     <!-- Difficulty + Points + Jocker + Hearths -->
@@ -109,7 +68,7 @@
           "
           expand="full"
           color="successRichQuizz"
-          (click)="checkResult(this.quizz.quizz_id, this.quizz.answer, 'true', this.quizz.category_id, this.quizz.category_name, this.quizz.difficulty_points)"
+          (click)="checkResult('true')"
         >
           VRAI
         </ion-button>
@@ -127,7 +86,7 @@
           "
           expand="full"
           color="dangerRichQuizz"
-          (click)="checkResult(this.quizz.quizz_id, this.quizz.answer, 'false', this.quizz.category_id, this.quizz.category_name, this.quizz.difficulty_points)"
+          (click)="checkResult('false')"
         >
           FAUX
         </ion-button>
@@ -150,7 +109,7 @@
             padding: 0%;
             margin: 0%;
           "
-          (click)="checkResult(this.quizz.quizz_id, this.quizz.answer, this.quizz.option_1, this.quizz.category_id, this.quizz.category_name, this.quizz.difficulty_points)"
+          (click)="checkResult(this.quizz.option_1)"
         >
           {{this.quizz.option_1}}
         </ion-button>
@@ -168,7 +127,7 @@
             padding: 0%;
             margin: 0%;
           "
-          (click)="checkResult(this.quizz.quizz_id, this.quizz.answer, this.quizz.option_2, this.quizz.category_id, this.quizz.category_name, this.quizz.difficulty_points)"
+          (click)="checkResult(this.quizz.option_2)"
         >
           {{this.quizz.option_2}}
         </ion-button>
@@ -186,7 +145,7 @@
             padding: 0%;
             margin: 0%;
           "
-          (click)="checkResult(this.quizz.quizz_id, this.quizz.answer, this.quizz.option_3, this.quizz.category_id, this.quizz.category_name, this.quizz.difficulty_points)"
+          (click)="checkResult(this.quizz.option_3)"
         >
           {{this.quizz.option_3}}
         </ion-button>
@@ -204,7 +163,7 @@
             padding: 0%;
             margin: 0%;
           "
-          (click)="checkResult(this.quizz.quizz_id, this.quizz.answer, this.quizz.option_4, this.quizz.category_id, this.quizz.category_name, this.quizz.difficulty_points)"
+          (click)="checkResult(this.quizz.option_4)"
         >
           {{this.quizz.option_4}}
         </ion-button>

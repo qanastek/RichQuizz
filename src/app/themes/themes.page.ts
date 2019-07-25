@@ -21,28 +21,7 @@ export class ThemesPage implements OnInit {
   }
 
   GoPlay(theme: string) {
-
-    this.db.getDatabaseState().subscribe(ready =>{
-
-      if (ready) {
-
-        this.db.getQuizzTheme(theme)
-        .then(TheQuizz => {
-
-          if (TheQuizz !== null) {
-            // Transforme l'objet TheQuizz en string
-            this.router.navigate(["play", JSON.stringify(TheQuizz)]);
-          }
-          else {
-            this.presentToast(theme);
-            this.router.navigate(['themes']);
-          }
-
-        });
-        
-      }
-
-    })
+    this.router.navigate(["levels", theme]);
   }
 
   async presentToast(theme: string) {

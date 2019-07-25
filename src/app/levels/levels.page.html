@@ -3,39 +3,35 @@
 
 <ion-content>
 
-  <ion-card>
-    <ion-item>
-      <ion-icon name="pin" slot="start"></ion-icon>
-      <ion-label>ion-item in a card, icon left, button right</ion-label>
-      <ion-button fill="outline" slot="end">View</ion-button>
-    </ion-item>
+  <!-- Banner logo and theme -->
+  <app-theme-bar [theme]="this.theme"></app-theme-bar>
+
+  <p>You done {{this.countDone}} quizz.</p>
+  
+  <!-- Unlocked -->
+  <ion-card style="text-align: center;" color="success" (click)="this.GoPlay('nourriture', 'Level 1')">
+    <ion-card-header>
+      <ion-card-title style="font-weight: 600;">Level 1</ion-card-title>
+      <ion-card-subtitle>Solved questions. <b style="font-size: 1.25em;">1/20</b></ion-card-subtitle>
+    </ion-card-header>
   
     <ion-card-content>
-      This is content, without any paragraph or header tags,
-      within an ion-card-content element.
+      <app-progression-bar [value]="83"></app-progression-bar>
     </ion-card-content>
   </ion-card>
-  
-  <ion-card>
-    <ion-item href="#" class="activated">
-      <ion-icon name="wifi" slot="start"></ion-icon>
-      <ion-label>Card Link Item 1 .activated</ion-label>
-    </ion-item>
-  
-    <ion-item href="#">
-      <ion-icon name="wine" slot="start"></ion-icon>
-      <ion-label>Card Link Item 2</ion-label>
-    </ion-item>
-  
-    <ion-item class="activated">
-      <ion-icon name="warning" slot="start"></ion-icon>
-      <ion-label>Card Button Item 1 .activated</ion-label>
-    </ion-item>
-  
-    <ion-item>
-      <ion-icon name="walk" slot="start"></ion-icon>
-      <ion-label>Card Button Item 2</ion-label>
-    </ion-item>
+
+  <!-- Locked -->
+  <ion-card style="text-align: center;" color="danger">
+    <ion-card-header>
+      <ion-card-title style="font-weight: 600;">
+        <ion-icon name="lock"></ion-icon>
+        Level 2
+      </ion-card-title>
+      <ion-card-subtitle>Solved questions. <b style="font-size: 1.25em;">0/20</b></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>You need have 20 solved quizz to unlock.</p>
+    </ion-card-content>
   </ion-card>
 
 </ion-content>

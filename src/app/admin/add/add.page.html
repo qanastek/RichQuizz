@@ -28,16 +28,24 @@
       <ion-select formControlName="type" placeholder="Choose the type" required>
         <ion-select-option value="0" selected>True or False</ion-select-option>
         <ion-select-option value="1">Multiple Choices</ion-select-option>
+        <ion-select-option value="2">Spell Word</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Difficulty</ion-label>
-      <ion-select formControlName="difficulty" placeholder="Choose the difficulty" required>
-        <ion-select-option value="0" selected>easy</ion-select-option>
-        <ion-select-option value="1">medium</ion-select-option>
-        <ion-select-option value="2">hard</ion-select-option>
-        <ion-select-option value="3">epic</ion-select-option>
+      <ion-label position="stacked">Level</ion-label>
+      <ion-select formControlName="difficulty" placeholder="Choose the level" required>
+        <ion-select-option value="0">Level 1</ion-select-option>
+        <ion-select-option value="1">Level 2</ion-select-option>
+        <ion-select-option value="2">Level 3</ion-select-option>
+        <ion-select-option value="3">Level 4</ion-select-option>
+        <ion-select-option value="4">Level 5</ion-select-option>
+
+        <ion-select-option value="5">Level 6</ion-select-option>
+        <ion-select-option value="6">Level 7</ion-select-option>
+        <ion-select-option value="7">Level 8</ion-select-option>
+        <ion-select-option value="8">Level 9</ion-select-option>
+        <ion-select-option value="9">Level 10</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -84,8 +92,8 @@
   
       </div>
 
-      <!-- Si il s'agit d'une multi -->
-      <div *ngIf="this.AddQuizz.get('type').value == 1">
+      <!-- Si il s'agit d'une qcm -->
+      <div *ngIf="this.AddQuizz.get('type').value == 1 || this.AddQuizz.get('type').value == 2">
 
         <ion-label position="stacked">Answer</ion-label>
 
@@ -96,8 +104,8 @@
           required
         ></ion-input>
   
-      </div>     
-      
+      </div>
+
     </ion-item>
 
     <!-- Si il s'agit d'un QCM alors afficher les 4 options -->

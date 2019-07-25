@@ -2,13 +2,33 @@
 
 ## Commandes:
 
+### Lancer le projet
+
 ```bash
 ionic cordova run android --livereload --device --consolelogs
 ```
 
+### Erreur config.xml disapear:
+
+```bash
+ionic integrations enable cordova --add
+```
+
+### Problème avec les components de Ionic dans les components Angular:
+
+```javascript
+@NgModule({
+ imports: [
+  CommonModule, <<<< add the angular common module
+  IonicModule <<<< add the ionic module
+ ],
+ ...
+})
+```
+
 ## TODO:
 
-- [ ] SQL ajout des logo de chaque thème dans le *JOIN* et les tables
+- [x] SQL ajout des logo de chaque thème dans le *JOIN* et les tables
 - [ ] ~~Ajouter la table player dans laquelle il y a : *PlayerName*, *PlayerTotalScore* ~~
 - [x] Ajouter à la table catégories la collone suivante *score*
 - [x] Quand le joueur clique sur le résultat on regarde si le prochain quizz !== NULL est ci c'est le cas alors on le renvoie vers un écran winer puis vers le thème
@@ -29,12 +49,25 @@ ionic cordova run android --livereload --device --consolelogs
   - [ ] Changé la typo (font-familly) de toute l'APP
   - [x] Enlevé les shader des buttons
   - [ ] Icon à côté des buttons sur l'écran d'accueil
-  - [ ] Faire la page *levels*
-- [ ] Changé les requêtes SQL du fonctionnement de *play* et *themes* après avoir créer la page de sélection du level
+  - [x] Faire la page *levels*
+- [x] Changé les requêtes SQL du fonctionnement de *play* et *themes* après avoir créer la page de sélection du level
+  - [x] Il faut changer celles de:
+    - [x] *play*
+  - [x] Ajouter celle de *levels*
 - [ ] Voir si je unlock:
   - [ ] A un certain nombre de crédits / XP *(Selon moi la meilleur façon de faire)*
     - [ ] J'ai simplement à ajouter une *column* dans *difficulties* qui ce dénoméra *unlockAt* et qui aura le score auquelle celle-ci s'auto unlock.
-    - [ ] Mais pour faire sa, il faut créer une variable globale ScoreTotal (obtient a l'aide du query sql sur quizz avec status = 2 et un join pour obtenir le score que chaque question)
+    - [x] Mais pour faire sa, il faut créer une variable globale ScoreTotal (obtient a l'aide du query sql sur quizz avec status = 2 et un join pour obtenir le score que chaque question)
     - [ ] Pour le côté UI, le unlockage ce fera à l'aide du *totalScore* genre if this.totalScore > ${difficulties.UnlockAt}
-  - [ ] Après avoir fini le level d'avant *(Pas térible)*
-  - [ ] Je lock aucun level
+  - [ ] ~~Après avoir fini le level d'avant *(Pas térible)*~~
+  - [ ] ~~Je lock aucun level~~
+  - [ ] Il finir un certain nombre de quizz pour unlock le level
+    - [ ] le nombre de quizz nécessaire est trouvable dans difficulties / column 3
+    - [ ] mais il faut renommé la collones et donc refaire les requetes SQl la comportant pour *unlockAt* par exemple
+
+## TO FIX:
+
+- [ ] compteur de quizz done actualise pas auto après réussit
+  - [ ] maybe import refreshCounter from levels
+- [ ] les coeurs de la game ne restes pas apres avoir quitter et revenue
+  - [ ] donc réflechir si je laisse les coeurs ou non au final

@@ -1,0 +1,37 @@
+<ion-row align-items-center style="background-color: #fd625e; height: 10vh;">
+
+  <ion-col 
+    size="5"
+    style="
+      max-height: 10vh;
+      overflow: hidden;
+      object-fit: cover;
+      padding-left: 15vw;
+    "
+  >
+    <img
+      style="
+        height: 100%;
+        width: 100%;
+        align-content: flex-start;
+      "
+      [src]="this.theme_image"
+      alt="icon for the category"
+    >
+  </ion-col>
+
+  <ion-col
+    size="7"
+    style="
+      max-height: 10vh;
+      text-align: center;
+      color: white;
+      text-transform: capitalize;
+      font-size: 1.25em;
+      font-weight: 500;
+    "
+  >
+    {{this.theme}}
+  </ion-col>
+
+</ion-row>
