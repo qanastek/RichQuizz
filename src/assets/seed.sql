@@ -85,7 +85,7 @@ VALUES(4,1,1,0,'assets/img/test.jpg','Je m appel ?','yanis','jacque','pierre','m
 -- Question 4.1
 INSERT or IGNORE INTO
 quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
-VALUES(5,1,1,0,'assets/img/test.jpg','Qui ? Quoi ?','pierre','jacque','pierre','mohammed','yanis',0);
+VALUES(5,1,1,0,'','Qui ? Quoi ?','pierre','jacque','pierre','mohammed','yanis',0);
 
 -- Question 4.2
 INSERT or IGNORE INTO

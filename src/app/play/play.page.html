@@ -1,12 +1,12 @@
 <ion-header>
 </ion-header>
 
-<ion-content style="height: 100vh;">
+<ion-content style="height: 100vh;" class="BackgroundGradient">
 
   <ion-row style="padding-left: 4vw; padding-right: 4vw;">
 
     <!-- Difficulty + Points + Jocker + Hearths -->
-    <ion-row align-items-center>
+    <ion-row align-items-center style="width: 100%;">
 
       <ion-col size="6" style="width: 100%;">
         <p style="letter-spacing: 0.5em; text-align: center;">
@@ -14,10 +14,12 @@
         </p>
       </ion-col>
 
-      <ion-col size="6" style="text-align: center; width: 100%;">
-        <ion-button (click)="useJocker()">
-          Jocker
-        </ion-button>
+      <ion-col size="6" style="width: 100%;">
+        <ion-img 
+          style="height: 7.5vh;"
+          [src]="'assets/img/ad_icon.png'"
+          (click)="useJocker()"
+        ></ion-img>
       </ion-col>
 
     </ion-row>
@@ -25,21 +27,21 @@
     <!-- Image + Question -->
     <ion-row style="text-align: center;">
 
-      <ion-col size="12" *ngIf="this.quizz.image_url != ''">
-        <ion-img [src]="this.quizz.image_url"></ion-img>
+      <ion-col size="12" style="padding-bottom: 2vh;">
+        <ion-text>
+          <h1 style="color: white; font-weight: 400;">{{this.quizz.question}}</h1>
+        </ion-text>      
       </ion-col>
 
-      <ion-col size="12">
-        <ion-text>
-          <h1>{{this.quizz.question}}</h1>
-        </ion-text>      
+      <ion-col size="12" *ngIf="this.quizz.image_url != ''">
+        <ion-img [src]="this.quizz.image_url" style="padding-bottom: 2vh;"></ion-img>
       </ion-col>
 
     </ion-row>
 
   </ion-row>
 
-  <div style=" bottom: 0; padding: 0%; margin: 0%;">
+  <div style="bottom: 0; padding-left: 3vw; padding-right: 3vw; margin: 0%;">
 
     <!-- Si il s'agit d'un true / false -->
     <ion-row *ngIf="this.quizz.type_id === 0" style="width: 100%;">
@@ -82,21 +84,16 @@
 
     </ion-row>
 
-    <!-- Si il s'agit d'un QCM -->
+    <!-- Si il s'agit d'un QCM et qu'il y a une image alors -->
     <ion-row *ngIf="this.quizz.type_id === 1" style="width: 100%;">
 
       <ion-col size="6">
         <ion-button
           expand="full"
-          color="RichQuizzTomato"
-          style="
-            width: 100%;
-            height: 7.5vh;
-            font-weight: 500;
-            font-size: 1.5em;
-            padding: 0%;
-            margin: 0%;
-          "
+          color="thirdBtn"
+          class="QcmWithImg"
+          shape="round"
+          size="large"
           (click)="checkResult(this.quizz.option_1)"
         >
           {{this.quizz.option_1}}
@@ -106,15 +103,10 @@
       <ion-col size="6">
         <ion-button
           expand="full"
-          color="RichQuizzTomato"
-          style="
-            width: 100%;
-            height: 7.5vh;
-            font-weight: 500;
-            font-size: 1.5em;
-            padding: 0%;
-            margin: 0%;
-          "
+          color="thirdBtn"
+          class="QcmWithImg"
+          shape="round"
+          size="large"
           (click)="checkResult(this.quizz.option_2)"
         >
           {{this.quizz.option_2}}
@@ -124,15 +116,10 @@
       <ion-col size="6">
         <ion-button
           expand="full"
-          color="RichQuizzTomato"
-          style="
-            width: 100%;
-            height: 7.5vh;
-            font-weight: 500;
-            font-size: 1.5em;
-            padding: 0%;
-            margin: 0%;
-          "
+          color="thirdBtn"
+          class="QcmWithImg"
+          shape="round"
+          size="large"
           (click)="checkResult(this.quizz.option_3)"
         >
           {{this.quizz.option_3}}
@@ -142,15 +129,10 @@
       <ion-col size="6">
         <ion-button
           expand="full"
-          color="RichQuizzTomato"
-          style="
-            width: 100%;
-            height: 7.5vh;
-            font-weight: 500;
-            font-size: 1.5em;
-            padding: 0%;
-            margin: 0%;
-          "
+          color="thirdBtn"
+          class="QcmWithImg"
+          shape="round"
+          size="large"
           (click)="checkResult(this.quizz.option_4)"
         >
           {{this.quizz.option_4}}
@@ -159,13 +141,13 @@
 
     </ion-row>
 
-    <!-- Zone de publicité -->
-    <ion-row style="background-color: coral;">
-      <ion-col size="12" style="height: 10vh; width: 100%; text-align: center;">
-        pub
-      </ion-col>
-    </ion-row>
-
   </div>
+
+  <!-- Zone de publicité -->
+  <ion-row style="background-color: coral; margin-top: 2vh;">
+    <ion-col size="12" style="height: 15.625vw; width: 100%; text-align: center; overflow: hidden; object-fit: cover;">
+      <ion-img [src]="'assets/img/ad.jpg'" style="width: 100%; height: 100%;"></ion-img>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

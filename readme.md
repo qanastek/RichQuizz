@@ -43,9 +43,15 @@ ionic integrations enable cordova --add
   - [ ] Button
     - [x] True or False
     - [ ] QCM
-      - [ ] Changé la forme des btn pour des coins arrondis ou juste faire un padding
+      - [ ] Quand y a pas d'image
+      - [x] Quand y a des images
   - [ ] PUB
+    - [x] fake
+    - [ ] real
   - [ ] Heaths
+  - [ ] Image
+    - [ ] mettre un shadow
+    - [ ] format tjr le meme
   - [ ] Centré le logo du current theme
   - [ ] Changé la font-size de la question
   - [ ] Changé la typo (font-familly) de toute l'APP
