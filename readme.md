@@ -28,6 +28,8 @@ ionic integrations enable cordova --add
 
 ## TODO:
 
+- [ ] Commencer à écrire les test unitaires
+  - [ ] A
 - [x] SQL ajout des logo de chaque thème dans le *JOIN* et les tables
 - [ ] ~~Ajouter la table player dans laquelle il y a : *PlayerName*, *PlayerTotalScore* ~~
 - [x] Ajouter à la table catégories la collone suivante *score*
@@ -71,3 +73,5 @@ ionic integrations enable cordova --add
   - [ ] maybe import refreshCounter from levels
 - [ ] les coeurs de la game ne restes pas apres avoir quitter et revenue
   - [ ] donc réflechir si je laisse les coeurs ou non au final
+- [ ] Fix le probleme de non reload
+  - [ ] pour ce faire: favorisé les subscribe pour les endroits qui marches pas

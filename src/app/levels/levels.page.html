@@ -4,34 +4,40 @@
 <ion-content>
 
   <!-- Banner logo and theme -->
-  <app-theme-bar [theme]="this.theme"></app-theme-bar>
+  <app-theme-bar [theme]="this.theme" [image]="this.image"></app-theme-bar>
 
   <p>You done {{this.countDone}} quizz.</p>
-  
-  <!-- Unlocked -->
-  <ion-card style="text-align: center;" color="success" (click)="this.GoPlay('nourriture', 'Level 1')">
-    <ion-card-header>
-      <ion-card-title style="font-weight: 600;">Level 1</ion-card-title>
-      <ion-card-subtitle>Solved questions. <b style="font-size: 1.25em;">1/20</b></ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <app-progression-bar [value]="83"></app-progression-bar>
-    </ion-card-content>
-  </ion-card>
 
-  <!-- Locked -->
-  <ion-card style="text-align: center;" color="danger">
-    <ion-card-header>
-      <ion-card-title style="font-weight: 600;">
-        <ion-icon name="lock"></ion-icon>
-        Level 2
-      </ion-card-title>
-      <ion-card-subtitle>Solved questions. <b style="font-size: 1.25em;">0/20</b></ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p>You need have 20 solved quizz to unlock.</p>
-    </ion-card-content>
-  </ion-card>
+  <div *ngFor="let level of this.AllUnlockAt">
+
+    <!-- Locked -->
+    <ion-card style="text-align: center;" color="dangerRichQuizz" *ngIf="this.countDone < level.points">
+      <ion-card-header>
+        <ion-card-title style="font-weight: 600;">
+          <ion-icon name="lock"></ion-icon>
+          {{level.name}}
+        </ion-card-title>
+        <ion-card-subtitle>
+          Solved questions. <b style="font-size: 1.25em;">{{level.done}}/20</b>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>You need have {{level.points - this.countDone}} solved quizz to unlock.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Unlocked -->
+    <ion-card style="text-align: center;" color="successRichQuizz" (click)="this.GoPlay(this.theme, level.name)" *ngIf="this.countDone >= level.points">
+      <ion-card-header>
+        <ion-card-title style="font-weight: 600;">{{level.name}}</ion-card-title>
+        <ion-card-subtitle>Solved questions. <b style="font-size: 1.25em;">{{level.done}}/20</b></ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <app-progression-bar [value]="(level.done / 20) * 100"></app-progression-bar>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
 
 </ion-content>

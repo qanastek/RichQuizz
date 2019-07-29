@@ -13,7 +13,6 @@ export class PlayPage implements OnInit {
 
   quizz: any;
   hearths: string = "♥♥♥";
-  scoresSession: number = 0;
   nextQuizz: any;
 
   constructor(
@@ -75,16 +74,14 @@ export class PlayPage implements OnInit {
     await alert.present();
   }
 
-  UpdateScore(theme: number, score: number): any {
-
-    this.scoresSession += score;
+  UpdateScore(theme: number): any {
 
     let response = this.db.executeSqlUpdate(
       `
         UPDATE
           categories
         SET
-          score = score + ${score}
+          score = score + 1
         WHERE
           id = ${theme}
       ;`,
@@ -104,7 +101,7 @@ export class PlayPage implements OnInit {
       this.win();
 
       this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
-      this.UpdateScore(this.quizz.category_id, this.quizz.difficulty_points);
+      this.UpdateScore(this.quizz.category_id);
 
       // Récupère le prochain quizz de ce thème
       this.db.getQuizzTheme(this.quizz.category_name)

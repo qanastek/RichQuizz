@@ -8,28 +8,16 @@
     <!-- Difficulty + Points + Jocker + Hearths -->
     <ion-row align-items-center>
 
-      <ion-col size="12">
-        <p style="text-align: left; padding: 0%; margin: 0%;">
-          Difficulty: <b style="text-transform: uppercase;">{{this.quizz.difficulty_name}}</b>
-        </p>
-      </ion-col>
-
-      <ion-col size="12">
-        <p style="text-align: left; padding: 0%; margin: 0%;">
-          Points: {{this.scoresSession}}
-        </p>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-button (click)="useJocker()">
-          Jocker
-        </ion-button>
-      </ion-col>
-
-      <ion-col size="6">
+      <ion-col size="6" style="width: 100%;">
         <p style="letter-spacing: 0.5em; text-align: center;">
           {{this.hearths}}
         </p>
+      </ion-col>
+
+      <ion-col size="6" style="text-align: center; width: 100%;">
+        <ion-button (click)="useJocker()">
+          Jocker
+        </ion-button>
       </ion-col>
 
     </ion-row>

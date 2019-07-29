@@ -25,9 +25,7 @@ export class ScoresPage implements OnInit {
     
     this.db.loadScoresThemes()
     .then(response => {
-
-      this.scores = JSON.parse(response);
-      
+      this.scores = JSON.parse(response);      
     })
     .catch(e => console.error(e));
 

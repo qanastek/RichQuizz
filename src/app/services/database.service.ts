@@ -28,6 +28,12 @@ export interface Quizz {
   status_id: number;
 }
 
+export interface doneQuizz {
+  id: number,
+  name: string,
+  quantity: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -60,9 +66,6 @@ export class DatabaseService {
 
         // Initialise la base de donnée en créant les tables
         this.InitDatabase();
-
-        // Remplit la base de donnée avec les informations principales
-        this.FillDatabase();
   
       })
       .catch(e => console.log(e));
@@ -73,57 +76,15 @@ export class DatabaseService {
 
   private InitDatabase(): void {
 
-    // Categories
-    this.db.executeSql(`
-    CREATE TABLE IF NOT EXISTS categories(
-      id integer primary key AUTOINCREMENT,
-      name text,
-      image text,
-      score integer DEFAULT 0
-    )`, []);
-
-    // Difficulties
-    this.db.executeSql(`
-    CREATE TABLE IF NOT EXISTS difficulties(
-      id integer primary key AUTOINCREMENT,
-      name text NOT NULL,
-      points integer NOT NULL
-    )`, []);
-
-    // Types
-    this.db.executeSql(`
-    CREATE TABLE IF NOT EXISTS types(
-      id integer primary key AUTOINCREMENT,
-      name text NOT NULL
-    )`, []);
-    
-    // Status
-    this.db.executeSql(`
-    CREATE TABLE IF NOT EXISTS status(
-      id integer primary key AUTOINCREMENT,
-      name text NOT NULL
-    )`, []);
-    
-    // Quizz
-    this.db.executeSql(`
-    CREATE TABLE IF NOT EXISTS quizz(
-      id integer primary key AUTOINCREMENT,
-      theme integer DEFAULT 0 NOT NULL,
-      type integer NOT NULL,
-      difficulty integer DEFAULT 0 NOT NULL,
-      image text NOT NULL,
-      question text NOT NULL,
-      answer text NOT NULL,
-      option_1 text,
-      option_2 text,
-      option_3 text,
-      option_4 text,
-      status integer DEFAULT 0 NOT NULL,
-      FOREIGN KEY(theme) REFERENCES categories(id),
-      FOREIGN KEY(type) REFERENCES types(id),
-      FOREIGN KEY(difficulty) REFERENCES difficulties(id),
-      FOREIGN KEY(status) REFERENCES status(id)
-    )`, []);
+    this.http.get('assets/seedCreate.sql', { responseType: 'text' })
+    .subscribe(sql => {
+      this.sqlitePorter.importSqlToDb(this.db, sql)
+      .then(_ => {
+        // Remplit la base de donnée avec les informations principales
+        this.FillDatabase();
+      })
+      .catch(e => console.error(e));
+    });
 
   }
 
@@ -313,7 +274,8 @@ export class DatabaseService {
     var sqlQuery: string = `
       SELECT
         name,
-        score
+        score,
+        color
       FROM
         categories
       ORDER BY
@@ -323,15 +285,15 @@ export class DatabaseService {
 
     return this.db.executeSql(sqlQuery, [])
     .then(response => {
-      
-      var scores = [];
 
       if (response.rows.length > 0) {
+
+        var scores = [];
 
         for (let i = 0; i < response.rows.length; i++) {
           
           scores.push({
-            color: "#fd625e",
+            color: response.rows.item(i).color,
             name: response.rows.item(i).name,
             score: response.rows.item(i).score
           });
@@ -365,18 +327,9 @@ export class DatabaseService {
 
     this.db.executeSql(sqlQuery, [])
     .catch(e => {
-      console.error("Erreur ici: " + quizzId);
       console.error(e);
     });
 
-  }
-
-  public loadAsQuizzObject(quizz: any ) {
-
-    var quizzObject: Quizz;
-
-    return quizzObject;
-    
   }
 
   public getQuizzTheme(theme: string): any {
@@ -421,30 +374,9 @@ export class DatabaseService {
     .then(data => {
 
       if (data.rows.length > 0) {
-
-        let item = {
-          quizz_id: data.rows.item(0).quizz_id,
-          category_name: data.rows.item(0).category_name,
-          category_id: data.rows.item(0).category_id,
-          category_image: data.rows.item(0).category_image,
-          type_name: data.rows.item(0).type_name,
-          type_id: data.rows.item(0).type_id,
-          difficulty_name: data.rows.item(0).difficulty_name,
-          difficulty_id: data.rows.item(0).difficulty_id,
-          difficulty_points: data.rows.item(0).difficulty_points,
-          image_url: data.rows.item(0).image_url,
-          question: data.rows.item(0).question.replace(/\\"/g, ''),
-          answer: data.rows.item(0).answer,
-          option_1: data.rows.item(0).option_1,
-          option_2: data.rows.item(0).option_2,
-          option_3: data.rows.item(0).option_3,
-          option_4: data.rows.item(0).option_4,
-          status_name: data.rows.item(0).status_name,
-          status_id: data.rows.item(0).status_id
-        };
-
-        return item;
-
+        // On return directement le quizz car le nom des attributs est le même
+        data.rows.item(0).question = data.rows.item(0).question.replace(/\\/g,"");
+        return data.rows.item(0);
       }
       else {
         return null;
@@ -498,30 +430,9 @@ export class DatabaseService {
     .then(data => {
 
       if (data.rows.length > 0) {
-
-        let item = {
-          quizz_id: data.rows.item(0).quizz_id,
-          category_name: data.rows.item(0).category_name,
-          category_id: data.rows.item(0).category_id,
-          category_image: data.rows.item(0).category_image,
-          type_name: data.rows.item(0).type_name,
-          type_id: data.rows.item(0).type_id,
-          difficulty_name: data.rows.item(0).difficulty_name,
-          difficulty_id: data.rows.item(0).difficulty_id,
-          difficulty_points: data.rows.item(0).difficulty_points,
-          image_url: data.rows.item(0).image_url,
-          question: data.rows.item(0).question.replace(/\\"/g, ''),
-          answer: data.rows.item(0).answer,
-          option_1: data.rows.item(0).option_1,
-          option_2: data.rows.item(0).option_2,
-          option_3: data.rows.item(0).option_3,
-          option_4: data.rows.item(0).option_4,
-          status_name: data.rows.item(0).status_name,
-          status_id: data.rows.item(0).status_id
-        };
-
-        return item;
-
+        // On return directement le quizz car le nom des attributs est le même
+        data.rows.item(0).question = data.rows.item(0).question.replace(/\\/g,"");
+        return data.rows.item(0);
       }
       else {
         return null;
@@ -530,6 +441,7 @@ export class DatabaseService {
     });
   }
 
+  // Renvoi le lien de l'image correspondant à un thème
   public getThemeInfos(theme: string): any {
 
     var sqlQuery = `
@@ -545,11 +457,8 @@ export class DatabaseService {
     return this.db.executeSql(sqlQuery, [])
     .then(data => {
 
-      return JSON.stringify({
-        id: data.rows.item(0).id,
-        name: data.rows.item(0).name,
-        image: data.rows.item(0).image
-      });
+      // TODO: check sa
+      return JSON.stringify(data.rows.item(0));
       
     })
     .catch(e => console.error(e));
@@ -575,6 +484,145 @@ export class DatabaseService {
     return this.db.executeSql(sqlQuery, [])
     .then(data => {
       return data.rows.item(0).counter;
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  private table1(): any {
+
+    var sqlQuery = `
+      SELECT
+        id,
+        name,
+        0 AS quantity
+      FROM
+        difficulties
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+
+      var rslt: Array<doneQuizz> = [];
+
+      for (let i = 0; i < data.rows.length; i++) {
+
+        rslt.push({
+          id: data.rows.item(i).id,
+          name: data.rows.item(i).name,
+          quantity: data.rows.item(i).quantity
+        });
+
+      }
+      
+      return JSON.stringify(rslt);
+
+    })
+    .catch(e => console.error(e));
+  }
+
+  private table2(theme: string): any {
+    
+    var sqlQuery = `
+      SELECT
+        difficulties.id,
+        difficulties.name AS name,
+        COUNT(*) AS quantity
+      FROM
+        quizz
+        JOIN difficulties
+          ON quizz.difficulty = difficulties.id
+        JOIN categories
+          ON quizz.theme = categories.id 
+      WHERE
+        status = 2
+        AND
+        categories.name = '${theme}'
+      GROUP BY
+        difficulties.name
+      ORDER BY
+        difficulties.id ASC
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+  
+      var rslt: Array<doneQuizz> = [];
+
+      for (let i = 0; i < data.rows.length; i++) {
+
+        rslt.push({
+          id: data.rows.item(i).id,
+          name: data.rows.item(i).name,
+          quantity: data.rows.item(i).quantity
+        });
+
+      }
+      
+      return JSON.stringify(rslt);
+
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  public getDonePerLevels(theme: string): any {
+
+    var rslt1: Array<doneQuizz>;
+    var rslt2: Array<doneQuizz>;
+
+    return this.table1()
+    .then(data => {
+      rslt1 = JSON.parse(data);
+
+      return this.table2(theme)
+      .then(data => {
+        rslt2 = JSON.parse(data);
+
+        for (let j = 0; j < rslt2.length; j++) {
+          var index = rslt1.findIndex(i => i.id === rslt2[j].id);
+          rslt1[index].quantity = rslt2[j].quantity;
+        }
+    
+        return JSON.stringify(rslt1);
+
+      })
+      .catch(e => console.error(e));
+
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  public getUnlockAt(): any {
+
+    var sqlQuery = `      
+      SELECT
+        name,
+        points,
+        0 AS done
+      FROM
+        difficulties
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+
+      var datas = [];
+
+      for (let i = 0; i < data.rows.length; i++) {
+        datas.push({
+          name: data.rows.item(i).name,
+          points: data.rows.item(i).points,
+          done: data.rows.item(i).done
+        });
+      }
+
+      return JSON.stringify(datas);
+
     })
     .catch(e => console.error(e));
 

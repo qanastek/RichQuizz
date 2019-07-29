@@ -26,35 +26,42 @@
     <!-- Scores for each themes -->
     <ion-row align-items-center style="max-height: 11vh;" *ngFor="let theme of this.scores">
 
-      <ion-col size="3" style="text-align: center; background-color: lightcoral;">
-          <p
-            style="
-              font-size: 1.5em;
-              height: 100%;
-              color: #ffffff;
-              margin: 0% !important;
-              padding-top: 3vh;
-              padding-bottom: 3vh;
-              font-weight: 600;
-              text-transform: uppercase;
-            "
-          >
-            {{theme.name | slice:0:1}}
-          </p>
+      <ion-col 
+        size="3"
+        style="text-align: center;" 
+        [ngStyle]="
+        {
+          'background-color': theme.color
+        }
+        ">
+        <p
+          style="
+            font-size: 1.5em;
+            height: 100%;
+            color: #ffffff;
+            margin: 0% !important;
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            font-weight: 600;
+            text-transform: uppercase;
+          "
+        >
+          {{theme.name | slice:0:1}}
+        </p>
       </ion-col>
 
       <ion-col size="7">
-          <h1
-            style="
-              margin: 0% !important;
-              padding-left: 10%;
-              font-weight: 400;
-              text-transform: capitalize;
-              font-size: 1.5em;
-            "
-          >
-            {{theme.name}}
-          </h1>
+        <h1
+          style="
+            margin: 0% !important;
+            padding-left: 10%;
+            font-weight: 400;
+            text-transform: capitalize;
+            font-size: 1.5em;
+          "
+        >
+          {{theme.name}}
+        </h1>
       </ion-col>
 
       <ion-col size="2" style="text-align: center;">
