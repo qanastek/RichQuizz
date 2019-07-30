@@ -332,58 +332,58 @@ export class DatabaseService {
 
   }
 
-  public getQuizzTheme(theme: string): any {
+  // public getQuizzTheme(theme: string): any {
 
-    let SqlQuery = `
-      SELECT
-        quizz.id 				    AS "quizz_id",
-        categories.name 		AS "category_name",
-        categories.id 			AS "category_id",
-        categories.image 		AS "category_image",
-        types.name 				  AS "type_name",
-        types.id 				    AS "type_id",
-        difficulties.name 	AS "difficulty_name",
-        difficulties.id 		AS "difficulty_id",
-        difficulties.points AS "difficulty_points",
-        quizz.image 			  AS "image_url",
-        quizz.question 			AS "question",
-        quizz.answer 			  AS "answer",
-        quizz.option_1 			AS "option_1",
-        quizz.option_2 			AS "option_2",
-        quizz.option_3 			AS "option_3",
-        quizz.option_4 			AS "option_4",
-        status.name 			  AS "status_name",
-        status.id 				  AS "status_id"
-      FROM
-        quizz
-        JOIN categories
-          ON quizz.theme = categories.id
-        JOIN types
-          ON quizz.type = types.id
-        JOIN difficulties
-          ON quizz.difficulty = difficulties.id
-        JOIN status
-          ON quizz.status = status.id
-      WHERE
-        category_name = '${theme}' AND
-        status_id BETWEEN 0 AND 1
-      ;
-    `;
+  //   let SqlQuery = `
+  //     SELECT
+  //       quizz.id 				    AS "quizz_id",
+  //       categories.name 		AS "category_name",
+  //       categories.id 			AS "category_id",
+  //       categories.image 		AS "category_image",
+  //       types.name 				  AS "type_name",
+  //       types.id 				    AS "type_id",
+  //       difficulties.name 	AS "difficulty_name",
+  //       difficulties.id 		AS "difficulty_id",
+  //       difficulties.points AS "difficulty_points",
+  //       quizz.image 			  AS "image_url",
+  //       quizz.question 			AS "question",
+  //       quizz.answer 			  AS "answer",
+  //       quizz.option_1 			AS "option_1",
+  //       quizz.option_2 			AS "option_2",
+  //       quizz.option_3 			AS "option_3",
+  //       quizz.option_4 			AS "option_4",
+  //       status.name 			  AS "status_name",
+  //       status.id 				  AS "status_id"
+  //     FROM
+  //       quizz
+  //       JOIN categories
+  //         ON quizz.theme = categories.id
+  //       JOIN types
+  //         ON quizz.type = types.id
+  //       JOIN difficulties
+  //         ON quizz.difficulty = difficulties.id
+  //       JOIN status
+  //         ON quizz.status = status.id
+  //     WHERE
+  //       category_name = '${theme}' AND
+  //       status_id BETWEEN 0 AND 1
+  //     ;
+  //   `;
 
-    return this.db.executeSql(SqlQuery, [])
-    .then(data => {
+  //   return this.db.executeSql(SqlQuery, [])
+  //   .then(data => {
 
-      if (data.rows.length > 0) {
-        // On return directement le quizz car le nom des attributs est le même
-        data.rows.item(0).question = data.rows.item(0).question.replace(/\\/g,"");
-        return data.rows.item(0);
-      }
-      else {
-        return null;
-      }
+  //     if (data.rows.length > 0) {
+  //       // On return directement le quizz car le nom des attributs est le même
+  //       data.rows.item(0).question = data.rows.item(0).question.replace(/\\/g,"");
+  //       return data.rows.item(0);
+  //     }
+  //     else {
+  //       return null;
+  //     }
 
-    });
-  }
+  //   });
+  // }
 
   public getQuizzFromLevels(theme: string, difficulty: string): any {
 
@@ -423,6 +423,8 @@ export class DatabaseService {
         difficulty_name = '${difficulty}'
         AND
         status_id BETWEEN 0 AND 1
+      ORDER BY
+        status_id ASC
       ;
     `;
 

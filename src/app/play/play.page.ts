@@ -12,7 +12,7 @@ import { AlertController } from '@ionic/angular';
 export class PlayPage implements OnInit {
 
   quizz: any;
-  hearths: string = "♥♥♥";
+  hearths: number = 5;
   nextQuizz: any;
 
   constructor(
@@ -33,12 +33,49 @@ export class PlayPage implements OnInit {
   }   
 
   async fail() {
-
     const alert = await this.alertController.create({
-      header: 'Vous avez perdu une ♥',
-      subHeader: '',
-      message: '',
-      buttons: ['OK']
+      header: 'Retry ?',
+      message: 'Do you want to try again ? <strong>cost 1 diamond</strong>',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.router.navigate(['levels', this.quizz.category_name]);
+          }
+        }, {
+          text: 'Retry',
+          handler: () => {
+            this.hearths -= 1;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async AskAd() {
+    const alert = await this.alertController.create({
+      header: 'Retry ?',
+      message: 'Do you want to watch a ad for retry ?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            this.router.navigate(['levels', this.quizz.category_name]);
+          }
+        }, {
+          text: 'Watch',
+          handler: () => {
+            // 30s ad here
+            console.log("Watch 30s AD");
+          }
+        }
+      ]
     });
 
     await alert.present();
@@ -54,7 +91,7 @@ export class PlayPage implements OnInit {
     }
 
     const alert = await this.alertController.create({
-      header: "Vous n'avez plus de vies",
+      header: "Vous n'avez plus de diamands",
       subHeader: 'La réponse était ' + answer,
       message: '',
       buttons: ['OK']
@@ -65,7 +102,7 @@ export class PlayPage implements OnInit {
 
   async win() {
     const alert = await this.alertController.create({
-      header: "Bravo !",
+      header: "Bravo vous avez fini le niveau !",
       subHeader: '',
       message: '',
       buttons: ['OK']
@@ -97,22 +134,28 @@ export class PlayPage implements OnInit {
       // Update the counter of wons
       // this.levels.refreshCounter();
 
-      // Popup window for winning
-      this.win();
-
       this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
       this.UpdateScore(this.quizz.category_id);
 
       // Récupère le prochain quizz de ce thème
-      this.db.getQuizzTheme(this.quizz.category_name)
+      this.db.getQuizzFromLevels(this.quizz.category_name, this.quizz.difficulty_name)
       .then(data => {
         this.nextQuizz = data;
 
         // Si il reste encore des quizz alors on continue
         if (this.nextQuizz) {
           this.quizz = this.nextQuizz;
+
+          // Si modulo(counter_done, 5) === 0 alors lancé une pub
         }
-        else {        
+        else {
+          // Popup fin de niveau
+          this.win();
+
+          // Apres avoir réussit le level tu prend une pub
+          // et gagne 2 diamands
+
+          // Redirection vers la page des niveaux
           this.router.navigate(['levels', this.quizz.category_name]);
         }
 
@@ -131,20 +174,16 @@ export class PlayPage implements OnInit {
 
       switch (this.hearths) {
 
-        case '♥♥♥':
+        case 5:
+        case 4:
+        case 3:
+        case 2:
+        case 1:
           this.fail();
-          this.hearths = "♥♥";
           break;
         
-        case '♥♥':
-          this.fail();
-          this.hearths = "♥";
-          break;
-        
-        case '♥':
-          this.dead(this.quizz.answer);
-          // this.scoresSession = 0;
-          this.router.navigate(['themes']);
+        case 0:
+          this.AskAd();
           break;
 
       }

@@ -5,13 +5,14 @@
 .BackgroundGradient
 {
     --background: linear-gradient(180deg, #203844 0%, #294958 100%) !important;
+    // --background: linear-gradient(200deg, #3691ff 0%, #acd7ff 100%) !important;
 }
 
 .QcmWithImg {
     --border-radius: 7px;
     width: 100%;
-    font-weight: 500;
-    font-size: 1.5em;
+    font-weight: 300;
+    font-size: 1.4em;
     padding: 2%;
     margin: 0%;
 }

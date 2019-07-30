@@ -72,20 +72,24 @@ INSERT or IGNORE INTO
 VALUES
 	(1,0,0,0,'','true ?','true','','','','',0);
 
--- Question 3
-INSERT or IGNORE INTO
-quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
-VALUES(2,1,0,0,'assets/img/test.jpg','la Bugatti \"voiture noire est noir\" ?','true','','','','',0);
+-- Theme 1 / nourriture
 
--- Question 4
-INSERT or IGNORE INTO
-quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
-VALUES(4,1,1,0,'assets/img/test.jpg','Je m appel ?','yanis','jacque','pierre','mohammed','yanis',0);
+	-- Levels 1
+		-- Question 3
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(2,1,0,0,'assets/img/test.jpg','la Bugatti \"voiture noire est noir\" ?','true','','','','',0);
 
--- Question 4.1
-INSERT or IGNORE INTO
-quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
-VALUES(5,1,1,0,'','Qui ? Quoi ?','pierre','jacque','pierre','mohammed','yanis',0);
+		-- Question 4
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(4,1,1,0,'assets/img/test.jpg','Je m appel ?','yanis','jacque','pierre','mohammed','yanis',0);
+
+	-- Levels 2
+		-- Question 4.1
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(5,1,1,1,'','Qui ? Quoi ?','pierre','jacque','pierre','mohammed','yanis',0);
 
 -- Question 4.2
 INSERT or IGNORE INTO

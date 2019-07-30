@@ -28,8 +28,14 @@ ionic integrations enable cordova --add
 
 ## TODO:
 
+- [ ] Ajouter un sytème de défis
+  - [ ] example:
+    - [ ] 1 quizz of each themes = won 1 DM
+    - [ ] 10 quizz of each themes = won 2/3 DM
+- [ ] Mettre diamond dans la DB
+  - [ ] Et donc modifier les appelles aux diamonds
+  - [ ] Créer aussi un getter en observable
 - [ ] Commencer à écrire les test unitaires
-  - [ ] A
 - [x] SQL ajout des logo de chaque thème dans le *JOIN* et les tables
 - [ ] ~~Ajouter la table player dans laquelle il y a : *PlayerName*, *PlayerTotalScore* ~~
 - [x] Ajouter à la table catégories la collone suivante *score*

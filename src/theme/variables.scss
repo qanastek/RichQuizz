@@ -155,44 +155,44 @@
 
 .ion-color-firstBtn
 {
-    --ion-color-base: #ff6d80;
+    --ion-color-base: linear-gradient(90deg, #DD5E89 0%, #F7BB97 100%) !important;
     --ion-color-base-rgb: 255,255,0;
     // Color of the text contain in the object who have set this color
     --ion-color-contrast: #ffffff;
     --ion-color-contrast-rgb: 0,0,0;
-    --ion-color-shade: #e76274;
-    --ion-color-tint: #ff6d80;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: linear-gradient(90deg, #DD5E89 0%, #F7BB97 100%) !important;
 }
 
 .ion-color-secondBtn
 {
-    --ion-color-base: #02d47b;
+    --ion-color-base: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%) !important;
     --ion-color-base-rgb: 255,255,0;
     // Color of the text contain in the object who have set this color
     --ion-color-contrast: #ffffff;
     --ion-color-contrast-rgb: 0,0,0;
-    --ion-color-shade: #01c472;
-    --ion-color-tint: #02d47b;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%) !important;
 }
 
 .ion-color-thirdBtn
 {
-    --ion-color-base: #ffffff;
-    --ion-color-base-rgb: 255,255,0;
-    // Color of the text contain in the object who have set this color
-    --ion-color-contrast: #203844;
-    --ion-color-contrast-rgb: 0,0,0;
-    --ion-color-shade: #e6e6e6;
-    --ion-color-tint: #ffffff;
-}
-
-.ion-color-fourthBtn
-{
-    --ion-color-base: #3D4F74;
+    --ion-color-base: linear-gradient(90deg, #f05053 0%, #e1eec3 100%) !important;
     --ion-color-base-rgb: 255,255,0;
     // Color of the text contain in the object who have set this color
     --ion-color-contrast: #ffffff;
     --ion-color-contrast-rgb: 0,0,0;
-    --ion-color-shade: rgb(52, 68, 100);
-    --ion-color-tint: #3D4F74;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: linear-gradient(90deg, #f05053 0%, #e1eec3 100%) !important;
+}
+
+.ion-color-fourthBtn
+{
+    --ion-color-base: linear-gradient(90deg, #649173 0%, #DBD5A4 100%) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // Color of the text contain in the object who have set this color
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: linear-gradient(90deg, #649173 0%, #DBD5A4 100%) !important;
 }
