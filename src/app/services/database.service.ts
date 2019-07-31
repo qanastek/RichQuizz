@@ -261,7 +261,7 @@ export class DatabaseService {
 
   }
 
-  public executeSqlUpdate(sqlQuery: string, args: any): any {
+  public executeSqlQuery(sqlQuery: string, args: any): any {
     this.db.executeSql(sqlQuery, args)
     .then(response => {
       return response;

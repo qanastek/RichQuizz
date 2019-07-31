@@ -85,6 +85,22 @@ VALUES
 		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
 		VALUES(4,1,1,0,'assets/img/test.jpg','Je m appel ?','yanis','jacque','pierre','mohammed','yanis',0);
 
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(6,1,1,0,'assets/img/test.jpg','test 3','4 000','14 000','26 000','18 000','4 000',0);
+
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(7,1,1,0,'assets/img/test.jpg','test 4','4 000','14 000','26 000','18 000','4 000',0);
+
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(8,1,1,0,'assets/img/test.jpg','test 5','4 000','14 000','26 000','18 000','4 000',0);
+
+		INSERT or IGNORE INTO
+		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+		VALUES(9,1,1,0,'assets/img/test.jpg','test 6','4 000','14 000','26 000','18 000','4 000',0);
+
 	-- Levels 2
 		-- Question 4.1
 		INSERT or IGNORE INTO

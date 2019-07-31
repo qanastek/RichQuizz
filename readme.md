@@ -28,6 +28,7 @@ ionic integrations enable cordova --add
 
 ## TODO:
 
+- [ ] BehaviorSubject send me back old data
 - [ ] Ajouter un sytème de défis
   - [ ] example:
     - [ ] 1 quizz of each themes = won 1 DM

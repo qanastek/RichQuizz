@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { Vibration } from '@ionic-native/vibration/ngx';
 import { AlertController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-play',
@@ -11,9 +12,10 @@ import { AlertController } from '@ionic/angular';
 })
 export class PlayPage implements OnInit {
 
-  quizz: any;
+  quizz: any = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
   hearths: number = 5;
   nextQuizz: any;
+  countDone: BehaviorSubject<number> = new BehaviorSubject(0); // TODO
 
   constructor(
     private route: ActivatedRoute,
@@ -24,8 +26,7 @@ export class PlayPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Transforme la string reçu en paramètre en JSON
-    this.quizz = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
+    this.refreshCounter();
   }
 
   useJocker() {
@@ -113,7 +114,7 @@ export class PlayPage implements OnInit {
 
   UpdateScore(theme: number): any {
 
-    let response = this.db.executeSqlUpdate(
+    let response = this.db.executeSqlQuery(
       `
         UPDATE
           categories
@@ -127,12 +128,36 @@ export class PlayPage implements OnInit {
 
   }
 
+  public refreshCounter(): any {
+
+    this.db.getWonCounter(this.quizz.category_name)
+    .then(data => {
+      this.countDone.next(data);
+    });
+    
+  }
+
+  public getCounterValue(): any {
+    return this.countDone.asObservable();
+  }
+
+  AdIfModuloFive(): any {
+    
+    this.refreshCounter();
+
+    this.getCounterValue().subscribe(countDone => {
+      // console.log('Mon score actuelle -----------');
+      // console.log(countDone);
+
+      if (countDone !== 0 && (countDone % 5) === 0) {
+        console.log("PUB de 15s");
+      }
+    });
+  }
+
   checkResult(commit: string) {
 
     if (this.quizz.answer === commit) {
-
-      // Update the counter of wons
-      // this.levels.refreshCounter();
 
       this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
       this.UpdateScore(this.quizz.category_id);
@@ -146,14 +171,15 @@ export class PlayPage implements OnInit {
         if (this.nextQuizz) {
           this.quizz = this.nextQuizz;
 
-          // Si modulo(counter_done, 5) === 0 alors lancé une pub
+          this.AdIfModuloFive();
         }
         else {
           // Popup fin de niveau
           this.win();
 
           // Apres avoir réussit le level tu prend une pub
-          // et gagne 2 diamands
+          console.log("pub 30s");
+          this.hearths += 2;
 
           // Redirection vers la page des niveaux
           this.router.navigate(['levels', this.quizz.category_name]);
@@ -173,17 +199,13 @@ export class PlayPage implements OnInit {
       this.db.changeStatusQuizz(this.quizz.quizz_id, 1);
 
       switch (this.hearths) {
-
-        case 5:
-        case 4:
-        case 3:
-        case 2:
-        case 1:
-          this.fail();
-          break;
         
         case 0:
           this.AskAd();
+          break;
+
+        default:
+          this.fail();
           break;
 
       }
