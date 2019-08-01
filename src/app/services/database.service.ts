@@ -491,6 +491,54 @@ export class DatabaseService {
 
   }
 
+  public getDiamonds(): any {
+
+    var sqlQuery = `      
+      SELECT
+        diamonds
+      FROM
+        player
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+      return data.rows.item(0).diamonds;
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  public addDiamonds(diamonds: number): any {
+
+    var sqlQuery = `      
+    UPDATE
+      player
+    SET
+      diamonds = diamonds + ${diamonds}
+    ;
+    `;
+
+    this.db.executeSql(sqlQuery, [])
+    .catch(e => console.error(e));
+
+  }
+
+  public subDiamonds(diamonds: number): any {
+
+    var sqlQuery = `      
+    UPDATE
+      player
+    SET
+      diamonds = diamonds - ${diamonds}
+    ;
+    `;
+
+    this.db.executeSql(sqlQuery, [])
+    .catch(e => console.error(e));
+
+  }
+
   private table1(): any {
 
     var sqlQuery = `

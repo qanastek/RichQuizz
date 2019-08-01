@@ -29,6 +29,8 @@ INSERT or IGNORE INTO status VALUES(0, 'never done');
 INSERT or IGNORE INTO status VALUES(1, 'failed');
 INSERT or IGNORE INTO status VALUES(2, 'done');
 
+INSERT or IGNORE INTO player VALUES("Romain", 5);
+
 -- Question 1
 INSERT or IGNORE INTO quizz 
 (

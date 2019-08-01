@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs';
 import { DatabaseService } from './../services/database.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +25,7 @@ export class LevelsPage implements OnInit {
 
   theme: string = this.route.snapshot.paramMap.get('theme');  // Thème
   image: string;                    // Image du thème
-  countDone: number;                // Nombre de quizz réussit dans ce thème
+  countDone: BehaviorSubject<number> = new BehaviorSubject(0);                // Nombre de quizz réussit dans ce thème
   AllUnlockAt: Array<Levels>;       // Palliers d'unlock de chaque level
   DonePerLevels: Array<LevelsDone>; // Nombre de quizz réussit par levels
 
@@ -85,9 +86,13 @@ export class LevelsPage implements OnInit {
 
     this.db.getWonCounter(this.theme)
     .then(data => {
-      this.countDone = data;
+      this.countDone.next(data);
     });
     
+  }
+
+  public getCountDoneObservable(): any {
+    return this.countDone.asObservable();
   }
 
   public UnlockAtLoad(): any {

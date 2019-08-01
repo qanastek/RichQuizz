@@ -1,4 +1,12 @@
 CREATE TABLE IF NOT EXISTS
+	player
+	(
+      name text,
+      diamonds integer NOT NULL
+	)
+;
+
+CREATE TABLE IF NOT EXISTS
 	categories
 	(
       id integer primary key AUTOINCREMENT,

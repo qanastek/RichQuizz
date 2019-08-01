@@ -5,21 +5,13 @@
 
   <ion-row style="padding-left: 4vw; padding-right: 4vw;">
 
-    <!-- Difficulty + Points + Jocker + Hearths -->
+    <!-- Diamonds -->
     <ion-row align-items-center style="width: 100%;">
 
-      <ion-col size="6" style="width: 100%;">
-        <p style="letter-spacing: 0.5em; text-align: center;">
-          {{this.hearths}}
+      <ion-col size="12" style="width: 100%;">
+        <p style="letter-spacing: 0.5em; text-align: center; color: #ffffff;">
+          {{this.diamonds.getValue()}}
         </p>
-      </ion-col>
-
-      <ion-col size="6" style="width: 100%;">
-        <ion-img 
-          style="height: 7.5vh;"
-          [src]="'assets/img/ad_icon.png'"
-          (click)="useJocker()"
-        ></ion-img>
       </ion-col>
 
     </ion-row>

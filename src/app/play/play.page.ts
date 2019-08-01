@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { Vibration } from '@ionic-native/vibration/ngx';
 import { AlertController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { first, take, last } from 'rxjs/operators';
 
 @Component({
   selector: 'app-play',
@@ -13,9 +14,9 @@ import { BehaviorSubject } from 'rxjs';
 export class PlayPage implements OnInit {
 
   quizz: any = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
-  hearths: number = 5;
+  diamonds: BehaviorSubject<number> = new BehaviorSubject(0);
   nextQuizz: any;
-  countDone: BehaviorSubject<number> = new BehaviorSubject(0); // TODO
+  countDone: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(
     private route: ActivatedRoute,
@@ -27,11 +28,8 @@ export class PlayPage implements OnInit {
 
   ngOnInit() {
     this.refreshCounter();
+    this.refreshDiamonds()
   }
-
-  useJocker() {
-    
-  }   
 
   async fail() {
     const alert = await this.alertController.create({
@@ -48,7 +46,8 @@ export class PlayPage implements OnInit {
         }, {
           text: 'Retry',
           handler: () => {
-            this.hearths -= 1;
+            this.db.subDiamonds(1);
+            this.refreshDiamonds();
           }
         }
       ]
@@ -141,18 +140,41 @@ export class PlayPage implements OnInit {
     return this.countDone.asObservable();
   }
 
-  AdIfModuloFive(): any {
+  public refreshDiamonds(): any {
+
+    this.db.getDiamonds()
+    .then(data => {
+      this.diamonds.next(data);
+    });
     
-    this.refreshCounter();
+  }
 
-    this.getCounterValue().subscribe(countDone => {
-      // console.log('Mon score actuelle -----------');
-      // console.log(countDone);
+  public getDiamonObservable(): any {
+    return this.diamonds.asObservable();
+  }
 
-      if (countDone !== 0 && (countDone % 5) === 0) {
+  public getValueDiamonds(): any {
+    return this.getDiamonObservable().subscribe(data => {
+      console.log('data');
+      console.log(data);
+      return data;
+    });
+  }
+
+  AdIfModuloFive(): any {
+
+    // Actualisé la valeur du compteur
+    this.db.getWonCounter(this.quizz.category_name)
+    .then(data => {
+      
+      this.countDone.next(data);
+
+      // Ensuite comparé celle-ci
+      if (this.countDone.getValue() !== 0 && (this.countDone.getValue() % 5) === 0) {
         console.log("PUB de 15s");
       }
     });
+
   }
 
   checkResult(commit: string) {
@@ -179,7 +201,8 @@ export class PlayPage implements OnInit {
 
           // Apres avoir réussit le level tu prend une pub
           console.log("pub 30s");
-          this.hearths += 2;
+          this.db.addDiamonds(2);
+          this.refreshDiamonds();
 
           // Redirection vers la page des niveaux
           this.router.navigate(['levels', this.quizz.category_name]);
@@ -198,8 +221,8 @@ export class PlayPage implements OnInit {
         // 2 done
       this.db.changeStatusQuizz(this.quizz.quizz_id, 1);
 
-      switch (this.hearths) {
-        
+      switch (this.diamonds.getValue()) {
+      
         case 0:
           this.AskAd();
           break;
