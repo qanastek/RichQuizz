@@ -1,0 +1,20 @@
+.imgCol {
+    max-height: 10vh;
+    overflow: hidden;
+    object-fit: cover;
+    padding-left: 15vw;
+}
+
+.imgTheme {
+    height: 10vh;
+    align-content: flex-start;
+}
+
+.themeName {
+    max-height: 10vh;
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
+    font-size: 1.25em;
+    font-weight: 500;
+}

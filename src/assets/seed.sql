@@ -109,6 +109,14 @@ VALUES
 		quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
 		VALUES(5,1,1,1,'','Qui ? Quoi ?','pierre','jacque','pierre','mohammed','yanis',0);
 
+-- Theme alcools
+
+	-- Question 1
+	INSERT or IGNORE INTO
+		quizz (id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
+	VALUES
+		(10,2,1,0,'','Red ?','red','yellow','red','blue','purple',0);
+
 -- Question 4.2
 INSERT or IGNORE INTO
 quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)

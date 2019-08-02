@@ -1,11 +1,6 @@
-// ion-button {
-//     --box-shadow: none;
-// }
-
 .BackgroundGradient
 {
     --background: linear-gradient(180deg, #203844 0%, #294958 100%) !important;
-    // --background: linear-gradient(200deg, #3691ff 0%, #acd7ff 100%) !important;
 }
 
 .QcmWithImg {
@@ -15,4 +10,36 @@
     font-size: 1.4em;
     padding: 2%;
     margin: 0%;
+}
+
+.QcmWithoutImg {
+    --border-radius: 7px;
+    width: 100%;
+    font-weight: 300;
+    font-size: 1.4em;
+    height: 14vh;
+    padding: 2%;
+    margin: 0%;
+}
+
+.TrueFalseBtn {
+    width: 100%;
+    height: 15vh;
+    font-weight: 500;
+    font-size: 3.5em;
+    padding: 2%;
+    --border-radius: 7px;
+    margin: 0%;
+}
+
+.imgQuizz {
+    padding-bottom: 2vh;
+    width: 100%;
+    height: 35vh;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.question {
+    color: white; font-weight: 400;
 }
