@@ -6,12 +6,12 @@
   <!-- Banner logo and theme -->
   <app-theme-bar [theme]="this.theme" [image]="this.image"></app-theme-bar>
 
-  <p>Vous avez réussit {{this.countDone.getValue()}} quizz.</p>
+  <p>Vous avez réussit {{this.db.countDone.getValue()}} quizz.</p>
 
   <div *ngFor="let level of this.AllUnlockAt">
 
     <!-- Locked -->
-    <ion-card style="text-align: center;" color="dangerRichQuizz" *ngIf="this.countDone.getValue() < level.points">
+    <ion-card style="text-align: center;" color="dangerRichQuizz" *ngIf="this.db.countDone.getValue() < level.points">
       
       <ion-card-header>
 
@@ -26,13 +26,13 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p>{{level.points - this.countDone.getValue()}} quizz restant avant le dévérouillage.</p>
+        <p>{{level.points - this.db.countDone.getValue()}} quizz restant avant le dévérouillage.</p>
       </ion-card-content>
 
     </ion-card>
 
     <!-- Unlocked -->
-    <ion-card style="text-align: center;" color="successRichQuizz" (click)="this.GoPlay(this.theme, level.name)" *ngIf="this.countDone.getValue() >= level.points">   
+    <ion-card style="text-align: center;" color="successRichQuizz" (click)="this.GoPlay(this.theme, level.name)" *ngIf="this.db.countDone.getValue() >= level.points">   
       <ion-card-header>
         <ion-card-title style="font-weight: 600;">{{level.name}}</ion-card-title>
         <ion-card-subtitle>Quizz résolues. <b style="font-size: 1.25em;">{{level.done}}/20</b></ion-card-subtitle>

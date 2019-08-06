@@ -16,11 +16,10 @@ export class PlayPage implements OnInit {
   quizz: any = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
   diamonds: BehaviorSubject<number> = new BehaviorSubject(0);
   nextQuizz: any;
-  countDone: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(
     private route: ActivatedRoute,
-    private db: DatabaseService,
+    public db: DatabaseService,
     private router: Router,
     // private vibration: Vibration,
     public alertController: AlertController
@@ -128,16 +127,7 @@ export class PlayPage implements OnInit {
   }
 
   public refreshCounter(): any {
-
-    this.db.getWonCounter(this.quizz.category_name)
-    .then(data => {
-      this.countDone.next(data);
-    });
-    
-  }
-
-  public getCounterValue(): any {
-    return this.countDone.asObservable();
+    this.db.getWonCounter(this.quizz.category_name);    
   }
 
   public refreshDiamonds(): any {
@@ -163,17 +153,9 @@ export class PlayPage implements OnInit {
 
   AdIfModuloFive(): any {
 
-    // Actualisé la valeur du compteur
-    this.db.getWonCounter(this.quizz.category_name)
-    .then(data => {
-      
-      this.countDone.next(data);
-
-      // Ensuite comparé celle-ci
-      if (this.countDone.getValue() !== 0 && (this.countDone.getValue() % 5) === 0) {
-        console.log("PUB de 15s");
-      }
-    });
+    if (this.db.countDone.getValue() !== 0 && (this.db.countDone.getValue() % 5) === 0) {
+      console.log("PUB de 15s");
+    }
 
   }
 
@@ -183,6 +165,9 @@ export class PlayPage implements OnInit {
 
       this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
       this.UpdateScore(this.quizz.category_id);
+
+      // Actualisé la valeur du compteur
+      this.db.getWonCounter(this.quizz.category_name);
 
       // Récupère le prochain quizz de ce thème
       this.db.getQuizzFromLevels(this.quizz.category_name, this.quizz.difficulty_name)

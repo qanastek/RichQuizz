@@ -1,10 +1,17 @@
-<ion-row align-items-center style="background-color: #fd625e; height: 10vh;">
+<ion-row 
+  align-items-center
+  [ngStyle]="{
+    'background': 'url(assets/img/themesBackgroundsWide/' + this.theme + '.jpg) #fd625e',
+    'background-repeat': 'no-repeat',
+    'background-position': 'center center',
+    'background-size': 'cover',
+    'background-blend-mode': 'multiply',
+    'box-shadow': 'inset 0 0 0 2000px rgba(0, 0, 0, 0.25)',
+    'height': '10vh'
+  }"
+>
 
-  <ion-col size="5" class="imgCol">
-    <img class="imgTheme" [src]="this.theme_image">
-  </ion-col>
-
-  <ion-col size="7" class="themeName">
+  <ion-col size="12" class="themeName" style="text-transform: uppercase; letter-spacing: 0.25em;">
     {{this.theme}}
   </ion-col>
 

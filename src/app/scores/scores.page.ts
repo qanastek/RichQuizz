@@ -15,7 +15,6 @@ export class ScoresPage implements OnInit {
   )
   {
     this.loadScores();
-
   }
 
   ngOnInit() {

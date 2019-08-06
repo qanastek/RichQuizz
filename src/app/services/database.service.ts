@@ -45,6 +45,7 @@ export class DatabaseService {
   private dbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public quizz = new BehaviorSubject([]);
+  public countDone: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(
     private plt: Platform,
@@ -166,6 +167,28 @@ export class DatabaseService {
 
   }
 
+  public GetCategories(): any {
+    return this.db.executeSql(`
+    SELECT
+      name,
+      image,
+      color
+    FROM
+      categories
+    ;
+    `, [])
+    .then(data => {
+      
+      var datas = [];
+
+      for (let i = 0; i < data.rows.length; i++) {
+        datas.push(data.rows.item(i));
+      }
+
+      return JSON.stringify(datas);
+    });
+  }
+
   private FillDatabase(): void {
 
     this.http.get('assets/seed.sql', { responseType: 'text' })
@@ -273,9 +296,9 @@ export class DatabaseService {
     
     var sqlQuery: string = `
       SELECT
+        color,
         name,
-        score,
-        color
+        score
       FROM
         categories
       ORDER BY
@@ -485,7 +508,7 @@ export class DatabaseService {
 
     return this.db.executeSql(sqlQuery, [])
     .then(data => {
-      return data.rows.item(0).counter;
+      this.countDone.next(data.rows.item(0).counter);
     })
     .catch(e => console.error(e));
 

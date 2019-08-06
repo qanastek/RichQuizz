@@ -1,14 +1,14 @@
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(0,'voitures','assets/img/car.png', '#fd625e');
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(1,'nourriture','assets/img/grocery.png', '#87ba3b');
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(2,'alcools','assets/img/liquor.png', '#f9d406');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(0, 'voitures', 'assets/img/voitures.png', '#fd625e');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(1, 'nourriture', 'assets/img/nourriture.png', '#87ba3b');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(2, 'alcools', 'assets/img/alcools.png', '#f9d406');
 
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(3,'mobiliers','assets/img/living-room.png', '#df7b23');
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(4,'loisirs','assets/img/sport.png', '#13a88a');
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(5,'bijoux','assets/img/watch.png', '#0071bd');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(3, 'mobiliers', 'assets/img/mobiliers.png', '#df7b23');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(4, 'loisirs', 'assets/img/loisirs.png', '#13a88a');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(5, 'bijoux', 'assets/img/bijoux.png', '#0071bd');
 
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(6,'vêtements','assets/img/cloth.png', '#fbc02f');
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(7,'high-tech','assets/img/computer.png', '#278fc6');
-INSERT or IGNORE INTO categories (id, name, image, color) VALUES(8,'immobilier','assets/img/house.png', '#6d4e89');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(6, 'vêtements', 'assets/img/vêtements.png', '#fbc02f');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(7, 'high-tech', 'assets/img/high-tech.png', '#278fc6');
+INSERT or IGNORE INTO categories (id, name, image, color) VALUES(8, 'immobilier', 'assets/img/immobilier.png', '#6d4e89');
 
 INSERT or IGNORE INTO difficulties VALUES(0, 'Level 1', 0);
 INSERT or IGNORE INTO difficulties VALUES(1, 'Level 2', 10);

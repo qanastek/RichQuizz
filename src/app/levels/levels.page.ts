@@ -25,14 +25,13 @@ export class LevelsPage implements OnInit {
 
   theme: string = this.route.snapshot.paramMap.get('theme');  // Thème
   image: string;                    // Image du thème
-  countDone: BehaviorSubject<number> = new BehaviorSubject(0);                // Nombre de quizz réussit dans ce thème
   AllUnlockAt: Array<Levels>;       // Palliers d'unlock de chaque level
   DonePerLevels: Array<LevelsDone>; // Nombre de quizz réussit par levels
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private db: DatabaseService,
+    public db: DatabaseService,
     public toastController: ToastController,
   ) {
   }
@@ -83,16 +82,7 @@ export class LevelsPage implements OnInit {
 
   // Actualise le nombre de quizz réussit dans ce thème
   public refreshCounter(): any {
-
-    this.db.getWonCounter(this.theme)
-    .then(data => {
-      this.countDone.next(data);
-    });
-    
-  }
-
-  public getCountDoneObservable(): any {
-    return this.countDone.asObservable();
+    this.db.getWonCounter(this.theme);    
   }
 
   public UnlockAtLoad(): any {

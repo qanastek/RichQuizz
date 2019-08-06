@@ -83,6 +83,7 @@ ionic integrations enable cordova --add
 
 ## TO FIX:
 
+- [ ] La valeur de chaque level nest pas observable
 - [x] BehaviorSubject send me back old data
   - [x] Pour résoudre sa il faut:
     - [x] pas sendAsObservable

@@ -10,12 +10,19 @@ import { DatabaseService, Quizz } from './../services/database.service';
 })
 export class ThemesPage implements OnInit {
 
+  public categories = [];
+
   constructor(
     private router: Router,
     private db: DatabaseService,
     public toastController: ToastController,
-  ){}
+  ){
+    this.GetItems();
+  }
   
+  ngOnInit() {
+  }
+
   GoScores() {
     this.router.navigate(["scores"]);
   }
@@ -36,7 +43,11 @@ export class ThemesPage implements OnInit {
     this.router.navigate(["add"]);
   }
 
-  ngOnInit() {
+  GetItems() {
+    this.db.GetCategories()
+    .then(data => {
+      this.categories = JSON.parse(data);
+    })
+    .catch(e => console.error(e));
   }
-
 }
