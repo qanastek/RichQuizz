@@ -9,3 +9,13 @@ ion-col
 {
     padding: 0%;
 }
+
+.ask-ad-custom {
+    // ffffff40
+    --background: rgba(0, 0, 0, 0.25); 
+    --height: 100%;
+    
+    ion-content {
+      --background: rgba(0, 0, 0, 0.25);
+    }
+}

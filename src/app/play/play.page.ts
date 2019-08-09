@@ -1,10 +1,10 @@
+import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
 import { DatabaseService, Quizz } from './../services/database.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { Vibration } from '@ionic-native/vibration/ngx';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
-import { first, take, last } from 'rxjs/operators';
 
 @Component({
   selector: 'app-play',
@@ -22,7 +22,8 @@ export class PlayPage implements OnInit {
     public db: DatabaseService,
     private router: Router,
     // private vibration: Vibration,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -32,18 +33,18 @@ export class PlayPage implements OnInit {
 
   async fail() {
     const alert = await this.alertController.create({
-      header: 'Retry ?',
-      message: 'Do you want to try again ? <strong>cost 1 diamond</strong>',
+      header: 'Voulez-vous réesayer ?',
+      message: 'Voulez-vous réesayer ? <strong>coût 1 💎</strong>',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Non',
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
             this.router.navigate(['levels', this.quizz.category_name]);
           }
         }, {
-          text: 'Retry',
+          text: 'Oui <strong>- 1 💎</strong>',
           handler: () => {
             this.db.subDiamonds(1);
             this.refreshDiamonds();
@@ -55,29 +56,47 @@ export class PlayPage implements OnInit {
     await alert.present();
   }
 
+  // async AskAd() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Réesayer ?',
+  //     message: 'Voulez-vous regarder une publicité pour réesayer ?',
+  //     buttons: [
+  //       {
+  //         text: 'Non',
+  //         role: 'cancel',
+  //         cssClass: 'alertCustomCss',
+  //         handler: () => {
+  //           this.router.navigate(['levels', this.quizz.category_name]);
+  //         }
+  //       }, {
+  //         text: 'Regarder',
+  //         handler: () => {
+  //           // 30s ad here
+  //           console.log("Watch 30s AD");
+  //         }
+  //       }
+  //     ]
+  //   });
+
+  //   await alert.present();
+  // }
+
   async AskAd() {
-    const alert = await this.alertController.create({
-      header: 'Retry ?',
-      message: 'Do you want to watch a ad for retry ?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.router.navigate(['levels', this.quizz.category_name]);
-          }
-        }, {
-          text: 'Watch',
-          handler: () => {
-            // 30s ad here
-            console.log("Watch 30s AD");
-          }
-        }
-      ]
+
+    // animated: true,
+    // keyboardClose: true,
+    // showBackdrop: false,
+
+    const modal = await this.modalController.create({
+      component: AskAdComponent,
+      componentProps: {
+        theme: this.quizz.category_name
+      },
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
     });
 
-    await alert.present();
+    return await modal.present();
   }
 
   async dead(answer: string) {
@@ -145,8 +164,6 @@ export class PlayPage implements OnInit {
 
   public getValueDiamonds(): any {
     return this.getDiamonObservable().subscribe(data => {
-      console.log('data');
-      console.log(data);
       return data;
     });
   }

@@ -28,6 +28,12 @@ ionic integrations enable cordova --add
 
 ## TODO:
 
+- [ ] Ajouter un systeme de loading entre les pages
+- [ ] Ajouter des animations pourles diamand ect...
+- [ ] Revoir UI des popup
+- [ ] Voir pour i18n
+  - [ ] Exemple:
+    - [ ] Pour la "question" faire des collones question_fr-FR, question_es-ES 
 - [ ] Ajouter un sytème de défis
   - [ ] example:
     - [ ] 1 quizz of each themes = won 1 DM

@@ -229,3 +229,25 @@
     --ion-color-shade: #e6e6e6;
     --ion-color-tint: linear-gradient(90deg, #f05b61 0%, #CF5283 100%) !important;
 }
+
+.ion-color-play
+{
+    --ion-color-base: linear-gradient(240deg, #ef3c59 0%, #fe921b 100%) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // Color of the text contain in the object who have set this color
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: linear-gradient(240deg, #ef3c59 0%, #fe921b 100%) !important;
+}
+
+.ion-color-retry
+{
+    --ion-color-base: linear-gradient(240deg, #ffe600 0%, #ff5100 100%) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // Color of the text contain in the object who have set this color
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: linear-gradient(240deg, #ffe600 0%, #ff5100 100%) !important;
+}
