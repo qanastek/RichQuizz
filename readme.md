@@ -35,7 +35,10 @@ ionic integrations enable cordova --add
 - [ ] Ajouter des animations pourles diamand ect...
 - [ ] Revoir UI des popup
   - [x] Retry with popup
-  - [ ] Fail
+  - [x] Fail
+  - [ ] Win
+  - [ ] Voir si garder dead
+  - [ ] Pub
 - [ ] Voir pour i18n
   - [ ] Exemple:
     - [ ] Pour la "question" faire des collones question_fr-FR, question_es-ES 
@@ -61,18 +64,19 @@ ionic integrations enable cordova --add
     - [x] n'existe plus
   - [ ] Button
     - [x] True or False
-    - [ ] QCM
-      - [ ] Quand y a pas d'image
+    - [x] QCM
+      - [x] Quand y a pas d'image
       - [x] Quand y a des images
   - [ ] PUB
     - [x] fake
     - [ ] real
   - [x] Heaths
-  - [ ] Image
-    - [ ] mettre un shadow
-    - [ ] format tjr le meme
-  - [ ] Centré le logo du current theme
-  - [ ] Changé la font-size de la question
+    - [x] Remplacer par des diamands
+  - [x] Image
+    - [x] mettre un shadow
+    - [x] format tjr le meme
+  - [x] Centré le logo du current theme
+  - [x] Changé la font-size de la question
   - [ ] Changé la typo (font-familly) de toute l'APP
   - [x] Enlevé les shader des buttons
   - [ ] Icon à côté des buttons sur l'écran d'accueil
@@ -94,17 +98,17 @@ ionic integrations enable cordova --add
 
 ## TO FIX:
 
-- [ ] La valeur de chaque level nest pas observable
+- [ ] La valeur de chaque level nest pas un observable
 - [x] BehaviorSubject send me back old data
   - [x] Pour résoudre sa il faut:
     - [x] pas sendAsObservable
     - [x] et utilisé this.diamonds.getValue()
 - [x] compteur de quizz done actualise pas auto après réussit
-  - [ ] maybe import refreshCounter from levels
+  - [x] maybe import refreshCounter from levels
 - [x] les coeurs de la game ne restes pas apres avoir quitter et revenue
   - [x] donc réflechir si je laisse les coeurs ou non au final
 - [x] Fix le probleme de non reload
   - [x] pour ce faire: favorisé les subscribe pour les endroits qui marches pas
-- [ ] Quand je vais de la page play à levels j'ai l'observable countDone qui ne s'actualise pas
+- [x] Quand je vais de la page play à levels j'ai l'observable countDone qui ne s'actualise pas
 - [x] La variable countDone donne la valeur précédente
   - [x] C'était dû au faite que nous affichions la valeur avoir que le refresh est eu le temps de finir

@@ -49,31 +49,6 @@ export class PlayPage implements OnInit {
     return await modal.present();
   }
 
-  // async fail() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Voulez-vous réesayer ?',
-  //     message: 'Voulez-vous réesayer ? <strong>coût 1 💎</strong>',
-  //     buttons: [
-  //       {
-  //         text: 'Non',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: () => {
-  //           this.router.navigate(['levels', this.quizz.category_name]);
-  //         }
-  //       }, {
-  //         text: 'Oui <strong>- 1 💎</strong>',
-  //         handler: () => {
-  //           this.db.subDiamonds(1);
-  //           this.refreshDiamonds();
-  //         }
-  //       }
-  //     ]
-  //   });
-
-  //   await alert.present();
-  // }
-
   async AskAd() {
 
     // animated: true,
@@ -94,16 +69,8 @@ export class PlayPage implements OnInit {
 
   async dead(answer: string) {
 
-    if (answer == "true") {
-      answer = "vrai";
-    }
-    else if (answer == "false") {
-      answer = "faux";
-    }
-
     const alert = await this.alertController.create({
       header: "Vous n'avez plus de diamands",
-      subHeader: 'La réponse était ' + answer,
       message: '',
       buttons: ['OK']
     });
@@ -114,8 +81,7 @@ export class PlayPage implements OnInit {
   async win() {
     const alert = await this.alertController.create({
       header: "Bravo vous avez fini le niveau !",
-      subHeader: '',
-      message: '',
+      message: '+2 💎',
       buttons: ['OK']
     });
 
