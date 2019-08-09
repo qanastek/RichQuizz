@@ -28,9 +28,14 @@ ionic integrations enable cordova --add
 
 ## TODO:
 
+- [ ] Switcher de SQLite Native to ionic-storage
+  - [ ] https://forum.ionicframework.com/t/how-to-use-sqlite-in-browser-chrome-with-ionic-serve/101084/4
+  - [ ] https://www.thepolyglotdeveloper.com/2016/08/using-sqlstorage-instead-sqlite-ionic-2-app/
 - [ ] Ajouter un systeme de loading entre les pages
 - [ ] Ajouter des animations pourles diamand ect...
 - [ ] Revoir UI des popup
+  - [x] Retry with popup
+  - [ ] Fail
 - [ ] Voir pour i18n
   - [ ] Exemple:
     - [ ] Pour la "question" faire des collones question_fr-FR, question_es-ES 

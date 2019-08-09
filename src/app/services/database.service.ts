@@ -46,6 +46,7 @@ export class DatabaseService {
 
   public quizz = new BehaviorSubject([]);
   public countDone: BehaviorSubject<number> = new BehaviorSubject(0);
+  public diamonds: BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(
     private plt: Platform,
@@ -667,6 +668,25 @@ export class DatabaseService {
     })
     .catch(e => console.error(e));
 
+  }
+
+  public refreshDiamonds(): any {
+
+    this.getDiamonds()
+    .then(data => {
+      this.diamonds.next(data);
+    });
+    
+  }
+
+  public getDiamonObservable(): any {
+    return this.diamonds.asObservable();
+  }
+
+  public getValueDiamonds(): any {
+    return this.getDiamonObservable().subscribe(data => {
+      return data;
+    });
   }
 
   public getUnlockAt(): any {

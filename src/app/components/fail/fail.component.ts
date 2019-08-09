@@ -1,18 +1,18 @@
-import { AppComponent } from './../../app.component';
 import { RouterModule, Router } from '@angular/router';
-import { Component, Input, NgZone, OnInit } from '@angular/core';
-import { NavParams, ModalController, Platform, NavController  } from '@ionic/angular';
+import { Component, Input, NgZone } from '@angular/core';
+import { NavParams, ModalController, Platform  } from '@ionic/angular';
+import { DatabaseService } from 'src/app/services/database.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-ask-ad',
-  templateUrl: './ask-ad.component.html',
-  styleUrls: ['./ask-ad.component.scss'],
+  selector: 'app-fail',
+  templateUrl: './fail.component.html',
+  styleUrls: ['./fail.component.scss'],
 })
-export class AskAdComponent {
-
+export class FailComponent {
+  
   private backbuttonSubscription: Subscription;
-
+  
   @Input() theme: string;
 
   constructor(
@@ -21,7 +21,7 @@ export class AskAdComponent {
     private router: Router,
     private platform: Platform,
     private ngZone: NgZone,
-    public nav: NavController
+    public db: DatabaseService
   ) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class AskAdComponent {
         const modal = await this.modalCtrl.getTop();
 
         if (modal) {
-          this.goBack();          
+          this.goBack();
         }
 
       })
@@ -43,21 +43,22 @@ export class AskAdComponent {
   }
 
   ngOnDestroy() {
-      this.backbuttonSubscription.unsubscribe();
+    this.backbuttonSubscription.unsubscribe();
   }
 
-  async close () {    
+  async close () {
     await this.modalCtrl.dismiss();
-  }
-
-  lookAd() {
-    this.close();
-    console.log("Watch 30s AD");
   }
 
   goBack() {
     this.close();
     this.ngZone.run(() => this.router.navigate(['levels', this.theme]));
+  }
+
+  pay() {
+    this.db.subDiamonds(1);
+    this.db.refreshDiamonds();
+    this.close();
   }
 
 }

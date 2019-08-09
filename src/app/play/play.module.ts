@@ -1,4 +1,4 @@
-import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
+import { FailComponent } from './../components/fail/fail.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PlayPage } from './play.page';
 import { ComponentsModule } from '../components/components.module';
+import { AskAdComponent } from '../components/ask-ad/ask-ad.component';
 
 const routes: Routes = [
   {

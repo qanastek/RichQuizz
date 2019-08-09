@@ -1,3 +1,4 @@
+import { FailComponent } from './../components/fail/fail.component';
 import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
 import { DatabaseService, Quizz } from './../services/database.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,6 @@ import { BehaviorSubject } from 'rxjs';
 export class PlayPage implements OnInit {
 
   quizz: any = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
-  diamonds: BehaviorSubject<number> = new BehaviorSubject(0);
   nextQuizz: any;
 
   constructor(
@@ -28,51 +28,44 @@ export class PlayPage implements OnInit {
 
   ngOnInit() {
     this.refreshCounter();
-    this.refreshDiamonds()
+    this.db.refreshDiamonds()
   }
 
   async fail() {
-    const alert = await this.alertController.create({
-      header: 'Voulez-vous réesayer ?',
-      message: 'Voulez-vous réesayer ? <strong>coût 1 💎</strong>',
-      buttons: [
-        {
-          text: 'Non',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            this.router.navigate(['levels', this.quizz.category_name]);
-          }
-        }, {
-          text: 'Oui <strong>- 1 💎</strong>',
-          handler: () => {
-            this.db.subDiamonds(1);
-            this.refreshDiamonds();
-          }
-        }
-      ]
+
+    // animated: true,
+    // keyboardClose: true,
+    // showBackdrop: false,
+
+    const modal = await this.modalController.create({
+      component: FailComponent,
+      componentProps: {
+        theme: this.quizz.category_name
+      },
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
     });
 
-    await alert.present();
+    return await modal.present();
   }
 
-  // async AskAd() {
+  // async fail() {
   //   const alert = await this.alertController.create({
-  //     header: 'Réesayer ?',
-  //     message: 'Voulez-vous regarder une publicité pour réesayer ?',
+  //     header: 'Voulez-vous réesayer ?',
+  //     message: 'Voulez-vous réesayer ? <strong>coût 1 💎</strong>',
   //     buttons: [
   //       {
   //         text: 'Non',
   //         role: 'cancel',
-  //         cssClass: 'alertCustomCss',
+  //         cssClass: 'secondary',
   //         handler: () => {
   //           this.router.navigate(['levels', this.quizz.category_name]);
   //         }
   //       }, {
-  //         text: 'Regarder',
+  //         text: 'Oui <strong>- 1 💎</strong>',
   //         handler: () => {
-  //           // 30s ad here
-  //           console.log("Watch 30s AD");
+  //           this.db.subDiamonds(1);
+  //           this.refreshDiamonds();
   //         }
   //       }
   //     ]
@@ -149,25 +142,6 @@ export class PlayPage implements OnInit {
     this.db.getWonCounter(this.quizz.category_name);    
   }
 
-  public refreshDiamonds(): any {
-
-    this.db.getDiamonds()
-    .then(data => {
-      this.diamonds.next(data);
-    });
-    
-  }
-
-  public getDiamonObservable(): any {
-    return this.diamonds.asObservable();
-  }
-
-  public getValueDiamonds(): any {
-    return this.getDiamonObservable().subscribe(data => {
-      return data;
-    });
-  }
-
   AdIfModuloFive(): any {
 
     if (this.db.countDone.getValue() !== 0 && (this.db.countDone.getValue() % 5) === 0) {
@@ -204,7 +178,7 @@ export class PlayPage implements OnInit {
           // Apres avoir réussit le level tu prend une pub
           console.log("pub 30s");
           this.db.addDiamonds(2);
-          this.refreshDiamonds();
+          this.db.refreshDiamonds();
 
           // Redirection vers la page des niveaux
           this.router.navigate(['levels', this.quizz.category_name]);
@@ -223,7 +197,7 @@ export class PlayPage implements OnInit {
         // 2 done
       this.db.changeStatusQuizz(this.quizz.quizz_id, 1);
 
-      switch (this.diamonds.getValue()) {
+      switch (this.db.diamonds.getValue()) {
       
         case 0:
           this.AskAd();
