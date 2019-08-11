@@ -28,6 +28,7 @@ ionic integrations enable cordova --add
 
 ## TODO:
 
+- [ ] Forcer les icons iphone
 - [ ] Switcher de SQLite Native to ionic-storage
   - [ ] https://forum.ionicframework.com/t/how-to-use-sqlite-in-browser-chrome-with-ionic-serve/101084/4
   - [ ] https://www.thepolyglotdeveloper.com/2016/08/using-sqlstorage-instead-sqlite-ionic-2-app/
@@ -36,7 +37,7 @@ ionic integrations enable cordova --add
 - [ ] Revoir UI des popup
   - [x] Retry with popup
   - [x] Fail
-  - [ ] Win
+  - [x] Win
   - [ ] Voir si garder dead
   - [ ] Pub
 - [ ] Voir pour i18n

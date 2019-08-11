@@ -1,3 +1,5 @@
+import { AdvertisementPopupService } from './../services/advertisement-popup.service';
+import { WinComponent } from './../components/win/win.component';
 import { FailComponent } from './../components/fail/fail.component';
 import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
 import { DatabaseService, Quizz } from './../services/database.service';
@@ -20,6 +22,7 @@ export class PlayPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public db: DatabaseService,
+    public ad: AdvertisementPopupService,
     private router: Router,
     // private vibration: Vibration,
     public alertController: AlertController,
@@ -79,13 +82,18 @@ export class PlayPage implements OnInit {
   }
 
   async win() {
-    const alert = await this.alertController.create({
-      header: "Bravo vous avez fini le niveau !",
-      message: '+2 💎',
-      buttons: ['OK']
+
+    const modal = await this.modalController.create({
+      component: WinComponent,
+      componentProps: {
+        theme: this.quizz.category_name
+      },
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
     });
 
-    await alert.present();
+    return await modal.present();
+
   }
 
   UpdateScore(theme: number): any {
@@ -111,7 +119,7 @@ export class PlayPage implements OnInit {
   AdIfModuloFive(): any {
 
     if (this.db.countDone.getValue() !== 0 && (this.db.countDone.getValue() % 5) === 0) {
-      console.log("PUB de 15s");
+      this.ad.displayAd(15);
     }
 
   }
@@ -142,7 +150,8 @@ export class PlayPage implements OnInit {
           this.win();
 
           // Apres avoir réussit le level tu prend une pub
-          console.log("pub 30s");
+          this.ad.displayAd(30);
+
           this.db.addDiamonds(2);
           this.db.refreshDiamonds();
 

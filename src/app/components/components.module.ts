@@ -1,3 +1,4 @@
+import { WinComponent } from './win/win.component';
 import { FailComponent } from './fail/fail.component';
 import { AskAdComponent } from './ask-ad/ask-ad.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ import { IonicModule } from '@ionic/angular';
     ProgressionBarComponent,
     ThemeBarComponent,
     AskAdComponent,
-    FailComponent
+    FailComponent,
+    WinComponent
   ],
   imports: [
     CommonModule,
@@ -21,11 +23,13 @@ import { IonicModule } from '@ionic/angular';
     ProgressionBarComponent,
     ThemeBarComponent,
     AskAdComponent,
-    FailComponent
+    FailComponent,
+    WinComponent
   ],
   entryComponents: [
     AskAdComponent,
-    FailComponent
+    FailComponent,
+    WinComponent
   ]
 })
 export class ComponentsModule { }

@@ -1,3 +1,4 @@
+import { AdvertisementPopupService } from './../../services/advertisement-popup.service';
 import { RouterModule, Router } from '@angular/router';
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { NavParams, ModalController, Platform  } from '@ionic/angular';
@@ -5,12 +6,12 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-fail',
-  templateUrl: './fail.component.html',
-  styleUrls: ['./fail.component.scss'],
+  selector: 'app-win',
+  templateUrl: './win.component.html',
+  styleUrls: ['./win.component.scss'],
 })
-export class FailComponent implements OnInit {
-  
+export class WinComponent implements OnInit {
+
   private backbuttonSubscription: Subscription;
   
   @Input() theme: string;
@@ -21,7 +22,8 @@ export class FailComponent implements OnInit {
     private router: Router,
     private platform: Platform,
     private ngZone: NgZone,
-    public db: DatabaseService
+    public db: DatabaseService,
+    public ad: AdvertisementPopupService
   ) { }
 
   ngOnInit() {
@@ -51,14 +53,9 @@ export class FailComponent implements OnInit {
   }
 
   goBack() {
+    this.ad.displayAd(30);
     this.close();
     this.ngZone.run(() => this.router.navigate(['levels', this.theme]));
-  }
-
-  pay() {
-    this.db.subDiamonds(1);
-    this.db.refreshDiamonds();
-    this.close();
   }
 
 }
