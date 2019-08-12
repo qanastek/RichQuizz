@@ -1,3 +1,4 @@
+import { AdvertisementComponent } from './advertisement/advertisement.component';
 import { WinComponent } from './win/win.component';
 import { FailComponent } from './fail/fail.component';
 import { AskAdComponent } from './ask-ad/ask-ad.component';
@@ -13,7 +14,8 @@ import { IonicModule } from '@ionic/angular';
     ThemeBarComponent,
     AskAdComponent,
     FailComponent,
-    WinComponent
+    WinComponent,
+    AdvertisementComponent
   ],
   imports: [
     CommonModule,
@@ -24,12 +26,14 @@ import { IonicModule } from '@ionic/angular';
     ThemeBarComponent,
     AskAdComponent,
     FailComponent,
-    WinComponent
+    WinComponent,
+    AdvertisementComponent
   ],
   entryComponents: [
     AskAdComponent,
     FailComponent,
-    WinComponent
+    WinComponent,
+    AdvertisementComponent
   ]
 })
 export class ComponentsModule { }

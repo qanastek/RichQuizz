@@ -1,4 +1,3 @@
-import { AdvertisementPopupService } from './../services/advertisement-popup.service';
 import { WinComponent } from './../components/win/win.component';
 import { FailComponent } from './../components/fail/fail.component';
 import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
@@ -8,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // import { Vibration } from '@ionic-native/vibration/ngx';
 import { AlertController, ModalController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
+import { AdvertisementComponent } from '../components/advertisement/advertisement.component';
 
 @Component({
   selector: 'app-play',
@@ -22,7 +22,6 @@ export class PlayPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public db: DatabaseService,
-    public ad: AdvertisementPopupService,
     private router: Router,
     // private vibration: Vibration,
     public alertController: AlertController,
@@ -116,10 +115,26 @@ export class PlayPage implements OnInit {
     this.db.getWonCounter(this.quizz.category_name);    
   }
 
+  async ad(theme: string, time: number) {
+
+    const modal = await this.modalController.create({
+      component: AdvertisementComponent,
+      componentProps: {
+        theme: theme,
+        time: time
+      },
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
+    });
+
+    return await modal.present();
+
+  }
+
   AdIfModuloFive(): any {
 
     if (this.db.countDone.getValue() !== 0 && (this.db.countDone.getValue() % 5) === 0) {
-      this.ad.displayAd(15);
+      this.ad(this.quizz.category_name, 15);
     }
 
   }
@@ -148,9 +163,6 @@ export class PlayPage implements OnInit {
         else {
           // Popup fin de niveau
           this.win();
-
-          // Apres avoir réussit le level tu prend une pub
-          this.ad.displayAd(30);
 
           this.db.addDiamonds(2);
           this.db.refreshDiamonds();

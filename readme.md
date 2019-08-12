@@ -99,6 +99,12 @@ ionic integrations enable cordova --add
 
 ## TO FIX:
 
+- [x] La ad ne s'affiche pas
+  - [x] Bug ~001
+  - [x] setTimeout ne sutilise pas avec function mais () => {}
+- [x] displayAd de advertisement popup service ne fonctionne pas
+  - [x] A cause de AdvertisementComponent
+  - [x] Le probleme été dû au faite que je déclaré AdvertisementComponent dans le constructeur
 - [ ] La valeur de chaque level nest pas un observable
 - [x] BehaviorSubject send me back old data
   - [x] Pour résoudre sa il faut:

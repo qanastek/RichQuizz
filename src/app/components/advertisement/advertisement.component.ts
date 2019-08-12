@@ -1,31 +1,33 @@
 import { RouterModule, Router } from '@angular/router';
 import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { NavParams, ModalController, Platform  } from '@ionic/angular';
-import { DatabaseService } from 'src/app/services/database.service';
 import { Subscription } from 'rxjs';
-import { AdvertisementComponent } from '../advertisement/advertisement.component';
 
 @Component({
-  selector: 'app-win',
-  templateUrl: './win.component.html',
-  styleUrls: ['./win.component.scss'],
+  selector: 'app-advertisement',
+  templateUrl: './advertisement.component.html',
+  styleUrls: ['./advertisement.component.scss'],
 })
-export class WinComponent implements OnInit {
+export class AdvertisementComponent implements OnInit {
 
   private backbuttonSubscription: Subscription;
   
   @Input() theme: string;
+  @Input() time: number;
 
   constructor(
     public navParams: NavParams,
     public modalCtrl: ModalController,
     private router: Router,
     private platform: Platform,
-    private ngZone: NgZone,
-    public db: DatabaseService
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
+
+    // Auto close the ad
+    this.autoClosing();
+
     this.platform.ready().then(() => {
 
       // Si le user appuie sur le hardware back button
@@ -35,7 +37,7 @@ export class WinComponent implements OnInit {
         const modal = await this.modalCtrl.getTop();
 
         if (modal) {
-          this.goBack();
+          console.error("Cant skip the ad.");
         }
 
       })
@@ -47,32 +49,15 @@ export class WinComponent implements OnInit {
     this.backbuttonSubscription.unsubscribe();
   }
 
-  async close () {
-    await this.modalCtrl.dismiss();
+  async close() {
+    const modal = await this.modalCtrl.getTop();
+    return await modal.dismiss();
   }
 
-  async ad(theme: string, time: number) {
-
-    const modal = await this.modalCtrl.create({
-      component: AdvertisementComponent,
-      componentProps: {
-        theme: theme,
-        time: time
-      },
-      cssClass: 'ask-ad-custom',
-      backdropDismiss: false
-    });
-
-    return await modal.present();
-
-  }
-
-  goBack() {
-    this.close();
-
-    this.ad(this.theme, 5);
-
-    this.ngZone.run(() => this.router.navigate(['levels', this.theme]));
+  async autoClosing() {
+    setTimeout(() => {
+      this.close();
+    }, this.time * 1000);
   }
 
 }
