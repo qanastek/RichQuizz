@@ -1,13 +1,14 @@
-import { WinComponent } from './../components/win/win.component';
 import { FailComponent } from './../components/fail/fail.component';
 import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
 import { DatabaseService, Quizz } from './../services/database.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { Vibration } from '@ionic-native/vibration/ngx';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, NavController } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { AdvertisementComponent } from '../components/advertisement/advertisement.component';
+// import { AdMobFree, AdMobFreeInterstitial } from '@ionic-native/admob-free/ngx';
+import { AdMobFree, AdMobFreeInterstitialConfig, AdMobFreeBannerConfig } from '@ionic-native/admob-free/ngx';
 
 @Component({
   selector: 'app-play',
@@ -25,12 +26,19 @@ export class PlayPage implements OnInit {
     private router: Router,
     // private vibration: Vibration,
     public alertController: AlertController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private admob: AdMobFree,
+    public navCtrl: NavController
   ) { }
 
   ngOnInit() {
+    this.ShowAdBanner();
     this.refreshCounter();
-    this.db.refreshDiamonds()
+    this.db.refreshDiamonds();
+  }
+
+  ngOnDestroy() {
+    this.admob.banner.remove();    
   }
 
   async fail() {
@@ -80,21 +88,6 @@ export class PlayPage implements OnInit {
     await alert.present();
   }
 
-  async win() {
-
-    const modal = await this.modalController.create({
-      component: WinComponent,
-      componentProps: {
-        theme: this.quizz.category_name
-      },
-      cssClass: 'ask-ad-custom',
-      backdropDismiss: false
-    });
-
-    return await modal.present();
-
-  }
-
   UpdateScore(theme: number): any {
 
     let response = this.db.executeSqlQuery(
@@ -139,6 +132,38 @@ export class PlayPage implements OnInit {
 
   }
 
+  ShowAdBanner() {
+    const bannerConfig: AdMobFreeBannerConfig = {
+      isTesting: true,
+      autoShow: true,
+      size: "SMART_BANNER",
+     };
+     this.admob.banner.config(bannerConfig);
+     
+     this.admob.banner.prepare()
+       .then(() => {
+         
+       })
+       .catch(e => console.log(e));
+  }
+
+  InterstitielAdvertisement() {
+
+    const config: AdMobFreeInterstitialConfig = {
+      // id: 'ca-app-pub-7311596904113357/3034587257',
+      isTesting: true,
+      autoShow: true,
+    };
+    this.admob.interstitial.config(config);
+     
+    this.admob.interstitial.prepare()
+    .then(() => {
+      
+    })
+    .catch(e => console.log(e));
+
+  }
+
   checkResult(commit: string) {
 
     if (this.quizz.answer === commit) {
@@ -162,7 +187,7 @@ export class PlayPage implements OnInit {
         }
         else {
           // Popup fin de niveau
-          this.win();
+          this.InterstitielAdvertisement();
 
           this.db.addDiamonds(2);
           this.db.refreshDiamonds();

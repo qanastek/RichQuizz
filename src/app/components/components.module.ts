@@ -1,5 +1,4 @@
 import { AdvertisementComponent } from './advertisement/advertisement.component';
-import { WinComponent } from './win/win.component';
 import { FailComponent } from './fail/fail.component';
 import { AskAdComponent } from './ask-ad/ask-ad.component';
 import { NgModule } from '@angular/core';
@@ -7,6 +6,7 @@ import { ProgressionBarComponent } from './progression-bar/progression-bar.compo
 import { ThemeBarComponent } from './theme-bar/theme-bar.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,6 @@ import { IonicModule } from '@ionic/angular';
     ThemeBarComponent,
     AskAdComponent,
     FailComponent,
-    WinComponent,
     AdvertisementComponent
   ],
   imports: [
@@ -26,14 +25,15 @@ import { IonicModule } from '@ionic/angular';
     ThemeBarComponent,
     AskAdComponent,
     FailComponent,
-    WinComponent,
     AdvertisementComponent
   ],
   entryComponents: [
     AskAdComponent,
     FailComponent,
-    WinComponent,
     AdvertisementComponent
+  ],
+  providers: [
+    AdMobFree
   ]
 })
 export class ComponentsModule { }
