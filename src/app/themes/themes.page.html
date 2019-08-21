@@ -11,7 +11,7 @@
         *ngFor="let categorie of this.categories"
         size="4"
         [ngStyle]="{
-          'background': 'url(assets/img/themesBackgrounds/' + categorie.name + '.jpg)' + categorie.color,
+          'background': 'url(assets/img/themesBackgrounds/bijoux.jpg)' + categorie.color,
           'background-repeat': 'no-repeat',
           'background-position': 'center center',
           'background-size': 'cover',
@@ -19,15 +19,15 @@
           'box-shadow': 'inset 0 0 0 2000px rgba(0, 0, 0, 0.25)'
         }"
         class="btnTheme"
-        (click)="GoPlay(categorie.name)"
+        (click)="GoPlay()"
       >
           
-        <img style="width: 25vw; opacity: 0.95;" [src]="categorie.image">
+        <img style="width: 25vw; opacity: 0.95;" [src]="'assets/img/themesBackgrounds/bijoux.jpg'">
 
         <br>
 
         <p style="font-size: 1.25em; opacity: 0.95; text-transform: capitalize;">
-          {{categorie.name}}
+          rien
         </p>
 
       </ion-col>

@@ -24,9 +24,14 @@ export class HomePage {
     this.router.navigate(["scores"]);
   }
 
-  GoThemes()
+  GoPlay()
   {
-    this.router.navigate(["themes"]);
+    this.router.navigate(["levels"]);
+  }
+
+  GoDefis()
+  {
+    this.router.navigate(["defis"]);
   }
 
 }

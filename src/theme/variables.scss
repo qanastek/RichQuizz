@@ -98,6 +98,17 @@
     --ion-color-tint: #278fc6;
 }
 
+.ion-color-RichQuizzLightGreen
+{
+    --ion-color-base: #13a88a;
+    --ion-color-base-rgb: 255,255,0;
+    // Color of the text contain in the object who have set this color
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #117e68;
+    --ion-color-tint: #13a88a;
+}
+
 .ion-color-RichQuizzNormalBlue
 {
     --ion-color-base: #686fd2;

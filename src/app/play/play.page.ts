@@ -49,9 +49,7 @@ export class PlayPage implements OnInit {
 
     const modal = await this.modalController.create({
       component: FailComponent,
-      componentProps: {
-        theme: this.quizz.category_name
-      },
+      componentProps: {},
       cssClass: 'ask-ad-custom',
       backdropDismiss: false
     });
@@ -67,9 +65,7 @@ export class PlayPage implements OnInit {
 
     const modal = await this.modalController.create({
       component: AskAdComponent,
-      componentProps: {
-        theme: this.quizz.category_name
-      },
+      componentProps: {},
       cssClass: 'ask-ad-custom',
       backdropDismiss: false
     });
@@ -88,24 +84,8 @@ export class PlayPage implements OnInit {
     await alert.present();
   }
 
-  UpdateScore(theme: number): any {
-
-    let response = this.db.executeSqlQuery(
-      `
-        UPDATE
-          categories
-        SET
-          score = score + 1
-        WHERE
-          id = ${theme}
-      ;`,
-      []
-    );
-
-  }
-
   public refreshCounter(): any {
-    this.db.getWonCounter(this.quizz.category_name);    
+    this.db.getWonCounter();    
   }
 
   async ad(theme: string, time: number) {
@@ -126,41 +106,50 @@ export class PlayPage implements OnInit {
 
   AdIfModuloFive(): any {
 
-    if (this.db.countDone.getValue() !== 0 && (this.db.countDone.getValue() % 5) === 0) {
-      this.ad(this.quizz.category_name, 15);
+    if (this.db.countDone.getValue() !== 0 && (this.db.countDone.getValue() % this.db.ads.android.AD_DELAY) === 0) { 
+      this.InterstitielAdvertisement();
     }
 
   }
 
   ShowAdBanner() {
+    
+    // id: 'ca-app-pub-7311596904113357/2316579562',
     const bannerConfig: AdMobFreeBannerConfig = {
       isTesting: true,
       autoShow: true,
-      size: "SMART_BANNER",
-     };
-     this.admob.banner.config(bannerConfig);
-     
-     this.admob.banner.prepare()
-       .then(() => {
-         
-       })
-       .catch(e => console.log(e));
-  }
-
-  InterstitielAdvertisement() {
-
-    const config: AdMobFreeInterstitialConfig = {
-      // id: 'ca-app-pub-7311596904113357/3034587257',
-      isTesting: true,
-      autoShow: true,
     };
-    this.admob.interstitial.config(config);
+    this.admob.banner.config(bannerConfig);
      
-    this.admob.interstitial.prepare()
+    this.admob.banner.prepare()
     .then(() => {
       
     })
     .catch(e => console.log(e));
+  }
+
+  InterstitielAdvertisement() {
+
+    // id: 'ca-app-pub-7311596904113357/3034587257',
+    const InterstitielConfig: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+    };
+    this.admob.interstitial.config(InterstitielConfig);
+     
+    this.admob.interstitial.prepare()
+    .then(() => {
+      console.log("Interstitial OPEN");      
+    })
+    .catch(e => console.log(e));
+
+    this.admob.on('admob.interstitial.events.CLOSE').subscribe(() => {
+      this.admob.interstitial.prepare()
+      .then(() => {
+        console.log("Interstitial CLOSE");
+      })
+      .catch(e => console.error(e));
+    });
 
   }
 
@@ -169,13 +158,12 @@ export class PlayPage implements OnInit {
     if (this.quizz.answer === commit) {
 
       this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
-      this.UpdateScore(this.quizz.category_id);
 
       // Actualisé la valeur du compteur
-      this.db.getWonCounter(this.quizz.category_name);
+      this.db.getWonCounter();
 
       // Récupère le prochain quizz de ce thème
-      this.db.getQuizzFromLevels(this.quizz.category_name, this.quizz.difficulty_name)
+      this.db.getQuizzFromLevels(this.quizz.difficulty_name)
       .then(data => {
         this.nextQuizz = data;
 
@@ -184,6 +172,7 @@ export class PlayPage implements OnInit {
           this.quizz = this.nextQuizz;
 
           this.AdIfModuloFive();
+          this.db.DoneCountLevels();
         }
         else {
           // Popup fin de niveau
@@ -192,8 +181,10 @@ export class PlayPage implements OnInit {
           this.db.addDiamonds(2);
           this.db.refreshDiamonds();
 
+          this.db.DoneCountLevels();
+
           // Redirection vers la page des niveaux
-          this.router.navigate(['levels', this.quizz.category_name]);
+          this.router.navigate(['levels']);
         }
 
       });      
@@ -208,6 +199,8 @@ export class PlayPage implements OnInit {
         // 1 fail
         // 2 done
       this.db.changeStatusQuizz(this.quizz.quizz_id, 1);
+
+      this.db.DoneCountLevels();
 
       switch (this.db.diamonds.getValue()) {
       

@@ -4,11 +4,9 @@
 <ion-content>
 
   <!-- Banner logo and theme -->
-  <app-theme-bar [theme]="this.theme" [image]="this.image"></app-theme-bar>
+  <app-theme-bar [theme]="'Niveaux'" [image]="'assets/img/themesBackgroundsWide/bijoux.jpg'"></app-theme-bar>
 
-  <p>Vous avez réussit {{this.db.countDone.getValue()}} quizz.</p>
-
-  <div *ngFor="let level of this.AllUnlockAt">
+  <div *ngFor="let level of this.db.AllUnlockAt">
 
     <!-- Locked -->
     <ion-card style="text-align: center;" color="dangerRichQuizz" *ngIf="this.db.countDone.getValue() < level.points">
@@ -32,7 +30,7 @@
     </ion-card>
 
     <!-- Unlocked -->
-    <ion-card style="text-align: center;" color="successRichQuizz" (click)="this.GoPlay(this.theme, level.name)" *ngIf="this.db.countDone.getValue() >= level.points">   
+    <ion-card style="text-align: center;" color="successRichQuizz" (click)="this.GoPlay(level.name)" *ngIf="this.db.countDone.getValue() >= level.points">   
       <ion-card-header>
         <ion-card-title style="font-weight: 600;">{{level.name}}</ion-card-title>
         <ion-card-subtitle>Quizz résolues. <b style="font-size: 1.25em;">{{level.done}}/20</b></ion-card-subtitle>

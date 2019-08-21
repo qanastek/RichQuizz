@@ -7,7 +7,7 @@
 		expand="full"
 		class="PlayBtn"
 		color="play"
-		(click)="GoThemes()"
+		(click)="GoPlay()"
 		routerDirection="forward"
 	>
 		<!-- <ion-img [src]="'assets/img/play-button.png'"></ion-img> -->
@@ -18,7 +18,17 @@
 	
 	<ion-button
 		expand="full"
-		class="ScoreBtn"
+		class="OthersBtn"
+		color="RichQuizzLightGreen"
+		(click)="GoDefis()"
+		routerDirection="forward"
+	>
+		Défis
+	</ion-button>
+	
+	<ion-button
+		expand="full"
+		class="OthersBtn"
 		color="RichQuizzGreenyBlue"
 		(click)="GoScores()"
 		routerDirection="forward"
@@ -28,7 +38,7 @@
 
 	<ion-button
 		expand="full"
-		class="RulesBtn"
+		class="OthersBtn"
 		color="RichQuizzNormalBlue"
 		(click)="GoRules()"
 		routerDirection="forward"

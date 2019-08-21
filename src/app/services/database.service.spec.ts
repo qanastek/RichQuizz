@@ -11,13 +11,4 @@ describe('DatabaseService', () => {
   it('Addition', () => {
     expect(1 + 1).toBe(2);
   });
-
-  it('getThemeInfos', () => {
-    expect(
-      service.getThemeInfos("voitures")
-    )
-    .toBe(
-      "assets/img/car.png"
-    );
-  });
 });

@@ -39,7 +39,9 @@ ionic integrations enable cordova --add
   - [x] Fail
   - [x] Win
   - [ ] Voir si garder dead
-  - [ ] Pub
+  - [x] Pub
+    - [x] Hidden
+    - [ ] Delete
 - [ ] Voir pour i18n
   - [ ] Exemple:
     - [ ] Pour la "question" faire des collones question_fr-FR, question_es-ES 
@@ -47,6 +49,19 @@ ionic integrations enable cordova --add
   - [ ] example:
     - [ ] 1 quizz of each themes = won 1 DM
     - [ ] 10 quizz of each themes = won 2/3 DM
+  - [ ] Structure:
+    - [ ] Les defis seront une table de la base de donnée dans laquelle nous aurions:
+      - [ ] Identifiant du défi
+      - [ ] Nom du défi
+      - [ ] Description courte
+      - [ ] Requête SQL
+      - [ ] Résultat minimum espéré
+      - [ ] Statut: TRUE / FALSE
+  - [ ] TODO:
+    - [ ] Créer la page "quests"
+    - [ ] Créer la table "quests" comme ci-dessus
+    - [ ] Faire les requetes dans la page d'affichage des quetes réussites
+    - [ ] Faire un quest checker qui s'execute à la fin de chaque quizz
 - [x] Mettre diamond dans la DB
   - [x] Et donc modifier les appelles aux diamonds
   - [x] Créer aussi un getter en observable
@@ -70,6 +85,7 @@ ionic integrations enable cordova --add
       - [x] Quand y a des images
   - [ ] PUB
     - [x] fake
+    - [x] AdMob test
     - [ ] real
   - [x] Heaths
     - [x] Remplacer par des diamands
@@ -78,7 +94,7 @@ ionic integrations enable cordova --add
     - [x] format tjr le meme
   - [x] Centré le logo du current theme
   - [x] Changé la font-size de la question
-  - [ ] Changé la typo (font-familly) de toute l'APP
+  - [ ] Changé la typo (font-familly) de toute l'aplication
   - [x] Enlevé les shader des buttons
   - [ ] Icon à côté des buttons sur l'écran d'accueil
   - [x] Faire la page *levels*
@@ -96,6 +112,8 @@ ionic integrations enable cordova --add
   - [x] Il finir un certain nombre de quizz pour unlock le level
     - [x] le nombre de quizz nécessaire est trouvable dans difficulties / column 3
     - [ ] mais il faut renommé la collones et donc refaire les requetes SQl la comportant pour *unlockAt* par exemple
+- [x] Enlever la page theme et en appuyant sur "jouer" directement aller à la page "levels"
+- [ ] Faire un theme par "levels" et mettre les image en background de chaque "levels"
 
 ## TO FIX:
 
@@ -105,7 +123,9 @@ ionic integrations enable cordova --add
 - [x] displayAd de advertisement popup service ne fonctionne pas
   - [x] A cause de AdvertisementComponent
   - [x] Le probleme été dû au faite que je déclaré AdvertisementComponent dans le constructeur
-- [ ] La valeur de chaque level nest pas un observable
+- [x] La valeur de chaque level nest pas un observable
+  - [x] J'ai fixer le probleme sans utilisé d'observable
+  - [x] J'ai seulement transféré les fonctions et variables nécessaire à l'actualisation et à l'affichage de ce nombre dans le service database de sorte à ce que les pages "play" puissent actualisé leurs propres page level entre guillemets.
 - [x] BehaviorSubject send me back old data
   - [x] Pour résoudre sa il faut:
     - [x] pas sendAsObservable

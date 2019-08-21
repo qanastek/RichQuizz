@@ -34,6 +34,18 @@ export interface doneQuizz {
   quantity: number
 }
 
+export interface Levels {
+  name: string,
+  points: number,
+  done: number
+}
+
+export interface LevelsDone {
+  id: number,
+  name: string,
+  quantity: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +59,18 @@ export class DatabaseService {
   public quizz = new BehaviorSubject([]);
   public countDone: BehaviorSubject<number> = new BehaviorSubject(0);
   public diamonds: BehaviorSubject<number> = new BehaviorSubject(0);
+  
+  public AllUnlockAt: Array<Levels>;       // Palliers d'unlock de chaque level
+  public DonePerLevels: Array<LevelsDone>; // Nombre de quizz réussit par levels
+
+  public ads = {
+    android: {
+      AD_DELAY: 5, // Tout les combiens de quizz avont nous une pub
+      publisherId: "ca-app-pub-7311596904113357~1856758026",
+      interstitial: "ca-app-pub-7311596904113357/3034587257",
+      banner: "ca-app-pub-7311596904113357/2316579562"
+    }
+  };
 
   constructor(
     private plt: Platform,
@@ -279,7 +303,7 @@ export class DatabaseService {
     this.db.executeSql(SqlQuery, [])
     .then(() => {
       // this.reloadDB();
-      this.router.navigate(['themes']);
+      this.router.navigate(['home']);
     })
     .catch(e => console.error(e));
 
@@ -356,60 +380,7 @@ export class DatabaseService {
 
   }
 
-  // public getQuizzTheme(theme: string): any {
-
-  //   let SqlQuery = `
-  //     SELECT
-  //       quizz.id 				    AS "quizz_id",
-  //       categories.name 		AS "category_name",
-  //       categories.id 			AS "category_id",
-  //       categories.image 		AS "category_image",
-  //       types.name 				  AS "type_name",
-  //       types.id 				    AS "type_id",
-  //       difficulties.name 	AS "difficulty_name",
-  //       difficulties.id 		AS "difficulty_id",
-  //       difficulties.points AS "difficulty_points",
-  //       quizz.image 			  AS "image_url",
-  //       quizz.question 			AS "question",
-  //       quizz.answer 			  AS "answer",
-  //       quizz.option_1 			AS "option_1",
-  //       quizz.option_2 			AS "option_2",
-  //       quizz.option_3 			AS "option_3",
-  //       quizz.option_4 			AS "option_4",
-  //       status.name 			  AS "status_name",
-  //       status.id 				  AS "status_id"
-  //     FROM
-  //       quizz
-  //       JOIN categories
-  //         ON quizz.theme = categories.id
-  //       JOIN types
-  //         ON quizz.type = types.id
-  //       JOIN difficulties
-  //         ON quizz.difficulty = difficulties.id
-  //       JOIN status
-  //         ON quizz.status = status.id
-  //     WHERE
-  //       category_name = '${theme}' AND
-  //       status_id BETWEEN 0 AND 1
-  //     ;
-  //   `;
-
-  //   return this.db.executeSql(SqlQuery, [])
-  //   .then(data => {
-
-  //     if (data.rows.length > 0) {
-  //       // On return directement le quizz car le nom des attributs est le même
-  //       data.rows.item(0).question = data.rows.item(0).question.replace(/\\/g,"");
-  //       return data.rows.item(0);
-  //     }
-  //     else {
-  //       return null;
-  //     }
-
-  //   });
-  // }
-
-  public getQuizzFromLevels(theme: string, difficulty: string): any {
+  public getQuizzFromLevels(difficulty: string): any {
 
     let SqlQuery = `
       SELECT
@@ -442,8 +413,6 @@ export class DatabaseService {
         JOIN status
           ON quizz.status = status.id
       WHERE
-        category_name = '${theme}'
-        AND
         difficulty_name = '${difficulty}'
         AND
         status_id BETWEEN 0 AND 1
@@ -467,31 +436,7 @@ export class DatabaseService {
     });
   }
 
-  // Renvoi le lien de l'image correspondant à un thème
-  public getThemeInfos(theme: string): any {
-
-    var sqlQuery = `
-      SELECT
-        id, name, image
-      FROM
-        categories
-      WHERE
-        name = "${theme}"
-      ;
-    `;
-
-    return this.db.executeSql(sqlQuery, [])
-    .then(data => {
-
-      // TODO: check sa
-      return JSON.stringify(data.rows.item(0));
-      
-    })
-    .catch(e => console.error(e));
-
-  }
-
-  public getWonCounter(theme: string): any {
+  public getWonCounter(): any {
 
     var sqlQuery = `      
       SELECT
@@ -502,8 +447,6 @@ export class DatabaseService {
           ON quizz.theme = categories.id
       WHERE
         status = 2
-        AND
-        categories.name = "${theme}"
       ;
     `;
 
@@ -596,7 +539,7 @@ export class DatabaseService {
     .catch(e => console.error(e));
   }
 
-  private table2(theme: string): any {
+  private table2(): any {
     
     var sqlQuery = `
       SELECT
@@ -611,8 +554,6 @@ export class DatabaseService {
           ON quizz.theme = categories.id 
       WHERE
         status = 2
-        AND
-        categories.name = '${theme}'
       GROUP BY
         difficulties.name
       ORDER BY
@@ -642,7 +583,7 @@ export class DatabaseService {
 
   }
 
-  public getDonePerLevels(theme: string): any {
+  public getDonePerLevels(): any {
 
     var rslt1: Array<doneQuizz>;
     var rslt2: Array<doneQuizz>;
@@ -651,7 +592,7 @@ export class DatabaseService {
     .then(data => {
       rslt1 = JSON.parse(data);
 
-      return this.table2(theme)
+      return this.table2()
       .then(data => {
         rslt2 = JSON.parse(data);
 
@@ -719,6 +660,40 @@ export class DatabaseService {
     })
     .catch(e => console.error(e));
 
+  }
+
+  public DoneCountLevels(): any {
+
+    this.getDonePerLevels()
+    .then(data => {
+      this.DonePerLevels = JSON.parse(data);
+
+      this.AllUnlockAt.forEach(item => {
+        item.done = this.getDoneLevel(item.name);
+      });
+
+    })
+    .catch(e => console.error(e));
+
+  }
+  
+  public UnlockAtLoad(): any {
+   
+   this.getUnlockAt()
+    .then(data => {
+
+      this.AllUnlockAt = JSON.parse(data);
+
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  // Renvoie le nombre de quizz réussit dans ce level
+  public getDoneLevel(level: string): any {
+
+    var index = this.DonePerLevels.findIndex(x => x.name === level);
+    return this.DonePerLevels[index].quantity;
   }
 
 }

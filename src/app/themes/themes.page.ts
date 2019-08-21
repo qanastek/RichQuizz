@@ -27,13 +27,13 @@ export class ThemesPage implements OnInit {
     this.router.navigate(["scores"]);
   }
 
-  GoPlay(theme: string) {
-    this.router.navigate(["levels", theme]);
+  GoPlay() {
+    this.router.navigate(["levels"]);
   }
 
-  async presentToast(theme: string) {
+  async presentToast() {
     const toast = await this.toastController.create({
-      message: 'No more quizz left in the ' + theme + ' section.',
+      message: 'No more quizz left in the section.',
       duration: 2000
     });
     toast.present();

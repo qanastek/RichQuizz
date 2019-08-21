@@ -12,8 +12,6 @@ import { Subscription } from 'rxjs';
 export class FailComponent implements OnInit {
   
   private backbuttonSubscription: Subscription;
-  
-  @Input() theme: string;
 
   constructor(
     public navParams: NavParams,
@@ -52,7 +50,7 @@ export class FailComponent implements OnInit {
 
   goBack() {
     this.close();
-    this.ngZone.run(() => this.router.navigate(['levels', this.theme]));
+    this.ngZone.run(() => this.router.navigate(['levels']));
   }
 
   pay() {
