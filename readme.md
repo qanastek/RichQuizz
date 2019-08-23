@@ -2,6 +2,10 @@
 
 ## Commandes:
 
+### Date de début de projet
+
+27/06/2019
+
 ### Lancer le projet
 
 ```bash
@@ -140,7 +144,7 @@ npx ng g --help
 - [x] Enlever la page theme et en appuyant sur "jouer" directement aller à la page "levels"
 - [ ] Faire un theme par "levels" et mettre les image en background de chaque "levels"
 - [x] Modifier "Add" pour qu'il sortent à l'écran les nouveaux quizz en JSON
-- [ ] Modifier la page "scores" pour quelle affiche en fonction de la nouvelle architecture (no theme only levels)
+- [x] Modifier la page "scores" pour quelle affiche en fonction de la nouvelle architecture (no theme only levels)
 - [ ] Déplacer les interface présentes dans databaseService dans des interface angular spécifiques
 
 ## TO FIX:

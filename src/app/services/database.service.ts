@@ -75,6 +75,8 @@ export class DatabaseService {
   public DonePerLevels: Array<LevelsDone>; // Nombre de quizz réussit par levels
 
   public quests: Array<Quests>; // Toutes les challenges
+  
+  public scores = [];
 
   public ads = {
     android: {
@@ -400,7 +402,7 @@ export class DatabaseService {
     .catch(e => console.error(e));
   }
 
-  public loadScoresThemes(): any {
+  public loadScoresLevels(): any {
     
     var sqlQuery: string = `
       SELECT
@@ -408,7 +410,7 @@ export class DatabaseService {
         name,
         score
       FROM
-        categories
+        difficulties
       ORDER BY
         score DESC
     ;
@@ -421,14 +423,8 @@ export class DatabaseService {
 
         var scores = [];
 
-        for (let i = 0; i < response.rows.length; i++) {
-          
-          scores.push({
-            color: response.rows.item(i).color,
-            name: response.rows.item(i).name,
-            score: response.rows.item(i).score
-          });
-          
+        for (let i = 0; i < response.rows.length; i++) {          
+          scores.push(response.rows.item(i));          
         }
 
         return JSON.stringify(scores);
@@ -846,6 +842,33 @@ export class DatabaseService {
     })
     .catch(e => console.error(e));
 
+  }
+
+  public loadScores() {
+    this.loadScoresLevels()
+    .then(response => {
+      this.scores = JSON.parse(response);
+    })
+    .catch(e => console.error(e));
+  }
+
+  public updateWon(name: number) {
+    
+    this.db.executeSql(`
+    UPDATE
+      difficulties
+    SET
+      score = score + 1
+    WHERE
+      name = '${name}'
+    ;
+    `, [])
+    .then(() => {
+      this.loadScores();
+    })
+    .catch(e => {   
+      console.error(e);
+    });
   }
 
   // Renvoie le nombre de quizz réussit dans ce level

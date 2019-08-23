@@ -35,7 +35,10 @@ CREATE TABLE IF NOT EXISTS
 	(
 	  id integer primary key AUTOINCREMENT,
 	  name text NOT NULL,
-	  points integer NOT NULL
+	  points integer NOT NULL,
+        color text NOT NULL,
+        image text NOT NULL,
+        score integer  DEFAULT 0 NOT NULL
 	)
 ;
 

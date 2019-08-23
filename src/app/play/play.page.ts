@@ -168,6 +168,9 @@ export class PlayPage implements OnInit {
       // Actualisé la valeur du compteur
       this.db.getWonCounter();
 
+      // update the score of the level
+      this.db.updateWon(this.quizz.difficulty_name);
+
       // Récupère le prochain quizz de ce thème
       this.db.getQuizzFromLevels(this.quizz.difficulty_name)
       .then(data => {
