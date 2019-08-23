@@ -59,12 +59,19 @@ ionic integrations enable cordova --add
       - [x] Statut: 0 / 1
         - [x] 0: not done
         - [x] 1: done
+      - [x] Récompence en diamand
   - [ ] TODO:
     - [x] Créer la page "quests"
     - [ ] Faire l'UI de la page quests
     - [x] Créer la table "quests" comme ci-dessus
-    - [ ] Faire les requetes dans la page d'affichage des quetes réussites
+    - [x] Faire les requetes dans la page d'affichage des quetes réussites
     - [ ] Faire un quest checker qui s'execute à la fin de chaque quizz
+      - [x] Créer le code principale
+      - [ ] Faire le give des diamand
+        - [ ] Pour ce faire je propose:
+          - [ ] A chaque check ont vérifie si il y a eu du changement en fesant
+          - [ ] Une temp de l'ancienne array et comparé avec la nouvelle
+          - [ ] Tout le delta ce verra give le montant présent dans sa collonne "reward"
     - [ ] Elever le champs categories de partout
     - [ ] Modifier la table difficulties
     - [ ] Remplacer les nom des levels par les noms des themes

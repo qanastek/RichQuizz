@@ -776,8 +776,6 @@ export class DatabaseService {
     return this.db.executeSql(sqlQuery, [])
     .then(data => {
       var arrayTemp = [];
-      
-      console.log("start of getQuests " + data.rows.length );
 
       for (let i = 0; i < data.rows.length; i++) {
         arrayTemp.push({
@@ -787,7 +785,8 @@ export class DatabaseService {
           requete_sql: data.rows.item(i).requete_sql,
           result: data.rows.item(i).result,
           status: data.rows.item(i).status,
-          done: 0
+          done: 0,
+          reward: data.rows.item(i).reward
         });
       }
 

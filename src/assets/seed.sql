@@ -41,7 +41,8 @@ into   quests
         description,
         requete_sql,
         result,
-        status
+        status,
+        reward
 )
 VALUES
 (
@@ -52,7 +53,8 @@ VALUES
         FROM   quizz
         WHERE  status = 2',
         1,
-        0
+        0,
+        1
 );
 
 INSERT
@@ -64,7 +66,8 @@ into   quests
         description,
         requete_sql,
         result,
-        status
+        status,
+        reward
 )
 VALUES
 (
@@ -75,7 +78,8 @@ VALUES
         FROM   quizz
         WHERE  status = 2',
         10,
-        0
+        0,
+        1
 );
 
 -- -- Question 1

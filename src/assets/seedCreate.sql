@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS
       description text,
       requete_sql text,
       result integer DEFAULT 0,
-      status integer DEFAULT 0
+      status integer DEFAULT 0,
+      reward integer DEFAULT 0
 	)
 ;
 
