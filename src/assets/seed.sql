@@ -38,22 +38,18 @@ into   quests
 (
         id,
         NAME,
-        description,
         requete_sql,
         result,
-        status,
         reward
 )
 VALUES
 (
         0,
         'First quest',
-        'won 1 💎',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2',
         1,
-        0,
         1
 );
 
@@ -63,22 +59,18 @@ into   quests
 (
         id,
         NAME,
-        description,
         requete_sql,
         result,
-        status,
         reward
 )
 VALUES
 (
         1,
         '10 quests',
-        'won 1 💎',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2',
         10,
-        0,
         1
 );
 

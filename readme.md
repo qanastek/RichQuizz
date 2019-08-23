@@ -14,6 +14,14 @@ ionic cordova run android --livereload --device --consolelogs
 ionic integrations enable cordova --add
 ```
 
+### Angular nice commands
+
+Give a list of all the types of files can be generated. 
+
+```bash
+npx ng g --help
+```
+
 ### Problème avec les components de Ionic dans les components Angular:
 
 ```javascript
@@ -60,6 +68,7 @@ ionic integrations enable cordova --add
         - [x] 0: not done
         - [x] 1: done
       - [x] Récompence en diamand
+      - [x] Etat de collecte
   - [ ] TODO:
     - [x] Créer la page "quests"
     - [ ] Faire l'UI de la page quests
@@ -67,11 +76,10 @@ ionic integrations enable cordova --add
     - [x] Faire les requetes dans la page d'affichage des quetes réussites
     - [ ] Faire un quest checker qui s'execute à la fin de chaque quizz
       - [x] Créer le code principale
-      - [ ] Faire le give des diamand
-        - [ ] Pour ce faire je propose:
-          - [ ] A chaque check ont vérifie si il y a eu du changement en fesant
-          - [ ] Une temp de l'ancienne array et comparé avec la nouvelle
-          - [ ] Tout le delta ce verra give le montant présent dans sa collonne "reward"
+      - [x] Faire le give des diamand
+        - [x] Pour ce faire je propose:
+          - [ ] ~~A chaque check ont vérifie si il y a eu du changement en fesant une temp de l'ancienne array et comparé avec la nouvelle tout le delta ce verra give le montant présent dans sa collonne "reward"~~
+          - [x] Sinon ajouter une collonne "collected" à 0 ou 1 qui dit si on la collecter ou non
     - [ ] Elever le champs categories de partout
     - [ ] Modifier la table difficulties
     - [ ] Remplacer les nom des levels par les noms des themes
@@ -132,10 +140,12 @@ ionic integrations enable cordova --add
 - [x] Enlever la page theme et en appuyant sur "jouer" directement aller à la page "levels"
 - [ ] Faire un theme par "levels" et mettre les image en background de chaque "levels"
 - [x] Modifier "Add" pour qu'il sortent à l'écran les nouveaux quizz en JSON
+- [ ] Modifier la page "scores" pour quelle affiche en fonction de la nouvelle architecture (no theme only levels)
+- [ ] Déplacer les interface présentes dans databaseService dans des interface angular spécifiques
 
 ## TO FIX:
 
-- [ ] Problème avec la progression bar de quests
+- [x] Problème avec la progression bar de quests
 - [x] La ad ne s'affiche pas
   - [x] Bug ~001
   - [x] setTimeout ne sutilise pas avec function mais () => {}

@@ -15,4 +15,8 @@ export class QuestsPage implements OnInit {
   ngOnInit() {
   }
 
+  collect(id: number, reward: number) {
+    this.db.collect(id, reward);
+  }
+
 }

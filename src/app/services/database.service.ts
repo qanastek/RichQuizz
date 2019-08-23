@@ -37,11 +37,12 @@ export interface doneQuizz {
 export interface Quests {
   id: number,
   name: string,
-  description: string,
   requete_sql: string,
   result: number,
   status: number,
-  done: number
+  done: number,
+  reward: number,
+  collected: number
 }
 
 export interface Levels {
@@ -781,12 +782,12 @@ export class DatabaseService {
         arrayTemp.push({
           id: data.rows.item(i).id,
           name: data.rows.item(i).name,
-          description: data.rows.item(i).description,
           requete_sql: data.rows.item(i).requete_sql,
           result: data.rows.item(i).result,
           status: data.rows.item(i).status,
           done: 0,
-          reward: data.rows.item(i).reward
+          reward: data.rows.item(i).reward,
+          collected: data.rows.item(i).collected
         });
       }
 
@@ -858,10 +859,10 @@ export class DatabaseService {
     this.db.executeSql(`
     UPDATE
       quests
-    WHERE
-      id = ${id}
     SET
       status = 1
+    WHERE
+      id = ${id}
     ;
     `, [])
     .catch(e => console.error(e));
@@ -881,6 +882,32 @@ export class DatabaseService {
       })
       .catch(e => console.error(e));
 
+    });
+
+  }
+
+  private updateCollected(id: number) {
+    return this.db.executeSql(`
+      UPDATE
+        quests
+      SET
+        collected = 1
+      WHERE
+        id = ${id}
+      ;
+    `, [])
+    .then(data => {      
+      return true;  
+    })
+    .catch(e => console.error(e));
+  }
+
+  public collect(id: number, reward: number) {
+
+    this.updateCollected(id)
+    .then(() => {
+      this.getQuests();
+      this.addDiamonds(reward);
     });
 
   }

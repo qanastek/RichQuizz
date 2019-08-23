@@ -22,11 +22,11 @@ CREATE TABLE IF NOT EXISTS
 	(
       id integer primary key,
       name text,
-      description text,
       requete_sql text,
       result integer DEFAULT 0,
       status integer DEFAULT 0,
-      reward integer DEFAULT 0
+      reward integer DEFAULT 0,
+      collected integer DEFAULT 0
 	)
 ;
 
