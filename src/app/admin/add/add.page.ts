@@ -11,6 +11,7 @@ export class AddPage implements OnInit {
 
   // Variable qui contient toutes les variables du formulaire
   AddQuizz : FormGroup;
+  JsonQuizz: string;
 
   error_messages = {
     'theme': [
@@ -101,6 +102,25 @@ export class AddPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  RenderToJson() {
+    this.JsonQuizz = JSON.stringify({
+      "id": 0,
+      "theme": parseInt(this.AddQuizz.get('theme').value),
+      "type": parseInt(this.AddQuizz.get('type').value),
+      "difficulty": parseInt(this.AddQuizz.get('difficulty').value),
+      "image": this.AddQuizz.get('image').value as string,
+      "question": this.AddQuizz.get('question').value as string,
+      "answer": this.AddQuizz.get('answer').value as string,
+      "option_1": this.AddQuizz.get('option_1').value as string,
+      "option_2": this.AddQuizz.get('option_2').value as string,
+      "option_3": this.AddQuizz.get('option_3').value as string,
+      "option_4": this.AddQuizz.get('option_4').value as string,
+      "status": 0
+    });
+
+    this.AddQuizz.reset();
   }
 
   SendQuizz() {

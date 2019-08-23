@@ -128,7 +128,7 @@ export class PlayPage implements OnInit {
     .catch(e => console.log(e));
   }
 
-  InterstitielAdvertisement() {
+  async InterstitielAdvertisement() {
 
     // id: 'ca-app-pub-7311596904113357/3034587257',
     const InterstitielConfig: AdMobFreeInterstitialConfig = {
@@ -159,6 +159,12 @@ export class PlayPage implements OnInit {
 
       this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
 
+      // Vérifie si on vient de validé une quête
+      this.db.checkQuests();
+
+      // Reload l'état des défis
+      this.db.reloadQuests();
+
       // Actualisé la valeur du compteur
       this.db.getWonCounter();
 
@@ -169,13 +175,17 @@ export class PlayPage implements OnInit {
 
         // Si il reste encore des quizz alors on continue
         if (this.nextQuizz) {
+          // Load the next quizz
           this.quizz = this.nextQuizz;
 
+          // Launch an ad if mod 5
           this.AdIfModuloFive();
+
           this.db.DoneCountLevels();
         }
         else {
           // Popup fin de niveau
+          
           this.InterstitielAdvertisement();
 
           this.db.addDiamonds(2);

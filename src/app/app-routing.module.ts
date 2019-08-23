@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'play/:quizz', loadChildren: './play/play.module#PlayPageModule' },
   { path: 'add', loadChildren: './admin/add/add.module#AddPageModule' },
   { path: 'levels', loadChildren: './levels/levels.module#LevelsPageModule' },
+  { path: 'quests', loadChildren: './quests/quests.module#QuestsPageModule' },
 ];
 
 @NgModule({

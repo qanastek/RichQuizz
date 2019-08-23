@@ -49,19 +49,29 @@ ionic integrations enable cordova --add
   - [ ] example:
     - [ ] 1 quizz of each themes = won 1 DM
     - [ ] 10 quizz of each themes = won 2/3 DM
-  - [ ] Structure:
-    - [ ] Les defis seront une table de la base de donnée dans laquelle nous aurions:
-      - [ ] Identifiant du défi
-      - [ ] Nom du défi
-      - [ ] Description courte
-      - [ ] Requête SQL
-      - [ ] Résultat minimum espéré
-      - [ ] Statut: TRUE / FALSE
+  - [x] Structure:
+    - [x] Les defis seront une table de la base de donnée dans laquelle nous aurions:
+      - [x] Identifiant du défi
+      - [x] Nom du défi
+      - [x] Description courte
+      - [x] Requête SQL
+      - [x] Résultat minimum espéré
+      - [x] Statut: 0 / 1
+        - [x] 0: not done
+        - [x] 1: done
   - [ ] TODO:
-    - [ ] Créer la page "quests"
-    - [ ] Créer la table "quests" comme ci-dessus
+    - [x] Créer la page "quests"
+    - [ ] Faire l'UI de la page quests
+    - [x] Créer la table "quests" comme ci-dessus
     - [ ] Faire les requetes dans la page d'affichage des quetes réussites
     - [ ] Faire un quest checker qui s'execute à la fin de chaque quizz
+    - [ ] Elever le champs categories de partout
+    - [ ] Modifier la table difficulties
+    - [ ] Remplacer les nom des levels par les noms des themes
+      - [ ] De même ajouter la column:
+        - [ ] score
+        - [ ] image
+        - [ ] color
 - [x] Mettre diamond dans la DB
   - [x] Et donc modifier les appelles aux diamonds
   - [x] Créer aussi un getter en observable
@@ -114,9 +124,11 @@ ionic integrations enable cordova --add
     - [ ] mais il faut renommé la collones et donc refaire les requetes SQl la comportant pour *unlockAt* par exemple
 - [x] Enlever la page theme et en appuyant sur "jouer" directement aller à la page "levels"
 - [ ] Faire un theme par "levels" et mettre les image en background de chaque "levels"
+- [x] Modifier "Add" pour qu'il sortent à l'écran les nouveaux quizz en JSON
 
 ## TO FIX:
 
+- [ ] Problème avec la progression bar de quests
 - [x] La ad ne s'affiche pas
   - [x] Bug ~001
   - [x] setTimeout ne sutilise pas avec function mais () => {}

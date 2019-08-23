@@ -31,7 +31,7 @@ export class HomePage {
 
   GoDefis()
   {
-    this.router.navigate(["defis"]);
+    this.router.navigate(["quests"]);
   }
 
 }

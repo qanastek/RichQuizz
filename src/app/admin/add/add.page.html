@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <form [formGroup]="AddQuizz" (ngSubmit)="SendQuizz()">
+  <form [formGroup]="AddQuizz" (ngSubmit)="RenderToJson()">
 
     <ion-item>
       <ion-label position="stacked">Theme</ion-label>
@@ -153,5 +153,11 @@
   <ion-button (click)="DestroyDatabase()">
     Destroy Database
   </ion-button>
+
+  <br>
+
+  <p>
+    {{this.JsonQuizz}}
+  </p>
   
 </ion-content>

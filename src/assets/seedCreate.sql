@@ -18,6 +18,18 @@ CREATE TABLE IF NOT EXISTS
 ;
 
 CREATE TABLE IF NOT EXISTS
+	quests
+	(
+      id integer primary key,
+      name text,
+      description text,
+      requete_sql text,
+      result integer DEFAULT 0,
+      status integer DEFAULT 0
+	)
+;
+
+CREATE TABLE IF NOT EXISTS
 	difficulties
 	(
 	  id integer primary key AUTOINCREMENT,

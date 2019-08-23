@@ -34,6 +34,16 @@ export interface doneQuizz {
   quantity: number
 }
 
+export interface Quests {
+  id: number,
+  name: string,
+  description: string,
+  requete_sql: string,
+  result: number,
+  status: number,
+  done: number
+}
+
 export interface Levels {
   name: string,
   points: number,
@@ -62,6 +72,8 @@ export class DatabaseService {
   
   public AllUnlockAt: Array<Levels>;       // Palliers d'unlock de chaque level
   public DonePerLevels: Array<LevelsDone>; // Nombre de quizz réussit par levels
+
+  public quests: Array<Quests>; // Toutes les challenges
 
   public ads = {
     android: {
@@ -214,17 +226,87 @@ export class DatabaseService {
     });
   }
 
-  private FillDatabase(): void {
+  public FillBasicsInfos() {
 
     this.http.get('assets/seed.sql', { responseType: 'text' })
-    .subscribe(sql => {
-      this.sqlitePorter.importSqlToDb(this.db, sql)
-        .then(_ => {
-          this.loadQuizz();
-          this.dbReady.next(true);
-        })
-        .catch(e => console.error(e));
+    .subscribe(sqlFile => {
+
+      this.sqlitePorter.importSqlToDb(this.db, sqlFile)
+      .then(_ => {
+        this.loadQuizz();
+        this.dbReady.next(true);
+
+        // Récupére l'ensemble des quêtes
+        this.getQuests();
+      })
+      .catch(e => console.error(e));
+
     });
+  }
+
+  public FillQuizzs() {
+
+    this.http.get('assets/quizzs.json', { responseType: 'text' })
+    .subscribe(jsonFile => {
+
+      var jsonParsed = JSON.parse(jsonFile);
+      
+      var sqlQuery: string;
+
+      jsonParsed.forEach(quizz => {
+
+        sqlQuery = `
+        INSERT OR IGNORE INTO
+          quizz(
+            id,
+            theme,
+            type,
+            difficulty,
+            image,
+            question,
+            answer,
+            option_1,
+            option_2,
+            option_3,
+            option_4,
+            status
+          )
+          VALUES(
+            ${quizz.id},
+            ${quizz.theme},
+            ${quizz.type},
+            ${quizz.difficulty},
+            "${quizz.image}",
+            "${quizz.question}",
+            "${quizz.answer}",
+            "${quizz.option_1}",
+            "${quizz.option_2}",
+            "${quizz.option_3}",
+            "${quizz.option_4}",
+            ${quizz.status}
+          ); 
+        `;
+
+        this.executeSqlQuery(sqlQuery,[]);
+      });
+
+    });
+
+  }
+
+  private FillDatabase(): void {
+
+    // Load all basics informations of the database
+    this.FillBasicsInfos();
+
+    // Load every singke quizz from a JSON file
+    this.FillQuizzs();
+
+    // Load all quizzs in the array
+    this.loadQuizz();
+    
+    // Say the database is ready to be used
+    this.dbReady.next(true);
 
   }
 
@@ -676,6 +758,83 @@ export class DatabaseService {
     .catch(e => console.error(e));
 
   }
+
+  public reloadQuests() {
+    this.changeDoneQuest();
+  }
+
+  public getQuests(): any {
+
+    var sqlQuery = `      
+      SELECT
+        *
+      FROM
+        quests
+      ;
+    `;
+
+    return this.db.executeSql(sqlQuery, [])
+    .then(data => {
+      var arrayTemp = [];
+      
+      console.log("start of getQuests " + data.rows.length );
+
+      for (let i = 0; i < data.rows.length; i++) {
+        arrayTemp.push({
+          id: data.rows.item(i).id,
+          name: data.rows.item(i).name,
+          description: data.rows.item(i).description,
+          requete_sql: data.rows.item(i).requete_sql,
+          result: data.rows.item(i).result,
+          status: data.rows.item(i).status,
+          done: 0
+        });
+      }
+
+      this.quests = arrayTemp;
+
+      // Change status of the quests
+      this.changeDoneQuest();
+      
+    })
+    .catch(e => console.error(e));
+
+  }
+
+  async changeDoneQuest() {
+
+    this.quests.forEach(item => {
+
+      this.calculDoneQuests(item.requete_sql)
+      .then(value => {
+
+        item.done = value;        
+
+        if (item.done >= item.result) {
+          item.status = 1;
+        }
+      })
+      .catch(e => console.error(e));
+      
+    });
+
+  }
+
+  public calculDoneQuests(sqlRequest: string): Promise<number> {
+
+    return this.db.executeSql(sqlRequest, [])
+    .then(data => {
+
+      let res = data.rows.item(0);
+      return Object.values(res)[0] as number;
+
+    })
+    .catch(e => {
+      console.error(e);
+      return 0;
+    });
+    
+  }
   
   public UnlockAtLoad(): any {
    
@@ -694,6 +853,37 @@ export class DatabaseService {
 
     var index = this.DonePerLevels.findIndex(x => x.name === level);
     return this.DonePerLevels[index].quantity;
+  }
+
+  public updateQuestStatus(id: number) {
+    this.db.executeSql(`
+    UPDATE
+      quests
+    WHERE
+      id = ${id}
+    SET
+      status = 1
+    ;
+    `, [])
+    .catch(e => console.error(e));
+  }
+
+  public checkQuests() {
+
+    this.quests.forEach(item => {
+      
+      this.db.executeSql(item.requete_sql, [])
+      .then(data => {
+
+        if (data >= item.result) {
+          this.updateQuestStatus(item.id);
+        }
+
+      })
+      .catch(e => console.error(e));
+
+    });
+
   }
 
 }
