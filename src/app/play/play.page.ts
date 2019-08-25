@@ -144,11 +144,13 @@ export class PlayPage implements OnInit {
     .catch(e => console.log(e));
 
     this.admob.on('admob.interstitial.events.CLOSE').subscribe(() => {
-      this.admob.interstitial.prepare()
-      .then(() => {
-        console.log("Interstitial CLOSE");
-      })
-      .catch(e => console.error(e));
+      // this.admob.interstitial.prepare()
+      // .then(() => {
+      //   console.log("Interstitial CLOSE");
+      // })
+      // .catch(e => console.error(e));
+      
+      console.log("Interstitial CLOSE");
     });
 
   }

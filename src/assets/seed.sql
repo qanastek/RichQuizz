@@ -45,7 +45,7 @@ into   quests
 VALUES
 (
         0,
-        'First quest',
+        'Réussir 1 quizz',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2',
@@ -66,7 +66,7 @@ into   quests
 VALUES
 (
         1,
-        '10 quests',
+        'Réussir 10 quizz',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2',
@@ -74,39 +74,25 @@ VALUES
         1
 );
 
--- -- Question 1
--- INSERT OR IGNORE INTO quizz ( id, theme, type, difficulty, image, question, answer, option_1, option_2, option_3, option_4, status ) VALUES( 0, 3, 0, 0, "assets/img/test.jpg", "Voit-tu une image ?", "false", "", "", "", "", 0 ); 
-
--- -- Question 2
--- INSERT or IGNORE INTO quizz (id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES (1,0,0,0,'','true ?','true','','','','',0);
-
--- -- Theme 1 / nourriture
-
--- 	-- Levels 1
--- 		-- Question 3
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(2,1,0,0,'assets/img/test.jpg','la Bugatti \"voiture noire est noir\" ?','true','','','','',0);
-
--- 		-- Question 4
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(4,1,1,0,'assets/img/test.jpg','Je m appel ?','yanis','jacque','pierre','mohammed','yanis',0);
-
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(6,1,1,0,'assets/img/test.jpg','test 3','4 000','14 000','26 000','18 000','4 000',0);
-
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(7,1,1,0,'assets/img/test.jpg','test 4','4 000','14 000','26 000','18 000','4 000',0);
-
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(8,1,1,0,'assets/img/test.jpg','test 5','4 000','14 000','26 000','18 000','4 000',0);
-
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(9,1,1,0,'assets/img/test.jpg','test 6','4 000','14 000','26 000','18 000','4 000',0);
-
--- 	-- Levels 2
--- 		-- Question 4.1
--- 		INSERT or IGNORE INTO quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES(5,1,1,1,'','Qui ? Quoi ?','pierre','jacque','pierre','mohammed','yanis',0);
-
--- -- Theme alcools
-
--- 	-- Question 1
--- 	INSERT or IGNORE INTO quizz (id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status) VALUES (10,2,1,0,'','Red ?','red','yellow','red','blue','purple',0);
-
--- -- Question 4.2
--- INSERT or IGNORE INTO
--- quizz(id,theme,type,difficulty,image,question,answer,option_1,option_2,option_3,option_4,status)
--- VALUES(3,5,1,0,'assets/img/test.jpg','Quelle est la couleur de la bugatti veyron de Maywheather','blanc','rouge','chrome','blanc','noir',0);
+INSERT
+or     IGNORE
+into   quests
+(
+        id,
+        NAME,
+        requete_sql,
+        result,
+        reward
+)
+VALUES
+(
+        2,
+        'Réussir 3 quizz sur le thème voiture',
+        'SELECT Count(*)
+        FROM   quizz
+        WHERE  status = 2
+        AND
+        theme = 0',
+        3,
+        1
+);

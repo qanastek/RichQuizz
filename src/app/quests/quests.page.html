@@ -7,8 +7,26 @@
 
   <div *ngFor="let quest of this.db.quests">
 
+    <ion-card  color="dangerRichQuizz" *ngIf="quest.status === 0">
+
+      <ion-card-content>
+
+        <ion-card-title style="text-transform: uppercase; font-weight: 700; font-size: 1.25em;">
+          {{quest.name}}
+        </ion-card-title>
+        
+        <ion-card-subtitle>
+          Récompence: {{quest.reward}} 💎
+        </ion-card-subtitle>
+
+        <app-progression-bar [value]="((quest.done / quest.result) * 100).toFixed(0)"></app-progression-bar>
+
+      </ion-card-content>
+
+    </ion-card>
+
     <!-- Not done -->
-    <ion-card style="text-align: center;" color="dangerRichQuizz" *ngIf="quest.status === 0">   
+    <ion-card style="text-align: center;" color="dangerRichQuizz" *ngIf="quest.status === 10">   
       <ion-card-header>
         <ion-card-title style="font-weight: 600;">{{quest.name}}</ion-card-title>
 
