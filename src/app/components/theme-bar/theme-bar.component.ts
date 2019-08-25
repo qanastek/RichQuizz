@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ThemeBarComponent implements OnInit {
 
   @Input('theme') theme: string;
-  @Input('image') theme_image: string;
+  @Input('rq_color') rq_color: string;
 
   constructor() { }
 

@@ -58,9 +58,9 @@ npx ng g --help
   - [ ] Exemple:
     - [ ] Pour la "question" faire des collones question_fr-FR, question_es-ES 
 - [ ] Ajouter un sytème de défis
-  - [ ] example:
-    - [ ] 1 quizz of each themes = won 1 DM
-    - [ ] 10 quizz of each themes = won 2/3 DM
+  - [x] example:
+    - [x] 1 quizz of each themes = won 1 DM
+    - [x] 10 quizz of each themes = won 2/3 DM
   - [x] Structure:
     - [x] Les defis seront une table de la base de donnée dans laquelle nous aurions:
       - [x] Identifiant du défi
@@ -78,12 +78,15 @@ npx ng g --help
     - [ ] Faire l'UI de la page quests
     - [x] Créer la table "quests" comme ci-dessus
     - [x] Faire les requetes dans la page d'affichage des quetes réussites
-    - [ ] Faire un quest checker qui s'execute à la fin de chaque quizz
+    - [x] Faire un quest checker qui s'execute à la fin de chaque quizz
       - [x] Créer le code principale
       - [x] Faire le give des diamand
         - [x] Pour ce faire je propose:
           - [ ] ~~A chaque check ont vérifie si il y a eu du changement en fesant une temp de l'ancienne array et comparé avec la nouvelle tout le delta ce verra give le montant présent dans sa collonne "reward"~~
           - [x] Sinon ajouter une collonne "collected" à 0 ou 1 qui dit si on la collecter ou non
+    - [ ] Challenges pubs
+    - [ ] Peut etre mettre des arrays à parsé pour les requetes et reponses
+    - [ ] Mettre un daily reward de 1 diamand
     - [ ] Elever le champs categories de partout
     - [ ] Modifier la table difficulties
     - [ ] Remplacer les nom des levels par les noms des themes

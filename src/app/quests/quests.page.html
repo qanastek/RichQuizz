@@ -2,8 +2,8 @@
 </ion-header>
 
 <ion-content>
-
-  <p>Quests</p>
+  
+  <app-theme-bar [theme]="'Challenges'" [rq_color]="'#fd625e'"></app-theme-bar>
 
   <div *ngFor="let quest of this.db.quests">
 
@@ -19,7 +19,7 @@
       </ion-card-header>
     
       <ion-card-content>
-        <app-progression-bar [value]="(1 / 10) * 100"></app-progression-bar>
+        <app-progression-bar [value]="(quest.done / quest.result) * 100"></app-progression-bar>
       </ion-card-content>
     </ion-card>
 

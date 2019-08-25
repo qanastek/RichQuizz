@@ -3,25 +3,8 @@
 
 <ion-content color="RichQuizzBackground">
 
-    <!-- Title bar on the top -->
-    <ion-row align-items-center style="text-align: center; background-color: #fd625e;">
-      <ion-col size="12">
-        <p
-          style="
-            text-transform: uppercase;
-            color: #ffffff;
-            font-weight: 900;
-            font-size: 1.85em;
-            margin-top: 2.5vh;
-            margin-bottom: 2.5vh;
-            margin-left: 0vw;
-            margin-right: 0vw;
-          "
-        >
-          Mes scores
-        </p>
-      </ion-col>
-    </ion-row>
+    <!-- Title bar on the top -->    
+    <app-theme-bar [theme]="'Mes scores'" [rq_color]="'#fd625e'"></app-theme-bar>
 
     <!-- Scores for each themes -->
     <ion-row align-items-center style="max-height: 11vh;" *ngFor="let theme of this.db.scores">
