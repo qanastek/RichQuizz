@@ -1,6 +1,7 @@
+import { Quizz } from './../interfaces/quizz';
 import { FailComponent } from './../components/fail/fail.component';
 import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
-import { DatabaseService, Quizz } from './../services/database.service';
+import { DatabaseService } from './../services/database.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { Vibration } from '@ionic-native/vibration/ngx';

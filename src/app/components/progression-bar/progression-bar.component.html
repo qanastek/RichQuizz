@@ -1,5 +1,5 @@
 <div class="progress-outer">
-    <div class="progress-inner" [style.width]="value + '%'">
-      {{value}}%
+    <div class="progress-inner" [style.width]="(value).toFixed(0) + '%'">
+      {{ (value).toFixed(0) }}%
     </div>
 </div>

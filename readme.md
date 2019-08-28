@@ -88,12 +88,12 @@ npx ng g --help
     - [ ] Peut etre mettre des arrays à parsé pour les requetes et reponses
     - [ ] Mettre un daily reward de 1 diamand
     - [ ] Elever le champs categories de partout
-    - [ ] Modifier la table difficulties
+    - [x] Modifier la table difficulties
+      - [x] Ajouter la column:
+        - [x] score
+        - [x] image
+        - [x] color
     - [ ] Remplacer les nom des levels par les noms des themes
-      - [ ] De même ajouter la column:
-        - [ ] score
-        - [ ] image
-        - [ ] color
 - [x] Mettre diamond dans la DB
   - [x] Et donc modifier les appelles aux diamonds
   - [x] Créer aussi un getter en observable
@@ -110,7 +110,7 @@ npx ng g --help
 - [ ] UI:
   - [x] Joker
     - [x] n'existe plus
-  - [ ] Button
+  - [x] Button
     - [x] True or False
     - [x] QCM
       - [x] Quand y a pas d'image
@@ -145,10 +145,11 @@ npx ng g --help
     - [x] le nombre de quizz nécessaire est trouvable dans difficulties / column 3
     - [ ] mais il faut renommé la collones et donc refaire les requetes SQl la comportant pour *unlockAt* par exemple
 - [x] Enlever la page theme et en appuyant sur "jouer" directement aller à la page "levels"
-- [ ] Faire un theme par "levels" et mettre les image en background de chaque "levels"
+- [x] Faire un theme par "levels"
+- [ ] Mettre les image en background de chaque "levels"
 - [x] Modifier "Add" pour qu'il sortent à l'écran les nouveaux quizz en JSON
 - [x] Modifier la page "scores" pour quelle affiche en fonction de la nouvelle architecture (no theme only levels)
-- [ ] Déplacer les interface présentes dans databaseService dans des interface angular spécifiques
+- [x] Déplacer les interface présentes dans databaseService dans des interface angular spécifiques
 
 ## TO FIX:
 

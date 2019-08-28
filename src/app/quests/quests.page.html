@@ -19,7 +19,7 @@
           Récompence: {{quest.reward}} 💎
         </ion-card-subtitle>
 
-        <app-progression-bar [value]="((quest.done / quest.result) * 100).toFixed(0)"></app-progression-bar>
+        <app-progression-bar [value]="(quest.done / quest.result) * 100"></app-progression-bar>
 
       </ion-card-content>
 

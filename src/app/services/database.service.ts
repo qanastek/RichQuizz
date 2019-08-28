@@ -1,3 +1,8 @@
+import { LevelsDone } from './../interfaces/levels-done';
+import { Quests } from './../interfaces/quests';
+import { Levels } from './../interfaces/levels';
+import { DoneQuizz } from './../interfaces/done-quizz';
+import { Quizz } from './../interfaces/quizz';
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
@@ -5,63 +10,6 @@ import { HttpClient } from '@angular/common/http';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
-// Classe pour les quizz
-  // ou du moins le patron d'une speudo class
-export interface Quizz {
-  quizz_id: number;
-  category_name: string;
-  category_id: number;
-  type_name: string;
-  type_id: number;
-  difficulty_name: string;
-  difficulty_id: number;
-  difficulty_points: number;
-  image_url: string;
-  question: string;
-  answer: string;
-  option_1: string;
-  option_2: string;
-  option_3: string;
-  option_4: string;
-  status_name: string;
-  status_id: number;
-}
-
-export interface doneQuizz {
-  id: number,
-  name: string,
-  quantity: number
-}
-
-/**
-* Result: Est le résultat à obtenir
-* Done: Est la valeur actuelle du défi
-* Reward: Est la recompence à gagner
-* Collected: 0/1 permet de savoir si cette récompence à déjà était collecter
-*/
-export interface Quests {
-  id: number,
-  name: string,
-  requete_sql: string,
-  result: number,
-  status: number,
-  done: number,
-  reward: number,
-  collected: number
-}
-
-export interface Levels {
-  name: string,
-  points: number,
-  done: number
-}
-
-export interface LevelsDone {
-  id: number,
-  name: string,
-  quantity: number
-}
 
 @Injectable({
   providedIn: 'root'
@@ -606,7 +554,7 @@ export class DatabaseService {
     return this.db.executeSql(sqlQuery, [])
     .then(data => {
 
-      var rslt: Array<doneQuizz> = [];
+      var rslt: Array<DoneQuizz> = [];
 
       for (let i = 0; i < data.rows.length; i++) {
 
@@ -649,7 +597,7 @@ export class DatabaseService {
     return this.db.executeSql(sqlQuery, [])
     .then(data => {
   
-      var rslt: Array<doneQuizz> = [];
+      var rslt: Array<DoneQuizz> = [];
 
       for (let i = 0; i < data.rows.length; i++) {
 
@@ -670,8 +618,8 @@ export class DatabaseService {
 
   public getDonePerLevels(): any {
 
-    var rslt1: Array<doneQuizz>;
-    var rslt2: Array<doneQuizz>;
+    var rslt1: Array<DoneQuizz>;
+    var rslt2: Array<DoneQuizz>;
 
     return this.table1()
     .then(data => {

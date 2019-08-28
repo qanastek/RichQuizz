@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { DatabaseService, Quizz } from './../services/database.service';
+import { DatabaseService } from './../services/database.service';
+import { Quizz } from './../interfaces/quizz';
 
 @Component({
   selector: 'app-themes',
