@@ -176,3 +176,8 @@ npx ng g --help
 - [x] Quand je vais de la page play à levels j'ai l'observable countDone qui ne s'actualise pas
 - [x] La variable countDone donne la valeur précédente
   - [x] C'était dû au faite que nous affichions la valeur avoir que le refresh est eu le temps de finir
+
+
+## CHALLENGES IDEAS:
+
+- [ ] Finir 2 levels won 2/3 diamonds

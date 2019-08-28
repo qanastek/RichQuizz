@@ -262,3 +262,14 @@
     --ion-color-shade: #e6e6e6;
     --ion-color-tint: linear-gradient(240deg, #ffe600 0%, #ff5100 100%) !important;
 }
+
+.ion-color-brown
+{
+    --ion-color-base: #2b5e3c !important;
+    --ion-color-base-rgb: 255,255,0;
+    // Color of the text contain in the object who have set this color
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #e6e6e6;
+    --ion-color-tint: #2b5e3c !important;
+}
