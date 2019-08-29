@@ -150,6 +150,9 @@ npx ng g --help
 - [x] Modifier "Add" pour qu'il sortent à l'écran les nouveaux quizz en JSON
 - [x] Modifier la page "scores" pour quelle affiche en fonction de la nouvelle architecture (no theme only levels)
 - [x] Déplacer les interface présentes dans databaseService dans des interface angular spécifiques
+- [x] Modifier le component progression bar:
+  - [x] Angle des corners
+  - [x] Couleurs reçu à partir des vues
 
 ## TO FIX:
 
