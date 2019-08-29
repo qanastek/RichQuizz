@@ -7,15 +7,16 @@
 
   <div *ngFor="let quest of this.db.quests">
 
+    <!-- Not done -->
     <ion-card  color="dangerRichQuizz" *ngIf="quest.status === 0">
 
       <ion-card-content>
 
-        <ion-card-title style="text-transform: uppercase; font-weight: 700; font-size: 1.25em;">
+        <ion-card-title style="text-transform: uppercase; font-weight: 700; font-size: 1.25em; text-align: center;">
           {{quest.name}}
         </ion-card-title>
         
-        <ion-card-subtitle>
+        <ion-card-subtitle style="text-align: center;">
           Récompence: {{quest.reward}} 💎
         </ion-card-subtitle>
 
@@ -39,11 +40,11 @@
 
           <ion-col size="8">
 
-            <ion-card-title style="font-weight: 600;">
+            <ion-card-title style="font-weight: 600; text-align: justify;">
               <ion-icon name="checkmark"></ion-icon> {{quest.name}}
             </ion-card-title>
     
-            <ion-card-subtitle>
+            <ion-card-subtitle style="text-align: left;">
               Reward: {{quest.reward}} 💎
             </ion-card-subtitle>
 
@@ -62,7 +63,7 @@
     </ion-card>
 
     <!-- Done and collected -->
-    <ion-card style="text-align: justify;" color="successRichQuizz" *ngIf="quest.status === 1 && quest.collected === 1">
+    <ion-card style="text-align: center;" color="successRichQuizz" *ngIf="quest.status === 1 && quest.collected === 1">
       
       <ion-card-header>
 

@@ -153,6 +153,32 @@ npx ng g --help
 - [x] Modifier le component progression bar:
   - [x] Angle des corners
   - [x] Couleurs reçu à partir des vues
+- [ ] Ajouter un systeme de niveau
+  - [ ] Ajouter column xp dans la table player
+  - [ ] Il y aura des niveaux et des prestiges
+  - [ ] Peut être faire sauté la partie score pour la remplacer par la partie "stats" qui contiendra:
+    - [ ] diamonds
+    - [ ] lien vers boutique
+    - [ ] Informations sur le palier suivant
+    - [ ] maybe language
+      - [ ] Je peux mettre dans question le résultat de la colomn question_(region)
+- [ ] Faire le mode de jeu "spell"
+  - [ ] Ajouter 2 lettres créer avec random
+    - [ ] WAY 1:
+      - [ ] try random(a,z)
+    - [ ] WAY 2:
+      - [ ] try toString(random(x,x))
+    - [ ] WAY 3:
+      - [ ] chars = "abcdefghijklmnopqrstuvwxyz"
+      - [ ] word += chars.charAt(Math.floor(Math.random() * chars.length))
+  - [ ] Melanger les lettres avant afficher
+- [ ] Update quests:
+  - [ ] Font weight fat pour le nombre à faire
+    - [ ] ajouter <b></b> dans la DB 
+    - [ ] ou scrapper
+  - [ ] Mettre diamand à côter de la bar de progression
+  - [ ] Animé un peu
+  - [ ] Collect award/reward en green en bas du text
 
 ## TO FIX:
 
