@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProgressionBarComponent implements OnInit {
 
   @Input('value') value: number;
+  @Input('goal') goal: number;
   @Input('color1') color1: string;
   @Input('color2') color2: string;
 

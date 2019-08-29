@@ -20,7 +20,8 @@
         </ion-card-subtitle>
 
         <app-progression-bar 
-          [value]="(quest.done / quest.result) * 100"
+          [value]="quest.done"
+          [goal]="quest.result"
           [color1]="'#a52a2a'"
           [color2]="'#ffa500'"
         ></app-progression-bar>

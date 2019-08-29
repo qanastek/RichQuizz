@@ -25,6 +25,14 @@
     'background-color': color2,
     'width': (value).toFixed(0) + '%'
   }">
-    {{ (value).toFixed(0) }}%
+  
+    <p *ngIf="!goal">
+      {{ ((value / 20) * 100).toFixed(0) }}%
+    </p>
+
+    <p *ngIf="goal">
+      {{ value }} / {{ goal }}
+    </p>
+
   </div>
 </div>
