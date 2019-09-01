@@ -8,19 +8,19 @@
   <div *ngFor="let quest of this.db.quests">
 
     <!-- Not done -->
-    <ion-card  color="dangerRichQuizz" *ngIf="quest.status === 0">
+    <ion-card  color="backgroundTomato" *ngIf="quest.status === 0">
 
       <ion-card-content>
 
-        <ion-card-title style="text-transform: uppercase; font-weight: 700; font-size: 1.25em; text-align: center;">
-          {{quest.name}}
+        <ion-card-title style="text-transform: uppercase; font-weight: 400; font-size: 1.25em; text-align: center;">
+          <span [innerHTML]="quest.name"></span>
         </ion-card-title>
         
         <ion-card-subtitle style="text-align: center;">
           Récompence: {{quest.reward}} 💎
         </ion-card-subtitle>
 
-        <app-progression-bar 
+        <app-progression-bar
           [value]="quest.done"
           [goal]="quest.result"
           [color1]="'#a52a2a'"
@@ -32,28 +32,34 @@
     </ion-card>
 
     <!-- Done but not collected -->
-    <ion-card style="text-align: justify;" color="successRichQuizz" *ngIf="quest.status === 1 && quest.collected === 0">
+    <ion-card style="text-align: justify;" color="backgroundTomato" *ngIf="quest.status === 1 && quest.collected === 0">
       
       <ion-card-header>
 
         <ion-row>
 
-          <ion-col size="8">
+          <ion-col size="12">
 
-            <ion-card-title style="font-weight: 600; text-align: justify;">
-              <ion-icon name="checkmark"></ion-icon> {{quest.name}}
+            <ion-card-title style="font-weight: 400; text-align: center;">
+
+              <ion-icon name="checkmark"></ion-icon>
+              <span [innerHTML]="quest.name" style="padding-left: 2%;"></span>
+
+              <br>
+              
+              <ion-button
+                style="
+                  width: 50%;
+                "
+                color="RewardBtn"
+                (click)="collect(quest.id, quest.reward)"
+                *ngIf="quest.collected === 0"
+              >
+                Collect {{quest.reward}} 💎
+              </ion-button>
+
             </ion-card-title>
-    
-            <ion-card-subtitle style="text-align: left;">
-              Reward: {{quest.reward}} 💎
-            </ion-card-subtitle>
 
-          </ion-col>
-
-          <ion-col size="4" style="padding-left: 3%; vertical-align: middle;">
-            <ion-button style="width: 100%;" color="brown" (click)="collect(quest.id, quest.reward)" *ngIf="quest.collected === 0">
-              Collect
-            </ion-button>
           </ion-col>
 
         </ion-row>
@@ -63,12 +69,13 @@
     </ion-card>
 
     <!-- Done and collected -->
-    <ion-card style="text-align: center;" color="successRichQuizz" *ngIf="quest.status === 1 && quest.collected === 1">
+    <ion-card style="text-align: center;" color="backgroundTomato" *ngIf="quest.status === 1 && quest.collected === 1">
       
       <ion-card-header>
 
-        <ion-card-title style="font-weight: 600;">
-          <ion-icon name="checkmark"></ion-icon> {{quest.name}}
+        <ion-card-title style="font-weight: 400;">
+          <ion-icon name="checkmark"></ion-icon>
+          <span [innerHTML]="quest.name" style="padding-left: 2%;"></span>
         </ion-card-title>
 
         <ion-card-subtitle>

@@ -98,6 +98,8 @@ npx ng g --help
   - [x] Et donc modifier les appelles aux diamonds
   - [x] Créer aussi un getter en observable
 - [ ] Commencer à écrire les test unitaires
+  - [ ] before each
+    - [ ] run/create the database
 - [x] SQL ajout des logo de chaque thème dans le *JOIN* et les tables
 - [ ] ~~Ajouter la table player dans laquelle il y a : *PlayerName*, *PlayerTotalScore* ~~
 - [x] Ajouter à la table catégories la collone suivante *score*
@@ -168,17 +170,20 @@ npx ng g --help
       - [ ] try random(a,z)
     - [ ] WAY 2:
       - [ ] try toString(random(x,x))
-    - [ ] WAY 3:
-      - [ ] chars = "abcdefghijklmnopqrstuvwxyz"
-      - [ ] word += chars.charAt(Math.floor(Math.random() * chars.length))
-  - [ ] Melanger les lettres avant afficher
+    - [x] WAY 3:
+      - [x] chars = "abcdefghijklmnopqrstuvwxyz"
+      - [x] word += chars.charAt(Math.floor(Math.random() * chars.length))
+  - [x] Melanger les lettres avant afficher
+  - [x] Faire un boutton supprimer la dernière lettre
+  - [x] Faire un boutton envoyé
 - [ ] Update quests:
-  - [ ] Font weight fat pour le nombre à faire
-    - [ ] ajouter <b></b> dans la DB 
+  - [x] Font weight fat pour le nombre à faire
+    - [x] ajouter <b></b> dans la DB 
     - [ ] ou scrapper
   - [ ] Mettre diamand à côter de la bar de progression
+    - [x] maybe not
   - [ ] Animé un peu
-  - [ ] Collect award/reward en green en bas du text
+  - [x] Collect award/reward color
 
 ## TO FIX:
 

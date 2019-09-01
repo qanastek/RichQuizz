@@ -156,15 +156,15 @@
     {
         "id": 11,
         "theme": 0,
-        "type": 1,
+        "type": 2,
         "difficulty": 1,
-        "image": "",
-        "question": "Rouge ?",
-        "answer": "ferrari",
-        "option_1": "renault",
-        "option_2": "ferrari",
-        "option_3": "peugeot",
-        "option_4": "dacia",
+        "image": "assets/img/test.jpg",
+        "question": "Quelle marque de voiture a produit la EB110 ?",
+        "answer": "bugatti",
+        "option_1": "",
+        "option_2": "",
+        "option_3": "",
+        "option_4": "",
         "status": 0
     }
 ]

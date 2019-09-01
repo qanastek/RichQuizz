@@ -45,7 +45,7 @@ into   quests
 VALUES
 (
         0,
-        'Réussir 1 quizz',
+        'Réussir <b>1</b> quizz',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2',
@@ -66,7 +66,7 @@ into   quests
 VALUES
 (
         1,
-        'Réussir 10 quizz',
+        'Réussir <b>10</b> quizz',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2',
@@ -87,7 +87,7 @@ into   quests
 VALUES
 (
         2,
-        'Réussir 3 quizz sur le thème voiture',
+        'Réussir <b>3</b> quizz sur le thème voiture',
         'SELECT Count(*)
         FROM   quizz
         WHERE  status = 2

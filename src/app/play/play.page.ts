@@ -20,6 +20,8 @@ export class PlayPage implements OnInit {
 
   quizz: any = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
   nextQuizz: any;
+  spellArray: string[];
+  currentSpell: string = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +38,10 @@ export class PlayPage implements OnInit {
     this.ShowAdBanner();
     this.refreshCounter();
     this.db.refreshDiamonds();
+
+    if (this.quizz.type_id === 2) {
+      this.makeSpellLetters(this.quizz.answer);
+    }
   }
 
   ngOnDestroy() {
@@ -154,6 +160,77 @@ export class PlayPage implements OnInit {
       console.log("Interstitial CLOSE");
     });
 
+  }
+
+  setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substr(0,index) + chr + str.substr(index+1);
+  }
+
+  addTwoLetters(answer: string): Promise<string> {
+
+    // Ajouter les deux lettres
+    var nbrLetters = 2;
+
+    var chars = "abcdefghijklmnopqrstuvwxyz";
+
+    for (let i = 0; i < nbrLetters; i++) {
+      answer += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    // Return as promise
+    // Renvoie la string avec les deux nouvelles lettres
+    return new Promise((resolve, reject) => {
+      if (answer) {
+        resolve(answer);
+      } else {
+        reject("Answer empty");
+      }
+    });
+
+  }
+  
+  shuffle(a: Array<string>) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  makeSpellLetters(answer: string): void {
+
+    if (answer) {
+
+      this.addTwoLetters(answer)
+      .then(answer0 => {     
+
+        // String to array
+        var array: string[] = [];
+
+        for (let k = 0; k < answer0.length; k++) {
+          array.push(answer0.charAt(k));     
+        }
+
+        this.spellArray = this.shuffle(array);
+
+      })
+      .catch(e => {
+        console.error(e); 
+      });
+      
+    } else {
+      console.error("error");      
+    }
+
+  }
+
+  addSpell(letter: string): void {    
+    this.currentSpell += letter;
+  }
+
+  clearSpell(): void {
+    this.currentSpell = this.currentSpell.substring(0, this.currentSpell.length - 1);
   }
 
   checkResult(commit: string) {

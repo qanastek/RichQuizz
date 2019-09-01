@@ -11,6 +11,7 @@ export class ProgressionBarComponent implements OnInit {
   @Input('goal') goal: number;
   @Input('color1') color1: string;
   @Input('color2') color2: string;
+  @Input('width') width: string;
 
   constructor() {}
 
