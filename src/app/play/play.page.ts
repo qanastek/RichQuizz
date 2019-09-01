@@ -198,6 +198,20 @@ export class PlayPage implements OnInit {
     return a;
   }
 
+  stringtoArrayInput(currentAnswer: string): Array<string> {
+    var array: string[] = [];
+
+    for (let i = 0; i < this.quizz.answer.length; i++) {
+      array.push("X");      
+    }
+
+    for (let k = 0; k < currentAnswer.length; k++) {
+      array[k] = currentAnswer.charAt(k);
+    }
+    
+    return array;
+  }
+
   makeSpellLetters(answer: string): void {
 
     if (answer) {
@@ -226,7 +240,9 @@ export class PlayPage implements OnInit {
   }
 
   addSpell(letter: string): void {    
-    this.currentSpell += letter;
+    if(this.currentSpell.length < this.quizz.answer.length) {
+      this.currentSpell += letter;
+    }
   }
 
   clearSpell(): void {
