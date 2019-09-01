@@ -176,6 +176,8 @@ npx ng g --help
   - [x] Melanger les lettres avant afficher
   - [x] Faire un boutton supprimer la dernière lettre
   - [x] Faire un boutton envoyé
+  - [ ] Amélioré l'UI de spell
+  - [ ] Faire en sorte que appuyé sur la lettre "hide" le btn de la lettre
 - [ ] Update quests:
   - [x] Font weight fat pour le nombre à faire
     - [x] ajouter <b></b> dans la DB 

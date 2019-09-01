@@ -13,7 +13,7 @@
     </ion-col>
   </ion-row>
 
-  <!-- Image + Question -->
+  <!-- Image + Question + Spell current word -->
   <ion-row  
     style="
       text-align: center !important;
@@ -36,6 +36,12 @@
         [src]="this.quizz.image_url"
         class="imgQuizz"
       ></ion-img>
+    </ion-col>
+    
+    <ion-col size="12" *ngIf="this.quizz.type_id === 2">
+      <p style="text-align: center; font-size: 1.5em; color: white;">
+        {{this.currentSpell}}
+      </p>
     </ion-col>
 
   </ion-row>  
@@ -184,46 +190,48 @@
     <!-- Si il s'agit d'un spell -->
     <ion-row *ngIf="this.quizz.type_id === 2" style="width: 100%; padding-top: 6vh;">
 
-      <ion-col size="12">
-        <p style="text-align: center;">
-          {{this.currentSpell}}
-        </p>        
-      </ion-col>
+      <ion-col size="10">
+        
+        <ion-col size="2" *ngFor="let letter of this.spellArray">
+          <ion-button
+            class="SpellLetter"
+            shape="round"
+            expand="full"
+            color="win"
+            (click)="this.addSpell(letter)"
+          >
+            {{letter}}
+          </ion-button>
+        </ion-col>
 
-      <ion-col size="2" *ngFor="let letter of this.spellArray">
-        <ion-button
-          class="SpellLetter"
-          shape="round"
-          expand="full"
-          color="win"
-          (click)="this.addSpell(letter)"
-        >
-          {{letter}}
-        </ion-button>
       </ion-col>
-
+      
       <ion-col size="2">
-        <ion-button
-          class="SpellLetterSend"
-          shape="round"
-          expand="full"
-          color="win"
-          (click)="this.checkResult(currentSpell)"
-        >
-          <ion-icon name="send"></ion-icon>
-        </ion-button>
-      </ion-col>
 
-      <ion-col size="2">
-        <ion-button
-          class="SpellLetterSend"
-          shape="round"
-          expand="full"
-          color="win"
-          (click)="this.clearSpell()"
-        >
-          <ion-icon name="trash"></ion-icon>
-        </ion-button>
+        <ion-col size="12">
+          <ion-button
+            class="SpellLetter"
+            shape="round"
+            expand="full"
+            color="win"
+            (click)="this.checkResult(currentSpell)"
+          >
+          ✔️
+          </ion-button>
+        </ion-col>
+  
+        <ion-col size="12">
+          <ion-button
+            class="SpellLetter"
+            shape="round"
+            expand="full"
+            color="win"
+            (click)="this.clearSpell()"
+          >
+          🗑️
+          </ion-button>
+        </ion-col>
+        
       </ion-col>
 
     </ion-row>
