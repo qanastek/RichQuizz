@@ -46,19 +46,27 @@
       margin-bottom: 0%;
       padding-top: 0%;
       padding-bottom: 0%;
+      text-align: center;
       "
     >
       <span 
         style="
           text-align: center;
-          font-size: 1.5em;
+          text-transform: uppercase;
+          font-size: 1.5em !important;
           color: white;
-          background-color: lightblue;
+
           margin-top: 0%;
           margin-bottom: 0%;
+          margin-right: 3%;
+
           padding-top: 0%;
           padding-bottom: 0%;
-          text-transform: uppercase;
+          
+          width: 1em !important;
+          border-radius: 2px;
+          display: inline-block;
+          background-color: rgba(253, 99, 94, 0.8);
         "
         *ngFor="let letterAnswer of this.stringtoArrayInput(this.currentSpell)"
       >
@@ -212,7 +220,10 @@
     <!-- Si il s'agit d'un spell -->
     <ion-row *ngIf="this.quizz.type_id === 2" style="width: 100%; padding-top: 6vh;">
 
-      <ion-col size="2" *ngFor="let letter of this.spellArray">
+      <ion-col 
+        size="2"
+        *ngFor="let letter of this.spellArray"
+      >
         <ion-button
           class="SpellLetter"
           shape="round"

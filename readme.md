@@ -178,8 +178,9 @@ npx ng g --help
   - [x] Faire un boutton envoyé
   - [ ] Amélioré l'UI de spell
   - [ ] Faire en sorte que appuyé sur la lettre "hide" le btn de la lettre
+    - [ ] Ou technique soso, on delete de l'array la lettre
   - [x] Ajouter l'UI des cases a remplir
-  - [ ] Replace X by a whitespace
+  - [x] Replace X by a _
 - [ ] Update quests:
   - [x] Font weight fat pour le nombre à faire
     - [x] ajouter <b></b> dans la DB 

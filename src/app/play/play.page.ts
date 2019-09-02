@@ -202,7 +202,7 @@ export class PlayPage implements OnInit {
     var array: string[] = [];
 
     for (let i = 0; i < this.quizz.answer.length; i++) {
-      array.push("X");      
+      array.push("_");      
     }
 
     for (let k = 0; k < currentAnswer.length; k++) {
