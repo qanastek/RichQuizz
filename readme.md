@@ -189,6 +189,8 @@ npx ng g --help
     - [x] maybe not
   - [ ] Animé un peu
   - [x] Collect award/reward color
+- [ ] Faire l'écran de chargement
+- [x] Faire barre du haut avec diamands et back arrow
 
 ## TO FIX:
 

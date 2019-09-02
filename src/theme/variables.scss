@@ -284,3 +284,14 @@
     --ion-color-shade: #e6e6e6;
     --ion-color-tint: rgba(253, 99, 94, 0.8) !important;
 }
+
+.ion-color-backgroundLetters
+{
+    --ion-color-base: rgba(243, 243, 243, 1) !important;
+    --ion-color-base-rgb: 255,255,0;
+    // Color of the text contain in the object who have set this color
+    --ion-color-contrast: rgb(44, 62, 80);
+    --ion-color-contrast-rgb: 0,0,0;
+    --ion-color-shade: #363636;
+    --ion-color-tint: rgba(243, 243, 243, 1) !important;
+}
