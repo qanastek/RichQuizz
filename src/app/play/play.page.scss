@@ -59,3 +59,8 @@
     // --background: linear-gradient(180deg, #203844 0%, #294958 100%) !important;
     --background: #294958 !important;
 }
+
+.diamonds.ng-enter {
+    -webkit-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+}

@@ -45,7 +45,8 @@ npx ng g --help
   - [ ] https://forum.ionicframework.com/t/how-to-use-sqlite-in-browser-chrome-with-ionic-serve/101084/4
   - [ ] https://www.thepolyglotdeveloper.com/2016/08/using-sqlstorage-instead-sqlite-ionic-2-app/
 - [ ] Ajouter un systeme de loading entre les pages
-- [ ] Ajouter des animations pourles diamand ect...
+- [x] Ajouter des animations pour les diamand ect...
+  - [x] Popup fail and askAd
 - [ ] Revoir UI des popup
   - [x] Retry with popup
   - [x] Fail
