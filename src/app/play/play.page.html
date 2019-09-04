@@ -229,14 +229,15 @@
 
       <ion-col 
         size="2"
-        *ngFor="let letter of this.spellArray"
+        *ngFor="let letter of this.spellArray; let i = index"
       >
         <ion-button
           class="SpellLetter"
           shape="round"
           expand="full"
           color="win"
-          (click)="this.addSpell(letter);"
+          id="{{ 'letter-' + letter + i }}"
+          (click)="this.addSpell(letter, 'letter-' + letter + i);"
         >
           {{letter}}
         </ion-button>

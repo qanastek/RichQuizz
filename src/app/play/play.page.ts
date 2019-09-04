@@ -22,6 +22,7 @@ export class PlayPage implements OnInit {
   nextQuizz: any;
   spellArray: string[];
   currentSpell: string = "";
+  deletedLetters: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -233,7 +234,11 @@ export class PlayPage implements OnInit {
 
   }
 
-  addSpell(letter: string): void {    
+  addSpell(letter: string, id: string): void {
+    id = "#" + id;
+    this.deletedLetters.push(id);
+    document.querySelector(id).style.display = "none";
+    
     if(this.currentSpell.length < this.quizz.answer.length) {
       this.currentSpell += letter;
     }
@@ -241,6 +246,8 @@ export class PlayPage implements OnInit {
 
   clearSpell(): void {
     this.currentSpell = this.currentSpell.substring(0, this.currentSpell.length - 1);
+    
+    document.querySelector(this.deletedLetters.pop()).style.display = "block";
   }
 
   checkResult(commit: string) {
