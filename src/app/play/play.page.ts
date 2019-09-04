@@ -236,8 +236,12 @@ export class PlayPage implements OnInit {
 
   addSpell(letter: string, id: string): void {
     id = "#" + id;
+
+    // Ajoute l'id du btn dans une array de sorte à pouvoir par la suite le show()
     this.deletedLetters.push(id);
-    document.querySelector(id).style.display = "none";
+
+    // Equivalent à hide() de JQuery
+    (document.querySelector(id) as HTMLElement).style.display = "none";
     
     if(this.currentSpell.length < this.quizz.answer.length) {
       this.currentSpell += letter;
@@ -247,7 +251,8 @@ export class PlayPage implements OnInit {
   clearSpell(): void {
     this.currentSpell = this.currentSpell.substring(0, this.currentSpell.length - 1);
     
-    document.querySelector(this.deletedLetters.pop()).style.display = "block";
+    // Equivalent à show() de JQuery
+    (document.querySelector(this.deletedLetters.pop()) as HTMLElement).style.display = "block";
   }
 
   checkResult(commit: string) {
