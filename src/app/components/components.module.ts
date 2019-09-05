@@ -1,3 +1,4 @@
+import { EndLevelComponent } from './end-level/end-level.component';
 import { AdvertisementComponent } from './advertisement/advertisement.component';
 import { FailComponent } from './fail/fail.component';
 import { AskAdComponent } from './ask-ad/ask-ad.component';
@@ -14,7 +15,8 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
     ThemeBarComponent,
     AskAdComponent,
     FailComponent,
-    AdvertisementComponent
+    AdvertisementComponent,
+    EndLevelComponent
   ],
   imports: [
     CommonModule,
@@ -25,12 +27,14 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
     ThemeBarComponent,
     AskAdComponent,
     FailComponent,
-    AdvertisementComponent
+    AdvertisementComponent,
+    EndLevelComponent
   ],
   entryComponents: [
     AskAdComponent,
     FailComponent,
-    AdvertisementComponent
+    AdvertisementComponent,
+    EndLevelComponent
   ],
   providers: [
     AdMobFree

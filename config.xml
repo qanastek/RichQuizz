@@ -99,9 +99,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <allow-navigation href="http://localhost:8100" sessionid="5b809bed" />
-    <plugin name="cordova-plugin-admob-free" spec="^0.27.0">
-        <variable name="ADMOB_APP_ID" value="ca-app-pub-7311596904113357~1856758026" />
-    </plugin>
+    <allow-navigation href="http://localhost:8100" sessionid="3ef8bb92" />
     <engine name="android" spec="7.1.4" />
 </widget>

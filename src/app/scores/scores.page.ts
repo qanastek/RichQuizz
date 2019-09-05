@@ -9,7 +9,7 @@ import { DatabaseService } from './../services/database.service';
 export class ScoresPage implements OnInit {
 
   constructor(
-    private db: DatabaseService
+    public db: DatabaseService
   ){ }
 
   ngOnInit() {

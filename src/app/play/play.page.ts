@@ -1,3 +1,4 @@
+import { EndLevelComponent } from './../components/end-level/end-level.component';
 import { Quizz } from './../interfaces/quizz';
 import { FailComponent } from './../components/fail/fail.component';
 import { AskAdComponent } from './../components/ask-ad/ask-ad.component';
@@ -81,6 +82,24 @@ export class PlayPage implements OnInit {
     return await modal.present();
   }
 
+  async EndLevelPopup(diamonds: number) {
+
+    // animated: true,
+    // keyboardClose: true,
+    // showBackdrop: false,
+
+    const modal = await this.modalController.create({
+      component: EndLevelComponent,
+      componentProps: {
+        diamonds: diamonds
+      },
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
+    });
+
+    return await modal.present();
+  }
+
   async dead(answer: string) {
 
     const alert = await this.alertController.create({
@@ -153,6 +172,30 @@ export class PlayPage implements OnInit {
 
     this.admob.on('admob.interstitial.events.CLOSE').subscribe(() => {      
       console.log("Interstitial CLOSE");
+    });
+
+  }
+
+  async InterstitielAdvertisementEndLevel() {
+
+    // id: 'ca-app-pub-7311596904113357/3034587257',
+    const InterstitielConfig: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+    };
+    this.admob.interstitial.config(InterstitielConfig);
+     
+    this.admob.interstitial.prepare()
+    .then(() => {
+      console.log("Interstitial OPEN");      
+    })
+    .catch(e => console.log(e));
+
+    this.admob.on('admob.interstitial.events.CLOSE').subscribe(() => {      
+      console.log("Interstitial CLOSE");
+      this.EndLevelPopup(2);
+      this.db.addDiamonds(2);
+      this.db.refreshDiamonds();
     });
 
   }
@@ -291,10 +334,7 @@ export class PlayPage implements OnInit {
         else {
           // Popup fin de niveau
           
-          this.InterstitielAdvertisement();
-
-          this.db.addDiamonds(2);
-          this.db.refreshDiamonds();
+          this.InterstitielAdvertisementEndLevel();
 
           this.db.DoneCountLevels();
 

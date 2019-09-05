@@ -18,6 +18,10 @@ ionic cordova run android --livereload --device --consolelogs
 ionic integrations enable cordova --add
 ```
 
+### Problème AdMob n'affiche pas les PUB:
+
+**Activé simplement internet, les pub ne viendront pas par le saint esprit.**
+
 ### Angular nice commands
 
 Give a list of all the types of files can be generated. 
@@ -192,6 +196,8 @@ npx ng g --help
   - [x] Collect award/reward color
 - [ ] Faire l'écran de chargement
 - [x] Faire barre du haut avec diamands et back arrow
+- [x] Ajouter la popup de fin de niveau après que la publicité est fini en annoncant +2 diamands
+- [ ] Ajouter la popup quand tu récupère les diamands de défis, genre +2 diamands
 
 ## TO FIX:
 
