@@ -181,23 +181,29 @@ npx ng g --help
   - [x] Melanger les lettres avant afficher
   - [x] Faire un boutton supprimer la dernière lettre
   - [x] Faire un boutton envoyé
-  - [ ] Amélioré l'UI de spell
-  - [ ] Faire en sorte que appuyé sur la lettre "hide" le btn de la lettre
-    - [ ] Ou technique soso, on delete de l'array la lettre
+  - [x] Amélioré l'UI de spell
+  - [x] Faire en sorte que appuyé sur la lettre "hide" le btn de la lettre
+    - [x] JQuery like
+      - [x] Quand j'appuie sur la touche je récupère l'id de celle-ci
+        - [x] 'letter-' + letter + i
+      - [x] Je passe le style display de l'item correspondant à cette id à none/block
+    - [x] ~~Ou technique soso, on delete de l'array la lettre~~
   - [x] Ajouter l'UI des cases a remplir
   - [x] Replace X by a _
 - [ ] Update quests:
   - [x] Font weight fat pour le nombre à faire
     - [x] ajouter <b></b> dans la DB 
-    - [ ] ou scrapper
-  - [ ] Mettre diamand à côter de la bar de progression
-    - [x] maybe not
+    - [x] ~~ou scrapper~~
+  - [x] ~~Mettre diamand à côter de la bar de progression~~
   - [ ] Animé un peu
+    - [ ] Animé les diamands quand:
+      - [ ] ont en ajoute
+      - [ ] ont en enleve
   - [x] Collect award/reward color
 - [ ] Faire l'écran de chargement
 - [x] Faire barre du haut avec diamands et back arrow
 - [x] Ajouter la popup de fin de niveau après que la publicité est fini en annoncant +2 diamands
-- [ ] Ajouter la popup quand tu récupère les diamands de défis, genre +2 diamands
+- [ ] Ajouter la popup quand tu récupère les diamands de défis, genre +2 diamands (peut être pas)
 
 ## TO FIX:
 
