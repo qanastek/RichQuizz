@@ -6,7 +6,15 @@
     </ion-buttons>
 
     <ion-title slot="end">
-      💎 {{this.db.diamonds.getValue()}}
+
+      <span>
+        💎 {{this.db.diamonds.getValue()}}
+      </span>
+
+      <span *ngIf="this.quizz.type_id === 2" (click)="this.showIndices()">
+        💡 Indices
+      </span>
+
     </ion-title>
 
   </ion-toolbar>
@@ -74,7 +82,6 @@
           display: inline-block;
           background-color: rgba(43, 43, 43, 0.80);
         "
-        class="animated rubberBand"
         *ngFor="let letterAnswer of this.stringtoArrayInput(this.currentSpell)"
       >
         {{letterAnswer}}

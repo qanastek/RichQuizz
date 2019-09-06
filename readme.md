@@ -78,9 +78,10 @@ npx ng g --help
         - [x] 1: done
       - [x] Récompence en diamand
       - [x] Etat de collecte
-  - [ ] TODO:
     - [x] Créer la page "quests"
     - [ ] Faire l'UI de la page quests
+      - [ ] Revoir le boutton de collecte des diamands
+      - [ ] Revoir peut être les couleurs
     - [x] Créer la table "quests" comme ci-dessus
     - [x] Faire les requetes dans la page d'affichage des quetes réussites
     - [x] Faire un quest checker qui s'execute à la fin de chaque quizz
@@ -106,7 +107,7 @@ npx ng g --help
   - [ ] before each
     - [ ] run/create the database
 - [x] SQL ajout des logo de chaque thème dans le *JOIN* et les tables
-- [ ] ~~Ajouter la table player dans laquelle il y a : *PlayerName*, *PlayerTotalScore* ~~
+- [x] ~~Ajouter la table player dans laquelle il y a : *PlayerName*, *PlayerTotalScore* ~~
 - [x] Ajouter à la table catégories la collone suivante *score*
 - [x] Quand le joueur clique sur le résultat on regarde si le prochain quizz !== NULL est ci c'est le cas alors on le renvoie vers un écran winer puis vers le thème
 - [x] Ajouter une variable global pour le nombre de coeurs. Quand celle-ci tombe à 0 le player est redirigez vers la route *themes* et la variable est remise a 3 coeurs
@@ -169,8 +170,8 @@ npx ng g --help
     - [ ] Informations sur le palier suivant
     - [ ] maybe language
       - [ ] Je peux mettre dans question le résultat de la colomn question_(region)
-- [ ] Faire le mode de jeu "spell"
-  - [ ] Ajouter 2 lettres créer avec random
+- [x] Faire le mode de jeu "spell"
+  - [x] Ajouter 2 lettres créer avec random
     - [ ] WAY 1:
       - [ ] try random(a,z)
     - [ ] WAY 2:
@@ -182,6 +183,11 @@ npx ng g --help
   - [x] Faire un boutton supprimer la dernière lettre
   - [x] Faire un boutton envoyé
   - [x] Amélioré l'UI de spell
+    - [x] Ajout d'animations:
+      - [x] Quand on ajoute des lettres (haut)
+        - [x] Enlevé sa
+      - [ ] Quand on appuie sur une lettre
+      - [ ] Quand erreur faire vibré l'image
   - [x] Faire en sorte que appuyé sur la lettre "hide" le btn de la lettre
     - [x] JQuery like
       - [x] Quand j'appuie sur la touche je récupère l'id de celle-ci
@@ -190,6 +196,16 @@ npx ng g --help
     - [x] ~~Ou technique soso, on delete de l'array la lettre~~
   - [x] Ajouter l'UI des cases a remplir
   - [x] Replace X by a _
+  - [ ] Revoir peut etre le faite de perdre une vie à chaque erreur
+    - [ ] Peut-être s'inspiré de icône games
+  - [ ] Ajouter un joker/indice
+    - [ ] La liste des jockers s'affiche dans une popup
+    - [ ] Mettre le boutton dans la toolbar que pour le mode de jeu spell
+    - [ ] Ajoute une lettre random
+    - [ ] Ajouter la première lettre
+    - [ ] Passer (plus chères)
+    - [ ] Regarder une pub pour 1/2 diamands
+      - [ ] Si oui: Mettre la fonction d'affichage dans le then
 - [ ] Update quests:
   - [x] Font weight fat pour le nombre à faire
     - [x] ajouter <b></b> dans la DB 

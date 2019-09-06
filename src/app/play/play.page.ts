@@ -1,3 +1,4 @@
+import { HintComponent } from './../components/hint/hint.component';
 import { EndLevelComponent } from './../components/end-level/end-level.component';
 import { Quizz } from './../interfaces/quizz';
 import { FailComponent } from './../components/fail/fail.component';
@@ -93,6 +94,18 @@ export class PlayPage implements OnInit {
       componentProps: {
         diamonds: diamonds
       },
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
+    });
+
+    return await modal.present();
+  }
+
+  async Indices() {
+
+    const modal = await this.modalController.create({
+      component: HintComponent,
+      componentProps: {},
       cssClass: 'ask-ad-custom',
       backdropDismiss: false
     });
@@ -277,11 +290,32 @@ export class PlayPage implements OnInit {
 
   }
 
+  // It run a animate.css animation and after that it stop it
+  animateCSS(element: string, animationName: string, callback: any) {
+    const node = document.querySelector(element);
+    node.classList.add('animated', animationName);
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName);
+        node.removeEventListener('animationend', handleAnimationEnd);
+
+        if (typeof callback === 'function') callback();
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd);
+  }
+
+  showIndices() {
+    this.Indices();
+  }
+
   addSpell(letter: string, id: string): void {
     id = "#" + id;
-
+    
     // Ajoute l'id du btn dans une array de sorte à pouvoir par la suite le show()
     this.deletedLetters.push(id);
+
+    // this.animateCSS(id, 'zoomOut', '');
 
     // Equivalent à hide() de JQuery
     (document.querySelector(id) as HTMLElement).style.display = "none";
