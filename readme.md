@@ -12,6 +12,12 @@
 ionic cordova run android --livereload --device --consolelogs
 ```
 
+### Généré tous les icons et splash-screens
+
+```bash
+ionic cordova resources
+```
+
 ### Erreur config.xml disapear:
 
 ```bash
