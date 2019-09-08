@@ -2,12 +2,12 @@
 
   <div 
     style="
-      height: 50vh;
-      width: 70vw;
+      height: 80vh;
+      width: 90vw;
 
       position: absolute;
-      left: 56%;
-      top: 60vh;
+      left: 47%;
+      top: 40vh;
       margin-left: -150px;
       margin-top: -150px;
     "
@@ -19,20 +19,21 @@
       style="
         text-align: center;
         color: #ffffff;
-        height: 20%;
+        height: 15%;
         border-top-left-radius: 25px;
         border-top-right-radius: 25px;
       "
     >
       <p
         style="
-          font-size: 1.25em;
+          font-size: 1.75em;
           font-weight: 600;
           margin-top: 0% !important;
-          padding-top: 9%;
+          padding-top: 7%;
+          text-transform: uppercase;
         "
       >
-        BRAVO !
+        Indices
       </p>
     </div>
 
@@ -43,15 +44,14 @@
         padding-left: 6%;
         padding-right: 6%;
         padding-bottom: 4%;
-        height: 40%;
+        height: 80%;
         text-align: center;
         border-bottom-right-radius: 25px;
         border-bottom-left-radius: 25px;
       "
     >
       <p style="color: #ff3061; margin-top: 0%; padding-top: 6%;">
-        <ion-icon name="alert"></ion-icon>
-        Test
+        Veuillez selectionné un indice
       </p>
 
       <ion-button 
@@ -59,10 +59,104 @@
         expand="full"
         shape="round"
         size="large"
-        color="retry"
-        style="color: #804f00;"
+        color="win"
+        style="color: #804f00; font-size: 1em; height: 8vh;"
       >
-        RIEN
+        <ion-row style="width: 100%;">
+          <ion-col size="10" style="overflow-wrap: break-word; word-wrap: break-word; padding-right: 5vw; width: 100%;">
+            Lettre aléatoire
+          </ion-col>
+          <ion-col size="2" style="align-items: center; display: flex; justify-content: center; align-items: center; width: 100%;">
+            1 💎
+          </ion-col>
+        </ion-row>
+      </ion-button>
+
+      <ion-button 
+        (click)="goBack()"
+        expand="full"
+        shape="round"
+        size="large"
+        color="win"
+        style="color: #804f00; font-size: 1em; padding-top: 3%; height: 8vh;"
+      >
+        <ion-row style="width: 100%;">
+          <ion-col size="10" style="overflow-wrap: break-word; word-wrap: break-word; padding-right: 5vw; width: 100%;">
+              Première lettre
+          </ion-col>
+          <ion-col size="2" style="align-items: center; display: flex; justify-content: center; align-items: center; width: 100%;">
+            2 💎
+          </ion-col>
+        </ion-row>
+      </ion-button>
+
+      <ion-button 
+        (click)="goBack()"
+        expand="full"
+        shape="round"
+        size="large"
+        color="win"
+        style="color: #804f00; font-size: 1em; padding-top: 3%; height: 8vh;"
+      >
+        <ion-row style="width: 100%;">
+          <ion-col size="10" style="overflow-wrap: break-word; word-wrap: break-word; padding-right: 5vw; width: 100%;">
+              Retiré les lettres
+              <br>
+              inutiles
+          </ion-col>
+          <ion-col size="2" style="align-items: center; display: flex; justify-content: center; align-items: center; width: 100%;">
+            3 💎
+          </ion-col>
+        </ion-row>
+      </ion-button>
+
+      <ion-button 
+        (click)="goBack()"
+        expand="full"
+        shape="round"
+        size="large"
+        color="win"
+        style="color: #804f00; font-size: 1em; padding-top: 3%; height: 8vh;"
+      >
+        <ion-row style="width: 100%;">
+          <ion-col size="10" style="overflow-wrap: break-word; word-wrap: break-word; padding-right: 5vw; width: 100%;">
+            Retiré les lettres
+            <br>
+            inutiles
+          </ion-col>
+          <ion-col size="2" style="align-items: center; display: flex; justify-content: center; align-items: center; width: 100%;">
+            🎬
+          </ion-col>
+        </ion-row>
+      </ion-button>
+
+      <ion-button 
+        (click)="goBack()"
+        expand="full"
+        shape="round"
+        size="large"
+        color="win"
+        style="color: #804f00; font-size: 1em; padding-top: 3%; height: 8vh;"
+      >
+        <ion-row style="width: 100%;">
+          <ion-col size="10" style="overflow-wrap: break-word; word-wrap: break-word; padding-right: 5vw; width: 100%;">
+            Résoudre
+          </ion-col>
+          <ion-col size="2" style="align-items: center; display: flex; justify-content: center; align-items: center; width: 100%;">
+            4 💎
+          </ion-col>
+        </ion-row>
+      </ion-button>
+
+      <ion-button 
+        (click)="goBack()"
+        expand="full"
+        shape="round"
+        size="large"
+        color="retry"
+        style="color: #804f00; padding-top: 3%;"
+      >
+        Fermer
       </ion-button>
 
     </div>
