@@ -1,3 +1,4 @@
+import { PlayService } from './../services/play.service';
 import { HintComponent } from './../components/hint/hint.component';
 import { EndLevelComponent } from './../components/end-level/end-level.component';
 import { Quizz } from './../interfaces/quizz';
@@ -20,12 +21,6 @@ import { AdMobFree, AdMobFreeInterstitialConfig, AdMobFreeBannerConfig } from '@
 })
 export class PlayPage implements OnInit {
 
-  quizz: any = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
-  nextQuizz: any;
-  spellArray: string[];
-  currentSpell: string = "";
-  deletedLetters: string[] = [];
-
   constructor(
     private route: ActivatedRoute,
     public db: DatabaseService,
@@ -34,16 +29,21 @@ export class PlayPage implements OnInit {
     public alertController: AlertController,
     public modalController: ModalController,
     private admob: AdMobFree,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public play: PlayService
   ) { }
 
   ngOnInit() {
+
+    // Asign received quizz to the service
+    this.play.quizz = JSON.parse(this.route.snapshot.paramMap.get('quizz'));
+
     this.ShowAdBanner();
     this.refreshCounter();
     this.db.refreshDiamonds();
 
-    if (this.quizz.type_id === 2) {
-      this.makeSpellLetters(this.quizz.answer);
+    if (this.play.quizz.type_id === 2) {
+      this.makeSpellLetters(this.play.quizz.answer);
     }
   }
 
@@ -252,7 +252,7 @@ export class PlayPage implements OnInit {
   stringtoArrayInput(currentAnswer: string): Array<string> {
     var array: string[] = [];
 
-    for (let i = 0; i < this.quizz.answer.length; i++) {
+    for (let i = 0; i < this.play.quizz.answer.length; i++) {
       array.push("_");      
     }
 
@@ -277,7 +277,7 @@ export class PlayPage implements OnInit {
           array.push(answer0.charAt(k));     
         }
 
-        this.spellArray = this.shuffle(array);
+        this.play.spellArray = this.shuffle(array);
 
       })
       .catch(e => {
@@ -313,30 +313,30 @@ export class PlayPage implements OnInit {
     id = "#" + id;
     
     // Ajoute l'id du btn dans une array de sorte à pouvoir par la suite le show()
-    this.deletedLetters.push(id);
+    this.play.deletedLetters.push(id);
 
     // this.animateCSS(id, 'zoomOut', '');
 
     // Equivalent à hide() de JQuery
     (document.querySelector(id) as HTMLElement).style.display = "none";
     
-    if(this.currentSpell.length < this.quizz.answer.length) {
-      this.currentSpell += letter;
+    if(this.play.currentSpell.length < this.play.quizz.answer.length) {
+      this.play.currentSpell += letter;
     }
   }
 
   clearSpell(): void {
-    this.currentSpell = this.currentSpell.substring(0, this.currentSpell.length - 1);
+    this.play.currentSpell = this.play.currentSpell.substring(0, this.play.currentSpell.length - 1);
     
     // Equivalent à show() de JQuery
-    (document.querySelector(this.deletedLetters.pop()) as HTMLElement).style.display = "block";
+    (document.querySelector(this.play.deletedLetters.pop()) as HTMLElement).style.display = "block";
   }
 
   checkResult(commit: string) {
 
-    if (this.quizz.answer === commit) {
+    if (this.play.quizz.answer === commit) {
 
-      this.db.changeStatusQuizz(this.quizz.quizz_id, 2);
+      this.db.changeStatusQuizz(this.play.quizz.quizz_id, 2);
 
       // Vérifie si on vient de validé une quête
       this.db.checkQuests();
@@ -348,17 +348,17 @@ export class PlayPage implements OnInit {
       this.db.getWonCounter();
 
       // update the score of the level
-      this.db.updateWon(this.quizz.difficulty_name);
+      this.db.updateWon(this.play.quizz.difficulty_name);
 
       // Récupère le prochain quizz de ce thème
-      this.db.getQuizzFromLevels(this.quizz.difficulty_name)
+      this.db.getQuizzFromLevels(this.play.quizz.difficulty_name)
       .then(data => {
-        this.nextQuizz = data;
+        this.play.nextQuizz = data;
 
         // Si il reste encore des quizz alors on continue
-        if (this.nextQuizz) {
+        if (this.play.nextQuizz) {
           // Load the next quizz
-          this.quizz = this.nextQuizz;
+          this.play.quizz = this.play.nextQuizz;
 
           // Launch an ad if mod 5
           this.AdIfModuloFive();
@@ -387,7 +387,7 @@ export class PlayPage implements OnInit {
         // 0 never done
         // 1 fail
         // 2 done
-      this.db.changeStatusQuizz(this.quizz.quizz_id, 1);
+      this.db.changeStatusQuizz(this.play.quizz.quizz_id, 1);
 
       this.db.DoneCountLevels();
 

@@ -1,3 +1,4 @@
+import { PlayService } from './services/play.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     SplashScreen,
     SQLitePorter,
     SQLite,
+    PlayService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

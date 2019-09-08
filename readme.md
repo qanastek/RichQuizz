@@ -18,6 +18,10 @@ ionic cordova run android --livereload --device --consolelogs
 ionic cordova resources
 ```
 
+### Ajouter un nouveau service
+
+Il faut l'ajouter aux providers de app.module.ts est pas components.ts comme je le penser.
+
 ### Erreur config.xml disapear:
 
 ```bash
@@ -189,10 +193,13 @@ npx ng g --help
   - [x] Faire un boutton supprimer la dernière lettre
   - [x] Faire un boutton envoyé
   - [x] Amélioré l'UI de spell
+    - [ ] Ajouter la possibilité de supprimer la lettre que l'ont touche
+    - [ ] Hide la lettre ajouter par l'indice
+      - [ ] Find dans l'array est composer l'id à partir de l'indice de l'occurence d'au moins une fois cette lettre
     - [x] Ajout d'animations:
       - [x] Quand on ajoute des lettres (haut)
         - [x] Enlevé sa
-      - [ ] Quand on appuie sur une lettre
+      - [ ] Quand on appuie sur une lettre elle disparait
       - [ ] Quand erreur faire vibré l'image
   - [x] Faire en sorte que appuyé sur la lettre "hide" le btn de la lettre
     - [x] JQuery like
@@ -252,6 +259,11 @@ npx ng g --help
 - [x] Quand je vais de la page play à levels j'ai l'observable countDone qui ne s'actualise pas
 - [x] La variable countDone donne la valeur précédente
   - [x] C'était dû au faite que nous affichions la valeur avoir que le refresh est eu le temps de finir
+- [ ] Don't delete letter paid by the player
+- [ ] Vérifier que l'ont ne puissent pas spam enter à la fin d'un niveau et ouvrir plusieurs inter
+  - [ ] Si oui alors créer une variable interOpen = false
+  - [ ] Qui passe à true quand l'inter est ouverte (du moins que le boutton est préssé)
+  - [ ] Et qui passe à false quand celle-ci ce fini
 
 
 ## CHALLENGES IDEAS:

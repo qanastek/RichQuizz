@@ -1,3 +1,4 @@
+import { PlayService } from './../../services/play.service';
 import { AppComponent } from './../../app.component';
 import { RouterModule, Router } from '@angular/router';
 import { Component, Input, NgZone, OnInit } from '@angular/core';
@@ -24,7 +25,8 @@ export class HintComponent implements OnInit {
     private ngZone: NgZone,
     private admob: AdMobFree,
     private plt: Platform,
-    public nav: NavController
+    public nav: NavController,
+    public play: PlayService
   ) { }
 
   ngOnInit() {
@@ -51,6 +53,13 @@ export class HintComponent implements OnInit {
 
   async close() {    
     await this.modalCtrl.dismiss();
+  }
+
+  firstLetter() {
+    // let answer = this.play.quizz.answer;
+    let answer = this.play.quizz.answer;
+
+    this.play.currentSpell = answer.charAt(0) + this.play.currentSpell.substring(1);
   }
 
   goBack() {
