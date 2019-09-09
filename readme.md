@@ -264,7 +264,7 @@ npx ng g --help
   - [ ] Si oui alors créer une variable interOpen = false
   - [ ] Qui passe à true quand l'inter est ouverte (du moins que le boutton est préssé)
   - [ ] Et qui passe à false quand celle-ci ce fini
-
+- [ ] Fix la barre de progression qui reste à la même longeur
 
 ## CHALLENGES IDEAS:
 
