@@ -265,6 +265,7 @@ npx ng g --help
   - [ ] Qui passe à true quand l'inter est ouverte (du moins que le boutton est préssé)
   - [ ] Et qui passe à false quand celle-ci ce fini
 - [ ] Fix la barre de progression qui reste à la même longeur
+- [x] Fix le faite que si le client n'a pas de connection à la fin de niveau l'inter ne ce lance pas est donc qu'il n'obtient pas sa récompence
 
 ## CHALLENGES IDEAS:
 

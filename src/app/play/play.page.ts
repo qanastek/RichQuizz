@@ -206,9 +206,6 @@ export class PlayPage implements OnInit {
 
     this.admob.on('admob.interstitial.events.CLOSE').subscribe(() => {      
       console.log("Interstitial CLOSE");
-      this.EndLevelPopup(2);
-      this.db.addDiamonds(2);
-      this.db.refreshDiamonds();
     });
 
   }
@@ -336,6 +333,7 @@ export class PlayPage implements OnInit {
 
     if (this.play.quizz.answer === commit) {
 
+      // Change le statut du current quizz pour réussit
       this.db.changeStatusQuizz(this.play.quizz.quizz_id, 2);
 
       // Vérifie si on vient de validé une quête
@@ -357,19 +355,27 @@ export class PlayPage implements OnInit {
 
         // Si il reste encore des quizz alors on continue
         if (this.play.nextQuizz) {
+
           // Load the next quizz
           this.play.quizz = this.play.nextQuizz;
 
           // Launch an ad if mod 5
           this.AdIfModuloFive();
 
+          // Actualise les valeurs des levels
           this.db.DoneCountLevels();
         }
         else {
-          // Popup fin de niveau
-          
+
+          // Inter fin de niveau
           this.InterstitielAdvertisementEndLevel();
 
+          // Give les 2 diamands de fin de niveau
+          this.EndLevelPopup(2);
+          this.db.addDiamonds(2);
+          this.db.refreshDiamonds();
+
+          // Actualise les valeurs des levels
           this.db.DoneCountLevels();
 
           // Redirection vers la page des niveaux

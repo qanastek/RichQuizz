@@ -12,7 +12,8 @@
   'border-radius': '5px',
   'font-size': '1em'
 }">
-  <div [ngStyle]="{
+  <div 
+  [ngStyle]="{
     'min-width': '15%',
     'text-align': 'center',
 
@@ -22,9 +23,10 @@
     'padding': '0.5%',
 
     'border-radius': '5px',
-    'background-color': color2,
-    'width': (value).toFixed(0) + '%'
-  }">
+    'background-color': color2
+  }"
+  [style.width.%]="((value / 20) * 100).toFixed(0)"
+  >
   
     <p *ngIf="!goal">
       {{ ((value / 20) * 100).toFixed(0) }}%
