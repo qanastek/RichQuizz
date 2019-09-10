@@ -220,7 +220,7 @@ npx ng g --help
   - [x] Ajouter un joker/indice
     - [x] La liste des jockers s'affiche dans une popup
     - [x] Mettre le boutton dans la toolbar que pour le mode de jeu spell
-    - [ ] Ajoute une lettre random
+    - [x] Ajoute une lettre random
     - [x] Ajouter la première lettre
     - [ ] Passer (plus chères)
     - [ ] Regarder une pub pour 1/2 diamands
@@ -235,7 +235,7 @@ npx ng g --help
       - [ ] ont en ajoute
       - [ ] ont en enleve
   - [x] Collect award/reward color
-- [ ] Faire l'écran de chargement
+- [x] Faire l'écran de chargement
 - [x] Faire barre du haut avec diamands et back arrow
 - [x] Ajouter la popup de fin de niveau après que la publicité est fini en annoncant +2 diamands
 - [ ] Ajouter la popup quand tu récupère les diamands de défis, genre +2 diamands (peut être pas)
@@ -273,8 +273,8 @@ npx ng g --help
   - [ ] Et qui passe à false quand celle-ci ce fini
 - [x] Fix la barre de progression qui reste à la même longeur
 - [x] Fix le faite que si le client n'a pas de connection à la fin de niveau l'inter ne ce lance pas est donc qu'il n'obtient pas sa récompence
-- [ ] Empecher l'user d'acheter si il à pas l'argent
-  - [ ] Afficher une popup au passage qui averti les joueur qu'il ne possède pas assez de diamands
+- [x] Empecher l'user d'acheter si il à pas l'argent
+  - [x] Afficher une popup au passage qui averti les joueur qu'il ne possède pas assez de diamands
 
 ## CHALLENGES IDEAS:
 
