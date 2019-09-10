@@ -4,7 +4,7 @@ import { Levels } from './../interfaces/levels';
 import { DoneQuizz } from './../interfaces/done-quizz';
 import { Quizz } from './../interfaces/quizz';
 import { Injectable } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, ModalController } from '@ionic/angular';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { HttpClient } from '@angular/common/http';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
@@ -46,7 +46,8 @@ export class DatabaseService {
     private sqlitePorter: SQLitePorter,
     private sqlite: SQLite,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    public modalController: ModalController
   ) {
 
     this.plt.ready().then( () => {

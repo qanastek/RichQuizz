@@ -9,6 +9,7 @@ import { ThemeBarComponent } from './theme-bar/theme-bar.component';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { NoMoneyComponent } from './no-money/no-money.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
     FailComponent,
     AdvertisementComponent,
     EndLevelComponent,
-    HintComponent
+    HintComponent,
+    NoMoneyComponent
   ],
   imports: [
     CommonModule,
@@ -31,14 +33,16 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
     FailComponent,
     AdvertisementComponent,
     EndLevelComponent,
-    HintComponent
+    HintComponent,
+    NoMoneyComponent
   ],
   entryComponents: [
     AskAdComponent,
     FailComponent,
     AdvertisementComponent,
     EndLevelComponent,
-    HintComponent
+    HintComponent,
+    NoMoneyComponent
   ],
   providers: [
     AdMobFree

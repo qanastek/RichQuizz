@@ -1,3 +1,4 @@
+import { NoMoneyComponent } from './../no-money/no-money.component';
 import { DatabaseService } from 'src/app/services/database.service';
 import { PlayService } from './../../services/play.service';
 import { AppComponent } from './../../app.component';
@@ -60,34 +61,56 @@ export class HintComponent implements OnInit {
   getRandomInt(max: number) {
     return Math.floor(Math.random() * Math.floor(max));
   }
+  
+  async noEnoughtMoney() {
+
+    const modal = await this.modalCtrl.create({
+      component: NoMoneyComponent,
+      componentProps: {},
+      cssClass: 'ask-ad-custom',
+      backdropDismiss: false
+    });
+
+    return await modal.present();
+
+  }
 
   randomLetter() {
-    this.db.subDiamonds(1);
-    (document.querySelector(".randomLetter") as HTMLElement).style.display = "none";
+    if (this.db.diamonds.getValue() >= 1) {
 
-    let answer = this.play.quizz.answer;
-    let answerLen = answer.length;
-
-    let randomNbr = this.getRandomInt(answerLen);
-    let letter = answer.charAt(randomNbr);
-
-    this.play.currentSpell[randomNbr] = letter;
-
-    this.play.paidLetters.push(randomNbr);
-    
-    this.close();
+      this.db.subDiamonds(1);
+      (document.querySelector(".randomLetter") as HTMLElement).style.display = "none";
+  
+      let answer = this.play.quizz.answer;
+      let answerLen = answer.length;
+  
+      let randomNbr = this.getRandomInt(answerLen);
+      let letter = answer.charAt(randomNbr);
+  
+      this.play.currentSpell[randomNbr] = letter;
+  
+      this.play.paidLetters.push(randomNbr);
+      
+      this.close();      
+    } else {
+      this.noEnoughtMoney();
+    }
   }
 
   firstLetter() {
-    this.db.subDiamonds(2);
-    (document.querySelector(".firstLetter") as HTMLElement).style.display = "none";
+    if (this.db.diamonds.getValue() >= 1) {
+      this.db.subDiamonds(2);
+      (document.querySelector(".firstLetter") as HTMLElement).style.display = "none";
 
-    let answer = this.play.quizz.answer;
+      let answer = this.play.quizz.answer;
 
-    this.play.currentSpell[0] = answer.charAt(0);
-    this.play.paidLetters.push(0);
+      this.play.currentSpell[0] = answer.charAt(0);
+      this.play.paidLetters.push(0);
 
-    this.close();
+      this.close();
+    } else {  
+      this.noEnoughtMoney();      
+    }
   }
 
   goBack() {

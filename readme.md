@@ -274,6 +274,7 @@ npx ng g --help
 - [x] Fix la barre de progression qui reste à la même longeur
 - [x] Fix le faite que si le client n'a pas de connection à la fin de niveau l'inter ne ce lance pas est donc qu'il n'obtient pas sa récompence
 - [ ] Empecher l'user d'acheter si il à pas l'argent
+  - [ ] Afficher une popup au passage qui averti les joueur qu'il ne possède pas assez de diamands
 
 ## CHALLENGES IDEAS:
 

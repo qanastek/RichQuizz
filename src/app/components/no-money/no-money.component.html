@@ -1,0 +1,73 @@
+<ion-content>
+
+    <div 
+      style="
+        height: 50vh;
+        width: 70vw;
+  
+        position: absolute;
+        left: 56%;
+        top: 60vh;
+        margin-left: -150px;
+        margin-top: -150px;
+      "
+      class="animated shake"
+    >
+  
+      <!-- Header -->
+      <div
+        class="badAnswer"
+        style="
+          text-align: center;
+          color: #ffffff;
+          height: 20%;
+          border-top-left-radius: 25px;
+          border-top-right-radius: 25px;
+        "
+      >
+        <p
+          style="
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-top: 0% !important;
+            padding-top: 9%;
+          "
+        >
+          IMPOSSIBLE
+        </p>
+      </div>
+  
+      <!-- Footer -->
+      <div
+        style="
+          background-color: #ffffff;
+          padding-left: 6%;
+          padding-right: 6%;
+          padding-bottom: 4%;
+          height: 50%;
+          text-align: center;
+          border-bottom-right-radius: 25px;
+          border-bottom-left-radius: 25px;
+        "
+      >
+        <p style="color: #ff3061; margin-top: 0%; padding-top: 6%;">
+          <ion-icon name="alert"></ion-icon>
+          Voulez n'avez pas assez de diamands
+        </p>
+  
+        <ion-button 
+          (click)="this.close()"
+          expand="full"
+          shape="round"
+          size="large"
+          color="retry"
+          style="color: #804f00; margin-bottom: 5%;"
+        >
+          OK
+        </ion-button>
+  
+      </div>
+  
+    </div>
+  
+  </ion-content>
