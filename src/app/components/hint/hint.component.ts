@@ -1,3 +1,4 @@
+import { DatabaseService } from 'src/app/services/database.service';
 import { PlayService } from './../../services/play.service';
 import { AppComponent } from './../../app.component';
 import { RouterModule, Router } from '@angular/router';
@@ -26,7 +27,8 @@ export class HintComponent implements OnInit {
     private admob: AdMobFree,
     private plt: Platform,
     public nav: NavController,
-    public play: PlayService
+    public play: PlayService,
+    public db: DatabaseService
   ) { }
 
   ngOnInit() {
@@ -55,11 +57,37 @@ export class HintComponent implements OnInit {
     await this.modalCtrl.dismiss();
   }
 
+  getRandomInt(max: number) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  randomLetter() {
+    this.db.subDiamonds(1);
+    (document.querySelector(".randomLetter") as HTMLElement).style.display = "none";
+
+    let answer = this.play.quizz.answer;
+    let answerLen = answer.length;
+
+    let randomNbr = this.getRandomInt(answerLen);
+    let letter = answer.charAt(randomNbr);
+
+    this.play.currentSpell[randomNbr] = letter;
+
+    this.play.paidLetters.push(randomNbr);
+    
+    this.close();
+  }
+
   firstLetter() {
-    // let answer = this.play.quizz.answer;
+    this.db.subDiamonds(2);
+    (document.querySelector(".firstLetter") as HTMLElement).style.display = "none";
+
     let answer = this.play.quizz.answer;
 
-    this.play.currentSpell = answer.charAt(0) + this.play.currentSpell.substring(1);
+    this.play.currentSpell[0] = answer.charAt(0);
+    this.play.paidLetters.push(0);
+
+    this.close();
   }
 
   goBack() {

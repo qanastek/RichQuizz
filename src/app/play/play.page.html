@@ -82,7 +82,7 @@
           display: inline-block;
           background-color: rgba(43, 43, 43, 0.80);
         "
-        *ngFor="let letterAnswer of this.stringtoArrayInput(this.play.currentSpell)"
+        *ngFor="let letterAnswer of this.usableArray()"
       >
         {{letterAnswer}}
       </span>
@@ -256,7 +256,7 @@
           shape="round"
           expand="full"
           color="win"
-          (click)="this.checkResult(this.play.currentSpell)"
+          (click)="this.checkResult(ArrayToString())"
         >
         ✔️
         </ion-button>

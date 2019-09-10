@@ -520,6 +520,9 @@ export class DatabaseService {
     `;
 
     this.db.executeSql(sqlQuery, [])
+    .then(() => {
+      this.refreshDiamonds();
+    })
     .catch(e => console.error(e));
 
   }
@@ -535,6 +538,9 @@ export class DatabaseService {
     `;
 
     this.db.executeSql(sqlQuery, [])
+    .then(() => {
+      this.refreshDiamonds();
+    })
     .catch(e => console.error(e));
 
   }

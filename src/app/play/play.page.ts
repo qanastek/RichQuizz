@@ -246,15 +246,17 @@ export class PlayPage implements OnInit {
     return a;
   }
 
-  stringtoArrayInput(currentAnswer: string): Array<string> {
-    var array: string[] = [];
+  usableArray() {
+    let array: string[] = [];
 
-    for (let i = 0; i < this.play.quizz.answer.length; i++) {
-      array.push("_");      
+    for (let k = 0; k < this.play.quizz.answer.length; k++) {
+      array[k] = this.play.currentSpell[k];
     }
 
-    for (let k = 0; k < currentAnswer.length; k++) {
-      array[k] = currentAnswer.charAt(k);
+    for (let i = 0; i < this.play.quizz.answer.length; i++) {
+      if (!array[i]) {
+        array[i] = "_";
+      }    
     }
     
     return array;
@@ -302,38 +304,83 @@ export class PlayPage implements OnInit {
     node.addEventListener('animationend', handleAnimationEnd);
   }
 
+  ArrayToString() {
+    let word: string = "";
+
+    this.play.currentSpell.forEach(element => {
+      word += element;      
+    });
+
+    return word;    
+  }
+
   showIndices() {
     this.Indices();
   }
 
+  haveSpace() {
+    if (this.play.currentSpell.length < this.play.quizz.answer.length) return true;
+
+    if (this.play.currentSpell.includes(null)) return true;
+
+    if (this.play.currentSpell.includes(undefined)) return true;
+  }
+
   addSpell(letter: string, id: string): void {
-    id = "#" + id;
-    
-    // Ajoute l'id du btn dans une array de sorte à pouvoir par la suite le show()
-    this.play.deletedLetters.push(id);
 
-    // this.animateCSS(id, 'zoomOut', '');
+    if(this.haveSpace()) {
 
-    // Equivalent à hide() de JQuery
-    (document.querySelector(id) as HTMLElement).style.display = "none";
-    
-    if(this.play.currentSpell.length < this.play.quizz.answer.length) {
-      this.play.currentSpell += letter;
+      id = "#" + id;
+
+      // Equivalent à hide() de JQuery
+      (document.querySelector(id) as HTMLElement).style.display = "none";
+      
+      // Ajoute l'id du btn dans une array de sorte à pouvoir par la suite le show()
+      this.play.deletedLetters.push(id);
+
+      for (let i = 0; i < this.play.quizz.answer.length; i++) { 
+               
+        if (
+          !this.play.currentSpell[i] ||
+          this.play.currentSpell[i] === undefined ||
+          this.play.currentSpell[i] === null
+        ) {
+          this.play.currentSpell[i] = letter;
+
+          return;
+        }
+      }
+
     }
   }
 
   clearSpell(): void {
-    var id = this.play.deletedLetters.pop();
-    var letter = id.charAt(8);
 
-    this.play.currentSpell = this.play.currentSpell.substring(0, this.play.currentSpell.length - 1);
+    // Analyse tout l'array actuelle dans le sens inverse
+    for (let i = this.play.currentSpell.length - 1; i >= 0; i--) {
+
+      // Si la case n'est pas vide et que celle-ci n'est pas une lettre acheté      
+      if (this.play.currentSpell[i] && !this.play.paidLetters.includes(i)) {
+
+        // Vidé la case mais la gardé
+        this.play.currentSpell[i] = undefined;
+        
+        // Obtenir l'ID de la prochaine lettre à supprimé
+        var id = this.play.deletedLetters.pop();
     
-    // Equivalent à show() de JQuery
-    (document.querySelector(id) as HTMLElement).style.display = "block";
+        // Equivalent à show() de JQuery
+        (document.querySelector(id) as HTMLElement).style.display = "block";
+
+        // Arrête la procédure de supréssion
+        return;        
+      }
+      
+    }
   }
 
   checkResult(commit: string) {
 
+    // Si il s'agit de la bonne réponse
     if (this.play.quizz.answer === commit) {
 
       // Change le statut du current quizz pour réussit
@@ -373,10 +420,11 @@ export class PlayPage implements OnInit {
           // Inter fin de niveau
           this.InterstitielAdvertisementEndLevel();
 
-          // Give les 2 diamands de fin de niveau
+          // Popup de fin de niveau qui montre que le joueur viens de gagner 2 diamands
           this.EndLevelPopup(2);
+
+          // Give les 2 diamands de fin de niveau
           this.db.addDiamonds(2);
-          this.db.refreshDiamonds();
 
           // Actualise les valeurs des levels
           this.db.DoneCountLevels();

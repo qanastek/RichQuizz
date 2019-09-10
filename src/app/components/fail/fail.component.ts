@@ -55,7 +55,6 @@ export class FailComponent implements OnInit {
 
   pay() {
     this.db.subDiamonds(1);
-    this.db.refreshDiamonds();
     this.close();
   }
 

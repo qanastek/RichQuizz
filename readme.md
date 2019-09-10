@@ -18,6 +18,12 @@ ionic cordova run android --livereload --device --consolelogs
 ionic cordova resources
 ```
 
+### Use animate.css
+
+```javascript
+this.animateCSS(id, 'zoomOut', '');
+```
+
 ### Ajouter un nouveau service
 
 Il faut l'ajouter aux providers de app.module.ts est pas components.ts comme je le penser.
@@ -211,14 +217,14 @@ npx ng g --help
   - [x] Replace X by a _
   - [ ] Revoir peut etre le faite de perdre une vie à chaque erreur
     - [ ] Peut-être s'inspiré de icône games
-  - [ ] Ajouter un joker/indice
-    - [ ] La liste des jockers s'affiche dans une popup
-    - [ ] Mettre le boutton dans la toolbar que pour le mode de jeu spell
+  - [x] Ajouter un joker/indice
+    - [x] La liste des jockers s'affiche dans une popup
+    - [x] Mettre le boutton dans la toolbar que pour le mode de jeu spell
     - [ ] Ajoute une lettre random
-    - [ ] Ajouter la première lettre
+    - [x] Ajouter la première lettre
     - [ ] Passer (plus chères)
     - [ ] Regarder une pub pour 1/2 diamands
-      - [ ] Si oui: Mettre la fonction d'affichage dans le then
+      - [ ] Si oui: Mettre la fonction d'affichage dans le then car si il glitch ou il à pas internet il pourra infinite give
 - [ ] Update quests:
   - [x] Font weight fat pour le nombre à faire
     - [x] ajouter <b></b> dans la DB 
@@ -233,6 +239,7 @@ npx ng g --help
 - [x] Faire barre du haut avec diamands et back arrow
 - [x] Ajouter la popup de fin de niveau après que la publicité est fini en annoncant +2 diamands
 - [ ] Ajouter la popup quand tu récupère les diamands de défis, genre +2 diamands (peut être pas)
+- [x] Passer le current spell en array avec push / pop
 
 ## TO FIX:
 
@@ -259,13 +266,14 @@ npx ng g --help
 - [x] Quand je vais de la page play à levels j'ai l'observable countDone qui ne s'actualise pas
 - [x] La variable countDone donne la valeur précédente
   - [x] C'était dû au faite que nous affichions la valeur avoir que le refresh est eu le temps de finir
-- [ ] Don't delete letter paid by the player
+- [x] Don't delete letter paid by the player
 - [ ] Vérifier que l'ont ne puissent pas spam enter à la fin d'un niveau et ouvrir plusieurs inter
   - [ ] Si oui alors créer une variable interOpen = false
   - [ ] Qui passe à true quand l'inter est ouverte (du moins que le boutton est préssé)
   - [ ] Et qui passe à false quand celle-ci ce fini
 - [x] Fix la barre de progression qui reste à la même longeur
 - [x] Fix le faite que si le client n'a pas de connection à la fin de niveau l'inter ne ce lance pas est donc qu'il n'obtient pas sa récompence
+- [ ] Empecher l'user d'acheter si il à pas l'argent
 
 ## CHALLENGES IDEAS:
 

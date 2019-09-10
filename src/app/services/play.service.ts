@@ -6,11 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PlayService {
 
-  public currentSpell: string = "";
+  public currentSpell: string[] = [];
   public quizz: any;
   public nextQuizz: any;
   public spellArray: string[];
   public deletedLetters: string[] = [];
+  public paidLetters: number[] = [];
 
   constructor(
     private route: ActivatedRoute,
