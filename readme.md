@@ -267,10 +267,10 @@ npx ng g --help
 - [x] La variable countDone donne la valeur précédente
   - [x] C'était dû au faite que nous affichions la valeur avoir que le refresh est eu le temps de finir
 - [x] Don't delete letter paid by the player
-- [ ] Vérifier que l'ont ne puissent pas spam enter à la fin d'un niveau et ouvrir plusieurs inter
-  - [ ] Si oui alors créer une variable interOpen = false
-  - [ ] Qui passe à true quand l'inter est ouverte (du moins que le boutton est préssé)
-  - [ ] Et qui passe à false quand celle-ci ce fini
+- [x] Vérifier que l'ont ne puissent pas spam enter à la fin d'un niveau et ouvrir plusieurs inter
+  - [x] Si oui alors créer une variable interOpen = false
+  - [x] Qui passe à true quand l'inter est ouverte (du moins que le boutton est préssé)
+  - [x] Et qui passe à false quand celle-ci ce fini
 - [x] Fix la barre de progression qui reste à la même longeur
 - [x] Fix le faite que si le client n'a pas de connection à la fin de niveau l'inter ne ce lance pas est donc qu'il n'obtient pas sa récompence
 - [x] Empecher l'user d'acheter si il à pas l'argent
