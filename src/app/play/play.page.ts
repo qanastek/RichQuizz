@@ -323,10 +323,13 @@ export class PlayPage implements OnInit {
   }
 
   clearSpell(): void {
+    var id = this.play.deletedLetters.pop();
+    var letter = id.charAt(8);
+
     this.play.currentSpell = this.play.currentSpell.substring(0, this.play.currentSpell.length - 1);
     
     // Equivalent à show() de JQuery
-    (document.querySelector(this.play.deletedLetters.pop()) as HTMLElement).style.display = "block";
+    (document.querySelector(id) as HTMLElement).style.display = "block";
   }
 
   checkResult(commit: string) {
