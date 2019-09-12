@@ -275,6 +275,7 @@ npx ng g --help
 - [x] Fix le faite que si le client n'a pas de connection à la fin de niveau l'inter ne ce lance pas est donc qu'il n'obtient pas sa récompence
 - [x] Empecher l'user d'acheter si il à pas l'argent
   - [x] Afficher une popup au passage qui averti les joueur qu'il ne possède pas assez de diamands
+- [ ] Cela ne supprime que les lettre non présentes dans le mot au lieu de celle en trop (A voir si fix ou non)
 
 ## CHALLENGES IDEAS:
 

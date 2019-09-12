@@ -6,12 +6,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PlayService {
 
-  public currentSpell: string[] = [];
-  public quizz: any;
-  public nextQuizz: any;
-  public spellArray: string[];  // Lettres disponibles
-  public deletedLetters: string[] = [];
-  public paidLetters: number[] = [];
+  public currentSpell: string[] = []; // Saisie actuelle
+  public quizz: any;  // Quizz actuelle
+  public nextQuizz: any;  // Prochain quizz
+  public spellArray: string[];  // Lettres disponibles au clique
+  public deletedLetters: string[] = []; // Array de lettre qui ont était supprimer par le joueur
+  public paidLetters: number[] = []; // Lettres payé
 
   constructor(
     private route: ActivatedRoute,

@@ -98,44 +98,83 @@ export class HintComponent implements OnInit {
     }
   }
 
-  deleteUseLessLetters() {
-    if (this.db.diamonds.getValue() >= 3) {
+  clearFakes() {
+
+    // Récupère les lettres disponibles
+    let givenLetters = this.play.spellArray;
+
+    // Réponse au quizz actuelle
+    let answer = this.play.quizz.answer;
+
+    // Pour chaque lettre donnez
+    givenLetters.forEach(givenLetter => {
+
+      // Vérifier si elle est comprise dans le mot
+      if (!answer.includes(givenLetter)) {
+
+        // Récupéré l'index de cette lettre en trop
+        let index = givenLetters.indexOf(givenLetter);  
+
+        // Id de la lettre en trop à hide
+        let id = "#letter-" + givenLetter + index;
+
+        // Cache cette lettre
+        (document.querySelector(id) as HTMLElement).style.display = "none";
+      }     
+
+    });
+
+  }
+
+  deleteUseLessLetters(free: boolean) {
+
+    // Si le joueur peu payer
+    if (free !== true && this.db.diamonds.getValue() >= 3) {
 
       // Enlève 3 diamands
       this.db.subDiamonds(3);
 
       // Cache le boutton ou les disable
       (document.querySelector(".uselessLetter") as HTMLElement).style.display = "none";
-  
-      // Récupère les lettres disponibles
-      let givenLetters = this.play.spellArray;
-
-      // Réponse au quizz actuelle
-      let answer = this.play.quizz.answer;
-
-      // Pour chaque lettre donnez
-      givenLetters.forEach(givenLetter => {
-
-        // Vérifier si elle est comprise dans le mot
-        if (!answer.includes(givenLetter)) {
-
-          // Récupéré l'index de cette lettre en trop
-          let index = givenLetters.indexOf(givenLetter);  
-
-          // Id de la lettre en trop à hide
-          let id = "#letter-" + givenLetter + index;
-
-          // Cache cette lettre
-          (document.querySelector(id) as HTMLElement).style.display = "none";
-        }     
-
-      });
+      
+      this.clearFakes();
       
       this.close();      
+    }
+    else if(free === true) {
+
+      // Cache le boutton ou les disable
+      (document.querySelector(".uselessLetter") as HTMLElement).style.display = "none";
+
+      this.clearFakes();
+      
+      this.close();
     }
     else {
       this.noEnoughtMoney();
     }
+  }
+
+  async deleteUseLessLettersAd() {
+
+    // id: 'ca-app-pub-7311596904113357/3034587257',
+    const InterstitielConfig: AdMobFreeInterstitialConfig = {
+      isTesting: true,
+      autoShow: true,
+    };
+    this.admob.interstitial.config(InterstitielConfig);
+     
+    this.admob.interstitial.prepare()
+    .then(() => {
+      console.log("Interstitial OPEN");      
+    })
+    .catch(e => console.log(e));
+
+    this.admob.on('admob.interstitial.events.CLOSE').subscribe(() => {      
+      console.log("Interstitial CLOSE");
+      this.deleteUseLessLetters(true);
+    });
+
   }
 
   firstLetter() {
