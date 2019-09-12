@@ -9,7 +9,7 @@ export class PlayService {
   public currentSpell: string[] = [];
   public quizz: any;
   public nextQuizz: any;
-  public spellArray: string[];
+  public spellArray: string[];  // Lettres disponibles
   public deletedLetters: string[] = [];
   public paidLetters: number[] = [];
 

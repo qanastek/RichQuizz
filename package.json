@@ -25,6 +25,7 @@
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/google-plus": "^5.10.0",
     "@ionic-native/http": "^5.10.0",
+    "@ionic-native/network": "^5.13.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/sqlite": "^5.10.0",
     "@ionic-native/sqlite-porter": "^5.10.0",

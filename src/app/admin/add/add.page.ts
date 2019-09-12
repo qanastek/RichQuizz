@@ -146,5 +146,10 @@ export class AddPage implements OnInit {
   DestroyDatabase() {
     this.db.deleteDatabase();
   }
+
+  AddDiamonds() {
+    this.db.addDiamonds(2);
+    this.db.refreshDiamonds();
+  }
   
 }

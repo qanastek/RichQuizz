@@ -92,7 +92,48 @@ export class HintComponent implements OnInit {
       this.play.paidLetters.push(randomNbr);
       
       this.close();      
-    } else {
+    }
+    else {
+      this.noEnoughtMoney();
+    }
+  }
+
+  deleteUseLessLetters() {
+    if (this.db.diamonds.getValue() >= 3) {
+
+      // Enlève 3 diamands
+      this.db.subDiamonds(3);
+
+      // Cache le boutton ou les disable
+      (document.querySelector(".uselessLetter") as HTMLElement).style.display = "none";
+  
+      // Récupère les lettres disponibles
+      let givenLetters = this.play.spellArray;
+
+      // Réponse au quizz actuelle
+      let answer = this.play.quizz.answer;
+
+      // Pour chaque lettre donnez
+      givenLetters.forEach(givenLetter => {
+
+        // Vérifier si elle est comprise dans le mot
+        if (!answer.includes(givenLetter)) {
+
+          // Récupéré l'index de cette lettre en trop
+          let index = givenLetters.indexOf(givenLetter);  
+
+          // Id de la lettre en trop à hide
+          let id = "#letter-" + givenLetter + index;
+
+          // Cache cette lettre
+          (document.querySelector(id) as HTMLElement).style.display = "none";
+        }     
+
+      });
+      
+      this.close();      
+    }
+    else {
       this.noEnoughtMoney();
     }
   }

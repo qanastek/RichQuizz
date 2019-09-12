@@ -250,7 +250,7 @@ export class PlayPage implements OnInit {
     let array: string[] = [];
 
     for (let k = 0; k < this.play.quizz.answer.length; k++) {
-      array[k] = this.play.currentSpell[k];
+      array[k] = this.play.currentSpell[k];      
     }
 
     for (let i = 0; i < this.play.quizz.answer.length; i++) {
