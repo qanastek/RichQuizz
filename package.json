@@ -50,6 +50,7 @@
     "cordova-promise-polyfill": "0.0.2",
     "cordova-sqlite-storage": "^3.2.1",
     "core-js": "^2.5.4",
+    "node-sass": "^4.13.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.0",

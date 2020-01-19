@@ -51,7 +51,7 @@ export class HintComponent implements OnInit {
   }
 
   ngOnDestroy() {
-      this.backbuttonSubscription.unsubscribe();
+    this.backbuttonSubscription.unsubscribe();
   }
 
   async close() {    
